@@ -9,6 +9,8 @@
 import UIKit
 
 class AddCardButton: UIButton {
+    private let plusImage = UIImage(systemName: "plus")
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setProperties()
@@ -20,7 +22,7 @@ class AddCardButton: UIButton {
     }
     
     private func setProperties() {
-        self.setImage(UIImage(systemName: "plus"), for: .normal)
+        self.setImage(plusImage, for: .normal)
         self.tintColor = .black
     }
 }

@@ -9,6 +9,10 @@
 import UIKit
 
 class CardCountLabel: UILabel {
+    private var cornerRadiusValue: CGFloat {
+        return self.frame.height * 0.5
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setProperties()
@@ -22,7 +26,7 @@ class CardCountLabel: UILabel {
     private func setProperties() {
         self.backgroundColor = .white
         self.textAlignment = .center
-        self.layer.cornerRadius = self.frame.height * 0.5
+        self.layer.cornerRadius = cornerRadiusValue
         self.layer.masksToBounds = true
     }
 }
