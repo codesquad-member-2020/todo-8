@@ -1,0 +1,20 @@
+.header-container {
+  height: 40px;;
+  display: flex;
+  background-color: #000;
+  color: #fff;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header-title {
+  line-height: 40px;
+  margin-left: 50px;
+}
+
+.menu-btn {
+  margin-right: 40px;
+  background-color: #000;
+  color: #fff;
+}
