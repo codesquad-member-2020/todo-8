@@ -2,6 +2,10 @@ body {
   position: relative;
 }
 
+.btn {
+  background-color: inherit;
+}
+
 .header-container {
   height: 50px;;
   display: flex;
@@ -30,23 +34,25 @@ body {
   top: 0;
   right: 0;
   border: 1px solid #ccc;
+  background-color: #fff;
 }
 
 .menu-area {
-  text-indent: 20px;
-  height: 30px;
+  text-indent: 8px;
+  height: 32px;
   line-height: 30px;
   background-color: rgb(235, 235, 235);
-  
+  box-sizing: border-box;
 }
 
 .menu-noti {
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  text-indent: 20px;
-  height: 30px;
+  text-indent: 8px;
+  height: 32px;
   line-height: 30px;
   background-color: rgb(235, 235, 235);
+  box-sizing: border-box;
 }
 
 div.ui.feed {
@@ -59,4 +65,164 @@ div.ui.feed {
   top: 8px;
   right: 15px;
   background-color: inherit;
+  background-color: rgb(235, 235, 235);
+}
+
+/* 컨텐츠 영역 */
+.content-container {
+  display: flex;
+  justify-content: space-around;
+  /* overflow-x: scroll; */
+  height: 500px;
+  padding: 10px 20px 10px 20px;
+  
+}
+
+/* .todo-column {
+  width: 220px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 10px;
+} */
+
+.progress-column {
+  width: 220px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 10px;
+}
+
+.done-column {
+  width: 220px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 10px;
+}
+
+.add-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 220px;
+  border-radius: 10px;
+  border: 1px dashed #ccc;
+  height: 100px;
+}
+
+.add-text {
+  text-align: center;
+  margin: 0 auto;
+  width: 100px;
+}
+
+/* 컬럼영역 */
+
+/* 컬럼 타이틀 영역 */
+.column {
+  position: relative;
+  width: 220px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 10px;
+}
+
+.todo-column-header {
+  margin: 10px 5px 0px 10px;
+}
+
+.todo-num {
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  text-indent: 4px;
+  font-size: 9px;
+  line-height: 14px;
+  background-color: #ccc;
+  font-weight: bold;
+}
+
+.todo-column-title {
+  font-size: 13px;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.todo-column-add-btn {
+  position: absolute;
+  top: 12px;
+  right: 26px;
+  font-size: 14px;
+}
+
+.todo-column-remove-btn {
+  position: absolute;
+  top: 12px;
+  right: 3px;
+}
+
+/* 컬럼 할일 추가 영역 */
+.todo-textarea {
+  border-radius: 4px;
+  margin: 10px 5px 0px 5px;
+  width: 95%;
+  height: 50px;
+  padding: 10px 10px;
+  border: 1px solid #ccc;
+}
+
+.todo-textarea::placeholder {
+  font-size: 11px;
+}
+
+.todo-btn-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.todo-btn-container > button {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 47%;
+  height: 25px;
+  font-size: 12px;
+  line-height: 25px;
+  margin-bottom: 10px;
+}
+
+.base-add-btn {
+  background-color: #41b883;
+  color: #fff;
+  margin-left: 5px;
+  opacity: 0.5;
+}
+
+.base-cancel-btn {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+/* todo-list */
+
+.todo-items {
+  position: relative;
+  color: rgb(27, 27, 27);
+  background-color: #fff;
+  font-size: 11px;
+  height: 50px;
+
+  margin: 5px;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.todo-items-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.todo-writer-container {
+}
+
+.todo-items-writer {
+  display: inline-block;
+  text-indent: 20px;
 }

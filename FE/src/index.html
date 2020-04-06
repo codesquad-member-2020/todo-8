@@ -19,23 +19,150 @@
         <span class="header-title">Todo 서비스</span>
         <button class="menu-btn">menu</button>
       </div>
+
+      <div class="content-container">
+        <div class="todo-column column"> 
+          <div class="todo-column-header">
+            <span class="todo-num">3</span>
+            <span class="todo-column-title">해야할 일</span>
+            <button class="todo-column-add-btn btn">
+              <i class="plus icon"></i>
+            </button>
+            <button class="todo-column-remove-btn btn">
+              <i class="x icon"></i>
+            </button>
+          </div>
+          <div class="todo-add-area">
+            <textarea class="todo-textarea" placeholder="Enter a note" name="" id=""></textarea>
+            <div class="todo-btn-container">
+              <button class="base-add-btn" disabled>Add</button>
+              <button class="base-cancel-btn">Cancel</button>
+            </div>
+          </div>
+          <ul class="todo-list">
+            <li class="todo-items">
+              <div class="todo-items-title">
+                <span>
+                  <i class="file alternate outline icon"></i>
+                  페이지네이션 UI 리서치</span>
+                <button class="todo-items-btn btn"><i class="x icon"></i></button>
+              </div>
+              <div class="todo-writer-container">
+                <span class="todo-items-writer">Added by Huey</span>
+              </div>
+            </li>
+            <li class="todo-items">
+              <div class="todo-items-title">
+                <span>
+                  <i class="file alternate outline icon"></i>
+                  투두리스트 마크업</span>
+                <button class="todo-items-btn btn"><i class="x icon"></i></button>
+              </div>
+              <div class="todo-writer-container">
+                <span class="todo-items-writer">Added by Huey</span>
+              </div>
+            </li>
+            <li class="todo-items">
+              <div class="todo-items-title">
+                <span>
+                  <i class="file alternate outline icon"></i>
+                  MVC패턴 스켈레톤 구현</span>
+                <button class="todo-items-btn btn"><i class="x icon"></i></button>
+              </div>
+              <div class="todo-writer-container">
+                <span class="todo-items-writer">Added by Huey</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="progress-column column"> 
+          <div class="todo-column-header">
+            <span class="todo-num">2</span>
+            <span class="todo-column-title">하는 중</span>
+            <button class="todo-column-add-btn btn">
+              <i class="plus icon"></i>
+            </button>
+            <button class="todo-column-remove-btn btn">
+              <i class="x icon"></i>
+            </button>
+          </div>
+          <div class="todo-add-area">
+            <textarea class="todo-textarea" placeholder="Enter a note" name="" id=""></textarea>
+            <div class="todo-btn-container">
+              <button class="base-add-btn" disabled>Add</button>
+              <button class="base-cancel-btn">Cancel</button>
+            </div>
+          </div>
+          <ul class="todo-list">
+            <li class="todo-items">
+              <div class="todo-items-title">
+                <span>
+                  <i class="file alternate outline icon"></i>
+                  이번주 기획리뷰</span>
+                <button class="todo-items-btn btn"><i class="x icon"></i></button>
+              </div>
+              <div class="todo-writer-container">
+                <span class="todo-items-writer">Added by Huey</span>
+              </div>
+            </li>
+            <li class="todo-items">
+              <div class="todo-items-title">
+                <span>
+                  <i class="file alternate outline icon"></i>
+                  설정파일 분리 리펙토링 작업</span>
+                <button class="todo-items-btn btn"><i class="x icon"></i></button>
+              </div>
+              <div class="todo-writer-container">
+                <span class="todo-items-writer">Added by Huey</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="done-column column"> 
+          <div class="todo-column-header">
+            <span class="todo-num">1</span>
+            <span class="todo-column-title">하는 중</span>
+            <button class="todo-column-add-btn btn">
+              <i class="plus icon"></i>
+            </button>
+            <button class="todo-column-remove-btn btn">
+              <i class="x icon"></i>
+            </button>
+          </div>
+          <div class="todo-add-area">
+            <textarea class="todo-textarea" placeholder="Enter a note" name="" id=""></textarea>
+            <div class="todo-btn-container">
+              <button class="base-add-btn" disabled>Add</button>
+              <button class="base-cancel-btn">Cancel</button>
+            </div>
+          </div>
+          <ul class="todo-list">
+            <li class="todo-items">
+              <div class="todo-items-title">
+                <span>
+                  <i class="file alternate outline icon"></i>
+                  github 공부하기</span>
+                <button class="todo-items-btn btn"><i class="x icon"></i></button>
+              </div>
+              <div class="todo-writer-container">
+                <span class="todo-items-writer">Added by Huey</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="add-column">
+          <div class="add-text"> + Add column</div>
+        </div>
+      </div>
+
       <div class="menu-container">
-        <div class="menu-area">Menu</div>
-        <div class="menu-noti">Activity</div>
-        <div class="ui feed">
-          <div class="event">
-            <div class="label">
-              <img src="./assets/image/cat.jpeg">
-            </div>
-            <div class="content">
-              <div class="date"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                3 일 전
-              </font></font></div>
-              <div class="summary"><font style="vertical-align: inherit;"><a><font style="vertical-align: inherit;">동료</font></a><font style="vertical-align: inherit;"> 그룹 </font><font style="vertical-align: inherit;">
-                 에 </font></font><a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Jenny Hess</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 를 </font><font style="vertical-align: inherit;">추가했습니다 </font><font style="vertical-align: inherit;">.
-              </font></font><a><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></div>
-            </div>
-          </div>
+        <div class="menu-area">
+          <i class="bars icon"></i>
+          <span>Menu</span>
+        </div>
+        <div class="menu-noti">
+          <i class="bell icon"></i>
+          <span>Activity</span>
         </div>
         <div class="ui feed">
           <div class="event">
@@ -97,7 +224,24 @@
             </div>
           </div>
         </div>
-        <button class="menu-close-btn">X</button>
+        <div class="ui feed">
+          <div class="event">
+            <div class="label">
+              <img src="./assets/image/cat.jpeg">
+            </div>
+            <div class="content">
+              <div class="date"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                3 일 전
+              </font></font></div>
+              <div class="summary"><font style="vertical-align: inherit;"><a><font style="vertical-align: inherit;">동료</font></a><font style="vertical-align: inherit;"> 그룹 </font><font style="vertical-align: inherit;">
+                 에 </font></font><a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Jenny Hess</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 를 </font><font style="vertical-align: inherit;">추가했습니다 </font><font style="vertical-align: inherit;">.
+              </font></font><a><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></div>
+            </div>
+          </div>
+        </div>
+        <button class="menu-close-btn">
+          <i class="x icon"></i>
+        </button>
       </div>
     </div>
   </body>
@@ -111,5 +255,7 @@
       $('.menu-container')
       .transition('fly left')
     })
+
+    // $('body').css("offsetHeight") 메뉴탭의 높이는 바디의 오프셋 하이트와 같도록 넘치는건 오버플로우 히든
   </script>
 </html>
