@@ -72,12 +72,21 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="해야할 일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mp-Oc-WAQ">
+                                        <rect key="frame" x="60" y="15" width="64" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="6ER-2L-NIq"/>
                                     <constraint firstItem="jRf-VU-JqT" firstAttribute="leading" secondItem="9Mq-JW-AzN" secondAttribute="leading" constant="15" id="76s-rQ-u4r"/>
                                     <constraint firstAttribute="bottom" secondItem="jRf-VU-JqT" secondAttribute="bottom" constant="15" id="Byx-Fg-SUF"/>
+                                    <constraint firstAttribute="bottom" secondItem="3Mp-Oc-WAQ" secondAttribute="bottom" constant="15" id="GtZ-6G-fwg"/>
+                                    <constraint firstItem="3Mp-Oc-WAQ" firstAttribute="leading" secondItem="jRf-VU-JqT" secondAttribute="trailing" constant="15" id="YHB-lb-87m"/>
+                                    <constraint firstItem="3Mp-Oc-WAQ" firstAttribute="top" secondItem="9Mq-JW-AzN" secondAttribute="top" constant="15" id="bAQ-Wr-Kmw"/>
                                     <constraint firstItem="jRf-VU-JqT" firstAttribute="top" secondItem="9Mq-JW-AzN" secondAttribute="top" constant="15" id="csg-Sl-9Zk"/>
                                 </constraints>
                             </view>
