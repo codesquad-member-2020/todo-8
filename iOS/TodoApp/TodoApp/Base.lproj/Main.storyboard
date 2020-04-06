@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bJc-94-p7I">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad11_0rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -16,43 +16,51 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ued-hI-Wbr">
-                                <rect key="frame" x="0.0" y="50" width="1194" height="764"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1194" height="814"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Bh-Q7-asN">
-                                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="764"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="814"/>
                                         <connections>
                                             <segue destination="BlN-4l-ztd" kind="embed" id="Rez-l1-aSB"/>
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9cj-GG-OCY">
-                                        <rect key="frame" x="404.5" y="0.0" width="385" height="764"/>
+                                        <rect key="frame" x="404.5" y="0.0" width="385" height="814"/>
                                         <connections>
                                             <segue destination="KvH-kK-Ftb" kind="embed" id="41P-7g-Ek0"/>
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sw4-uA-B9y">
-                                        <rect key="frame" x="809.5" y="0.0" width="384.5" height="764"/>
+                                        <rect key="frame" x="809.5" y="0.0" width="384.5" height="814"/>
                                         <connections>
                                             <segue destination="WeY-TX-z0Y" kind="embed" id="tOY-Rk-VY6"/>
                                         </connections>
                                     </containerView>
                                 </subviews>
                             </stackView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ywe-r7-gRj">
+                                <rect key="frame" x="0.0" y="0.0" width="1194" height="0.0"/>
+                                <items>
+                                    <navigationItem id="YGX-rS-i6C">
+                                        <barButtonItem key="rightBarButtonItem" title="Menu" id="wzz-d5-cpH">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="ywe-r7-gRj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="CnP-Ep-cNK"/>
+                            <constraint firstItem="ywe-r7-gRj" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="EgY-CX-Hlk"/>
                             <constraint firstItem="Ued-hI-Wbr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="JlD-5V-JDl"/>
+                            <constraint firstItem="Ued-hI-Wbr" firstAttribute="top" secondItem="ywe-r7-gRj" secondAttribute="bottom" symbolic="YES" id="Nl3-mn-s58"/>
+                            <constraint firstItem="ywe-r7-gRj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OBy-im-bvm"/>
                             <constraint firstItem="Ued-hI-Wbr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="QkM-7r-KJ9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ued-hI-Wbr" secondAttribute="bottom" id="TEW-7y-kdX"/>
-                            <constraint firstItem="Ued-hI-Wbr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xcf-aN-xSh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="hIY-6c-iez">
-                        <barButtonItem key="rightBarButtonItem" title="Menu" id="A6a-i8-0bz">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
-                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -63,7 +71,7 @@
             <objects>
                 <viewController id="BlN-4l-ztd" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a5W-HH-5xp">
-                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="764"/>
+                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="814"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Mq-JW-AzN">
@@ -106,7 +114,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kfl-ld-ek4">
-                                <rect key="frame" x="0.0" y="60" width="384.5" height="704"/>
+                                <rect key="frame" x="0.0" y="60" width="384.5" height="754"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -127,30 +135,12 @@
             </objects>
             <point key="canvasLocation" x="642" y="829"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="1JX-2v-KZl">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bJc-94-p7I" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rov-DS-ZZt">
-                        <rect key="frame" x="0.0" y="0.0" width="1194" height="50"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="m9c-6p-N4n"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CY1-cL-OB7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="138.69346733668343" y="137.41007194244605"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="PSJ-wD-JhA">
             <objects>
                 <viewController id="KvH-kK-Ftb" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EOX-hj-Qev">
-                        <rect key="frame" x="0.0" y="0.0" width="385" height="764"/>
+                        <rect key="frame" x="0.0" y="0.0" width="385" height="814"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5af-Ik-ieS">
@@ -193,7 +183,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YwH-lu-i01">
-                                <rect key="frame" x="0.0" y="60" width="385" height="704"/>
+                                <rect key="frame" x="0.0" y="60" width="385" height="754"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -219,7 +209,7 @@
             <objects>
                 <viewController id="WeY-TX-z0Y" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NoR-Is-uby">
-                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="764"/>
+                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="814"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2kP-4k-XdY">
@@ -262,7 +252,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JNU-Sv-ebN">
-                                <rect key="frame" x="0.0" y="60" width="384.5" height="704"/>
+                                <rect key="frame" x="0.0" y="60" width="384.5" height="754"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
