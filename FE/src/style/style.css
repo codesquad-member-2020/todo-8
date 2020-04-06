@@ -105,3 +105,45 @@ div.ui.feed {
   margin: 0 auto;
   width: 100px;
 }
+
+/* 컬럼영역 */
+
+/* 컬럼 타이틀 영역 */
+
+
+/* 컬럼 할일 추가 영역 */
+.todo-textarea {
+  border-radius: 4px;
+  margin: 10px 5px 0px 5px;
+  width: 95%;
+  height: 50px;
+  padding: 10px 10px;
+  border: 1px solid #ccc;
+}
+
+.todo-btn-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.todo-btn-container > button {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 47%;
+  height: 25px;
+  font-size: 12px;
+  line-height: 25px;
+  margin-bottom: 10px;
+}
+
+.base-add-btn {
+  background-color: #41b883;
+  color: #fff;
+  margin-left: 5px;
+  opacity: 0.5;
+}
+
+.base-cancel-btn {
+  margin-right: 5px;
+  font-weight: bold;
+}
