@@ -20,8 +20,96 @@
         <button class="menu-btn">menu</button>
       </div>
       <div class="menu-container">
-
+        <div class="menu-area">Menu</div>
+        <div class="menu-noti">Activity</div>
+        <div class="ui feed">
+          <div class="event">
+            <div class="label">
+              <img src="./assets/image/cat.jpeg">
+            </div>
+            <div class="content">
+              <div class="date"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                3 일 전
+              </font></font></div>
+              <div class="summary"><font style="vertical-align: inherit;"><a><font style="vertical-align: inherit;">동료</font></a><font style="vertical-align: inherit;"> 그룹 </font><font style="vertical-align: inherit;">
+                 에 </font></font><a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Jenny Hess</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 를 </font><font style="vertical-align: inherit;">추가했습니다 </font><font style="vertical-align: inherit;">.
+              </font></font><a><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></div>
+            </div>
+          </div>
+        </div>
+        <div class="ui feed">
+          <div class="event">
+            <div class="label">
+              <img src="./assets/image/cat.jpeg">
+            </div>
+            <div class="content">
+              <div class="date"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                3 일 전
+              </font></font></div>
+              <div class="summary"><font style="vertical-align: inherit;"><a><font style="vertical-align: inherit;">동료</font></a><font style="vertical-align: inherit;"> 그룹 </font><font style="vertical-align: inherit;">
+                 에 </font></font><a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Jenny Hess</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 를 </font><font style="vertical-align: inherit;">추가했습니다 </font><font style="vertical-align: inherit;">.
+              </font></font><a><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></div>
+            </div>
+          </div>
+        </div>
+        <div class="ui feed">
+          <div class="event">
+            <div class="label">
+              <img src="./assets/image/cat.jpeg">
+            </div>
+            <div class="content">
+              <div class="date"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                3 일 전
+              </font></font></div>
+              <div class="summary"><font style="vertical-align: inherit;"><a><font style="vertical-align: inherit;">동료</font></a><font style="vertical-align: inherit;"> 그룹 </font><font style="vertical-align: inherit;">
+                 에 </font></font><a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Jenny Hess</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 를 </font><font style="vertical-align: inherit;">추가했습니다 </font><font style="vertical-align: inherit;">.
+              </font></font><a><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></div>
+            </div>
+          </div>
+        </div>
+        <div class="ui feed">
+          <div class="event">
+            <div class="label">
+              <img src="./assets/image/cat.jpeg">
+            </div>
+            <div class="content">
+              <div class="date"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                3 일 전
+              </font></font></div>
+              <div class="summary"><font style="vertical-align: inherit;"><a><font style="vertical-align: inherit;">동료</font></a><font style="vertical-align: inherit;"> 그룹 </font><font style="vertical-align: inherit;">
+                 에 </font></font><a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Jenny Hess</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 를 </font><font style="vertical-align: inherit;">추가했습니다 </font><font style="vertical-align: inherit;">.
+              </font></font><a><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></div>
+            </div>
+          </div>
+        </div>
+        <div class="ui feed">
+          <div class="event">
+            <div class="label">
+              <img src="./assets/image/cat.jpeg">
+            </div>
+            <div class="content">
+              <div class="date"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                3 일 전
+              </font></font></div>
+              <div class="summary"><font style="vertical-align: inherit;"><a><font style="vertical-align: inherit;">동료</font></a><font style="vertical-align: inherit;"> 그룹 </font><font style="vertical-align: inherit;">
+                 에 </font></font><a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Jenny Hess</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 를 </font><font style="vertical-align: inherit;">추가했습니다 </font><font style="vertical-align: inherit;">.
+              </font></font><a><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></div>
+            </div>
+          </div>
+        </div>
+        <button class="menu-close-btn">X</button>
       </div>
     </div>
   </body>
+  <script>
+    $('.menu-btn').on("click", () => 
+      $('.menu-container')
+      .transition('fly left')
+    )
+
+    $('.menu-close-btn').on("click", () => {
+      $('.menu-container')
+      .transition('fly left')
+    })
+  </script>
 </html>
