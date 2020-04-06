@@ -14,6 +14,7 @@
 		443D0FF2243B3F3E003F2635 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 443D0FF1243B3F3E003F2635 /* Assets.xcassets */; };
 		443D0FF5243B3F3E003F2635 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 443D0FF3243B3F3E003F2635 /* LaunchScreen.storyboard */; };
 		443D1008243B968F003F2635 /* CardCountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1007243B968F003F2635 /* CardCountLabel.swift */; };
+		443D100A243B9974003F2635 /* AddCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1009243B9974003F2635 /* AddCardButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		443D0FF4243B3F3E003F2635 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		443D0FF6243B3F3E003F2635 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		443D1007243B968F003F2635 /* CardCountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCountLabel.swift; sourceTree = "<group>"; };
+		443D1009243B9974003F2635 /* AddCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				443D1007243B968F003F2635 /* CardCountLabel.swift */,
+				443D1009243B9974003F2635 /* AddCardButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				443D0FE9243B3F3D003F2635 /* AppDelegate.swift in Sources */,
 				443D1008243B968F003F2635 /* CardCountLabel.swift in Sources */,
 				443D0FEB243B3F3D003F2635 /* SceneDelegate.swift in Sources */,
+				443D100A243B9974003F2635 /* AddCardButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

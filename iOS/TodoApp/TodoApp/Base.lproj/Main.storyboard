@@ -78,16 +78,25 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52q-0F-hov" customClass="AddCardButton" customModule="TodoApp" customModuleProvider="target">
+                                        <rect key="frame" x="339.5" y="15" width="30" height="30"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                        </accessibility>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="6ER-2L-NIq"/>
                                     <constraint firstItem="jRf-VU-JqT" firstAttribute="leading" secondItem="9Mq-JW-AzN" secondAttribute="leading" constant="15" id="76s-rQ-u4r"/>
                                     <constraint firstAttribute="bottom" secondItem="jRf-VU-JqT" secondAttribute="bottom" constant="15" id="Byx-Fg-SUF"/>
+                                    <constraint firstAttribute="trailing" secondItem="52q-0F-hov" secondAttribute="trailing" constant="15" id="Geh-8E-66Y"/>
                                     <constraint firstAttribute="bottom" secondItem="3Mp-Oc-WAQ" secondAttribute="bottom" constant="15" id="GtZ-6G-fwg"/>
                                     <constraint firstItem="3Mp-Oc-WAQ" firstAttribute="leading" secondItem="jRf-VU-JqT" secondAttribute="trailing" constant="15" id="YHB-lb-87m"/>
                                     <constraint firstItem="3Mp-Oc-WAQ" firstAttribute="top" secondItem="9Mq-JW-AzN" secondAttribute="top" constant="15" id="bAQ-Wr-Kmw"/>
                                     <constraint firstItem="jRf-VU-JqT" firstAttribute="top" secondItem="9Mq-JW-AzN" secondAttribute="top" constant="15" id="csg-Sl-9Zk"/>
+                                    <constraint firstItem="52q-0F-hov" firstAttribute="top" secondItem="9Mq-JW-AzN" secondAttribute="top" constant="15" id="lqZ-Ro-Wh4"/>
+                                    <constraint firstAttribute="bottom" secondItem="52q-0F-hov" secondAttribute="bottom" constant="15" id="mtM-2z-xG8"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kfl-ld-ek4">
