@@ -30,6 +30,7 @@ body {
   top: 0;
   right: 0;
   border: 1px solid #ccc;
+  background-color: #fff;
 }
 
 .menu-area {
@@ -59,4 +60,48 @@ div.ui.feed {
   top: 8px;
   right: 15px;
   background-color: inherit;
+}
+
+/* 컨텐츠 영역 */
+.content-container {
+  display: flex;
+  justify-content: space-around;
+  /* overflow-x: scroll; */
+  height: 500px;
+  padding: 10px 20px 10px 20px;
+  
+}
+
+.todo-column {
+  width: 220px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 10px;
+}
+
+.progress-column {
+  width: 220px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 10px;
+}
+
+.done-column {
+  width: 220px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 10px;
+}
+
+.add-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 220px;
+  border-radius: 10px;
+  border: 1px dashed #ccc;
+  height: 100px;
+}
+
+.add-text {
+  text-align: center;
+  margin: 0 auto;
+  width: 100px;
 }
