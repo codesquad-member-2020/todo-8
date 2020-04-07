@@ -66,10 +66,10 @@
             </objects>
             <point key="canvasLocation" x="846.2311557788945" y="137.41007194244605"/>
         </scene>
-        <!--View Controller-->
+        <!--Todo View Controller-->
         <scene sceneID="IOf-YD-9N1">
             <objects>
-                <viewController id="BlN-4l-ztd" sceneMemberID="viewController">
+                <viewController id="BlN-4l-ztd" customClass="TodoViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a5W-HH-5xp">
                         <rect key="frame" x="0.0" y="0.0" width="384.5" height="814"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
