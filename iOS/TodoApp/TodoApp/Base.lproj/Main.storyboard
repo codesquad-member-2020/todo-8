@@ -343,17 +343,26 @@
                                 <state key="normal" title="Cancel"/>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kxi-0A-pbg">
-                                <rect key="frame" x="20" y="95" width="62" height="36"/>
+                                <rect key="frame" x="20" y="95" width="617" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKD-Dk-ugj">
+                                <rect key="frame" x="647" y="95" width="35" height="34"/>
+                                <state key="normal" image="arrow.up.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30" scale="default"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="kxi-0A-pbg" firstAttribute="leading" secondItem="LI2-sH-0pQ" secondAttribute="leading" id="4Q0-Tu-rI7"/>
+                            <constraint firstItem="qXT-ur-60j" firstAttribute="trailing" secondItem="mKD-Dk-ugj" secondAttribute="trailing" constant="30" id="Bs7-jM-Dra"/>
                             <constraint firstItem="LI2-sH-0pQ" firstAttribute="top" secondItem="qXT-ur-60j" secondAttribute="top" constant="25" id="Ijt-sd-1l3"/>
+                            <constraint firstItem="mKD-Dk-ugj" firstAttribute="top" secondItem="kxi-0A-pbg" secondAttribute="top" id="dK3-8M-3gw"/>
                             <constraint firstItem="kxi-0A-pbg" firstAttribute="top" secondItem="LI2-sH-0pQ" secondAttribute="bottom" constant="40" id="fsJ-ar-Xgm"/>
                             <constraint firstItem="LI2-sH-0pQ" firstAttribute="leading" secondItem="qXT-ur-60j" secondAttribute="leading" constant="20" id="u3Z-Qu-eOA"/>
+                            <constraint firstItem="mKD-Dk-ugj" firstAttribute="leading" secondItem="kxi-0A-pbg" secondAttribute="trailing" constant="10" id="xWe-uQ-odH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qXT-ur-60j"/>
                     </view>
@@ -364,6 +373,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.up.circle.fill" catalog="system" width="64" height="60"/>
         <image name="text.justify" catalog="system" width="64" height="50"/>
     </resources>
 </document>
