@@ -20,4 +20,4 @@ logging:
 
 jwt:
   token:
-    clientSecret: g8ZmiBnverea_m6-PXXAXQNwCQ9o1KML4RlWJY1s_jA
+    secret: Il9g5guhxIzpOz+uxvHF9DBY+hv9R9a6yBEzeqvFobA=
