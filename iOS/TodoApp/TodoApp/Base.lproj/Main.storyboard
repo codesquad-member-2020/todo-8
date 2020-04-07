@@ -71,7 +71,7 @@
             <objects>
                 <viewController id="BlN-4l-ztd" customClass="TodoViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a5W-HH-5xp">
-                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="814"/>
+                        <rect key="frame" x="0.0" y="0.0" width="385" height="814"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Mq-JW-AzN">
@@ -97,6 +97,9 @@
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" button="YES" image="YES"/>
                                         </accessibility>
+                                        <connections>
+                                            <segue destination="GyP-ax-8bf" kind="presentation" id="fxO-yL-gNA"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -263,7 +266,7 @@
             <objects>
                 <viewController id="WeY-TX-z0Y" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NoR-Is-uby">
-                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="814"/>
+                        <rect key="frame" x="0.0" y="0.0" width="385" height="814"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2kP-4k-XdY">
@@ -327,8 +330,76 @@
             </objects>
             <point key="canvasLocation" x="1049" y="829"/>
         </scene>
+        <!--Editing Card View Controller-->
+        <scene sceneID="5sk-ZQ-Myt">
+            <objects>
+                <viewController id="GyP-ax-8bf" customClass="EditingCardViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3NH-Nx-1FC">
+                        <rect key="frame" x="0.0" y="0.0" width="385" height="794"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-sH-0pQ">
+                                <rect key="frame" x="20" y="25" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonTabbed:" destination="GyP-ax-8bf" eventType="touchUpInside" id="Ejx-jd-P8I"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kxi-0A-pbg">
+                                <rect key="frame" x="20" y="95" width="289.5" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKD-Dk-ugj">
+                                <rect key="frame" x="319.5" y="95" width="35" height="34"/>
+                                <state key="normal" image="arrow.up.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30" scale="default"/>
+                                </state>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YWP-mF-4OG" customClass="ContentTextView" customModule="TodoApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="161" width="334.5" height="392"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author by iOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNh-v6-KSH">
+                                <rect key="frame" x="20" y="573" width="334.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="qXT-ur-60j" firstAttribute="trailing" secondItem="YWP-mF-4OG" secondAttribute="trailing" constant="30" id="3Lb-Yz-3qp"/>
+                            <constraint firstItem="kxi-0A-pbg" firstAttribute="leading" secondItem="LI2-sH-0pQ" secondAttribute="leading" id="4Q0-Tu-rI7"/>
+                            <constraint firstItem="qXT-ur-60j" firstAttribute="trailing" secondItem="mKD-Dk-ugj" secondAttribute="trailing" constant="30" id="Bs7-jM-Dra"/>
+                            <constraint firstItem="qXT-ur-60j" firstAttribute="trailing" secondItem="yNh-v6-KSH" secondAttribute="trailing" constant="30" id="EQY-tF-rGZ"/>
+                            <constraint firstItem="yNh-v6-KSH" firstAttribute="leading" secondItem="qXT-ur-60j" secondAttribute="leading" constant="20" id="FZS-nb-sRI"/>
+                            <constraint firstItem="YWP-mF-4OG" firstAttribute="leading" secondItem="qXT-ur-60j" secondAttribute="leading" constant="20" id="INS-gd-Rhc"/>
+                            <constraint firstItem="LI2-sH-0pQ" firstAttribute="top" secondItem="qXT-ur-60j" secondAttribute="top" constant="25" id="Ijt-sd-1l3"/>
+                            <constraint firstItem="qXT-ur-60j" firstAttribute="bottom" secondItem="yNh-v6-KSH" secondAttribute="bottom" constant="200" id="XU9-4r-bCQ"/>
+                            <constraint firstItem="mKD-Dk-ugj" firstAttribute="top" secondItem="kxi-0A-pbg" secondAttribute="top" id="dK3-8M-3gw"/>
+                            <constraint firstItem="kxi-0A-pbg" firstAttribute="top" secondItem="LI2-sH-0pQ" secondAttribute="bottom" constant="40" id="fsJ-ar-Xgm"/>
+                            <constraint firstItem="YWP-mF-4OG" firstAttribute="top" secondItem="kxi-0A-pbg" secondAttribute="bottom" constant="30" id="gH3-YE-MMU"/>
+                            <constraint firstItem="yNh-v6-KSH" firstAttribute="top" secondItem="YWP-mF-4OG" secondAttribute="bottom" constant="20" id="o7J-jd-6TG"/>
+                            <constraint firstItem="LI2-sH-0pQ" firstAttribute="leading" secondItem="qXT-ur-60j" secondAttribute="leading" constant="20" id="u3Z-Qu-eOA"/>
+                            <constraint firstItem="mKD-Dk-ugj" firstAttribute="leading" secondItem="kxi-0A-pbg" secondAttribute="trailing" constant="10" id="xWe-uQ-odH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qXT-ur-60j"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentTextView" destination="YWP-mF-4OG" id="tRJ-dX-qid"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bcc-4M-MI6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1537" y="350"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="arrow.up.circle.fill" catalog="system" width="64" height="60"/>
         <image name="text.justify" catalog="system" width="64" height="50"/>
     </resources>
 </document>
