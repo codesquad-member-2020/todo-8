@@ -6,11 +6,15 @@
     <link rel="stylesheet" href="./style/reset.css">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script
       src="https://code.jquery.com/jquery-3.1.1.min.js"
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
       crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script>
+      var jb = jQuery.noConflict();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -39,8 +43,8 @@
               <button class="base-cancel-btn">Cancel</button>
             </div>
           </div>
-          <ul class="todo-list">
-            <li class="todo-items">
+          <ul class="todo-list droppable-area1">
+            <li class="todo-items" draggable="true">
               <div class="todo-items-title">
                 <span>
                   <i class="file alternate outline icon"></i>
@@ -51,7 +55,7 @@
                 <span class="todo-items-writer">Added by Huey</span>
               </div>
             </li>
-            <li class="todo-items">
+            <li class="todo-items" draggable="true">
               <div class="todo-items-title">
                 <span>
                   <i class="file alternate outline icon"></i>
@@ -62,7 +66,7 @@
                 <span class="todo-items-writer">Added by Huey</span>
               </div>
             </li>
-            <li class="todo-items">
+            <li class="todo-items" draggable="true">
               <div class="todo-items-title">
                 <span>
                   <i class="file alternate outline icon"></i>
@@ -93,8 +97,8 @@
               <button class="base-cancel-btn">Cancel</button>
             </div>
           </div>
-          <ul class="todo-list">
-            <li class="todo-items">
+          <ul class="todo-list droppable-area2">
+            <li class="todo-items" draggable="true">
               <div class="todo-items-title">
                 <span>
                   <i class="file alternate outline icon"></i>
@@ -105,7 +109,7 @@
                 <span class="todo-items-writer">Added by Huey</span>
               </div>
             </li>
-            <li class="todo-items">
+            <li class="todo-items" draggable="true">
               <div class="todo-items-title">
                 <span>
                   <i class="file alternate outline icon"></i>
@@ -136,8 +140,8 @@
               <button class="base-cancel-btn">Cancel</button>
             </div>
           </div>
-          <ul class="todo-list">
-            <li class="todo-items">
+          <ul class="todo-list droppable-area3">
+            <li class="todo-items" draggable="true">
               <div class="todo-items-title">
                 <span>
                   <i class="file alternate outline icon"></i>
@@ -245,14 +249,17 @@
       </div>
     </div>
   </body>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+  <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
+  <script src="./main.js"></script>
   <script>
-    $('.menu-btn').on("click", () => 
-      $('.menu-container')
+    jb('.menu-btn').on("click", () => 
+      jb('.menu-container')
       .transition('fly left')
     )
 
-    $('.menu-close-btn').on("click", () => {
-      $('.menu-container')
+    jb('.menu-close-btn').on("click", () => {
+      jb('.menu-container')
       .transition('fly left')
     })
 
