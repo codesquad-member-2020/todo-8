@@ -118,11 +118,26 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TodoCell" id="YJW-fo-UW6" customClass="TodoCell" customModule="TodoApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="384.5" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="384.5" height="52.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YJW-fo-UW6" id="s6g-V5-mHS">
-                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="52.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text.justify" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PNS-s9-Gk8">
+                                                    <rect key="frame" x="15" y="16.5" width="22" height="19"/>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="22" id="630-60-UBf"/>
+                                                        <constraint firstAttribute="height" constant="22" id="Jor-Mo-MlV"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="PNS-s9-Gk8" firstAttribute="top" secondItem="s6g-V5-mHS" secondAttribute="top" constant="15" id="ACN-pR-6sh"/>
+                                                <constraint firstItem="PNS-s9-Gk8" firstAttribute="leading" secondItem="s6g-V5-mHS" secondAttribute="leading" constant="15" id="SJQ-ne-tPS"/>
+                                                <constraint firstAttribute="bottom" secondItem="PNS-s9-Gk8" secondAttribute="bottom" constant="15" id="u5v-Zr-RVC"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -140,6 +155,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MhR-Gs-AYd"/>
                     </view>
+                    <connections>
+                        <outlet property="todoTableView" destination="kfl-ld-ek4" id="8Fc-EA-Oc5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wIw-4s-tt6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -284,4 +302,7 @@
             <point key="canvasLocation" x="1049" y="829"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="text.justify" catalog="system" width="64" height="50"/>
+    </resources>
 </document>

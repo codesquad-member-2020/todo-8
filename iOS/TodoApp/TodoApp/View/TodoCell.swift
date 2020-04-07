@@ -10,4 +10,18 @@ import UIKit
 
 class TodoCell: UITableViewCell {
     static let reuseIdentifier = "TodoCell"
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setProperties()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setProperties()
+    }
+    
+    func setProperties() {
+        
+    }
 }
