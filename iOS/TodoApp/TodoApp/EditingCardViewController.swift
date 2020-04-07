@@ -39,4 +39,8 @@ class EditingCardViewController: UIViewController, UITextViewDelegate {
         }
         return false
     }
+    
+    @IBAction func cancelButtonTabbed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
 }

@@ -71,7 +71,7 @@
             <objects>
                 <viewController id="BlN-4l-ztd" customClass="TodoViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a5W-HH-5xp">
-                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="814"/>
+                        <rect key="frame" x="0.0" y="0.0" width="385" height="814"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Mq-JW-AzN">
@@ -266,7 +266,7 @@
             <objects>
                 <viewController id="WeY-TX-z0Y" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NoR-Is-uby">
-                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="814"/>
+                        <rect key="frame" x="0.0" y="0.0" width="385" height="814"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2kP-4k-XdY">
@@ -341,6 +341,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-sH-0pQ">
                                 <rect key="frame" x="20" y="25" width="48" height="30"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonTabbed:" destination="GyP-ax-8bf" eventType="touchUpInside" id="Ejx-jd-P8I"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kxi-0A-pbg">
                                 <rect key="frame" x="20" y="95" width="289.5" height="36"/>
