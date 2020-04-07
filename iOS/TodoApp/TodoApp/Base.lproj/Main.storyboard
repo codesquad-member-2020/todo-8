@@ -44,6 +44,9 @@
                                     <navigationItem id="YGX-rS-i6C">
                                         <barButtonItem key="rightBarButtonItem" title="Menu" id="wzz-d5-cpH">
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <segue destination="GyP-ax-8bf" kind="presentation" id="4ln-qO-22f"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -332,9 +335,19 @@
             <objects>
                 <viewController id="GyP-ax-8bf" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3NH-Nx-1FC">
-                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
+                        <rect key="frame" x="0.0" y="0.0" width="712" height="794"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-sH-0pQ">
+                                <rect key="frame" x="20" y="25" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="LI2-sH-0pQ" firstAttribute="top" secondItem="qXT-ur-60j" secondAttribute="top" constant="25" id="Ijt-sd-1l3"/>
+                            <constraint firstItem="LI2-sH-0pQ" firstAttribute="leading" secondItem="qXT-ur-60j" secondAttribute="leading" constant="20" id="u3Z-Qu-eOA"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="qXT-ur-60j"/>
                     </view>
                 </viewController>
