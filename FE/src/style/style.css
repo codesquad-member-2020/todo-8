@@ -199,7 +199,9 @@ div.ui.feed {
   font-weight: bold;
 }
 
-/* todo-list */
+.todo-list {
+  height: 100%;
+}
 
 .todo-items {
   position: relative;
