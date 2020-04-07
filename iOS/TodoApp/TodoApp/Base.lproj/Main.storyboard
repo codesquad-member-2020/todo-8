@@ -330,12 +330,12 @@
             </objects>
             <point key="canvasLocation" x="1049" y="829"/>
         </scene>
-        <!--View Controller-->
+        <!--Editing Card View Controller-->
         <scene sceneID="5sk-ZQ-Myt">
             <objects>
-                <viewController id="GyP-ax-8bf" sceneMemberID="viewController">
+                <viewController id="GyP-ax-8bf" customClass="EditingCardViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3NH-Nx-1FC">
-                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="794"/>
+                        <rect key="frame" x="0.0" y="0.0" width="385" height="794"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-sH-0pQ">
@@ -353,7 +353,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30" scale="default"/>
                                 </state>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YWP-mF-4OG">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YWP-mF-4OG" customClass="ContentTextView" customModule="TodoApp" customModuleProvider="target">
                                 <rect key="frame" x="20" y="161" width="334.5" height="392"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -386,6 +386,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qXT-ur-60j"/>
                     </view>
+                    <connections>
+                        <outlet property="contentTextView" destination="YWP-mF-4OG" id="tRJ-dX-qid"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bcc-4M-MI6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

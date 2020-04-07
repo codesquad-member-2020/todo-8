@@ -17,6 +17,8 @@
 		443D100A243B9974003F2635 /* AddCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1009243B9974003F2635 /* AddCardButton.swift */; };
 		443D1010243C4B99003F2635 /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D100F243C4B99003F2635 /* TodoViewController.swift */; };
 		443D1012243C4D87003F2635 /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1011243C4D87003F2635 /* TodoCell.swift */; };
+		443D1014243CC60C003F2635 /* ContentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1013243CC60C003F2635 /* ContentTextView.swift */; };
+		443D1016243CC77A003F2635 /* EditingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1015243CC77A003F2635 /* EditingCardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		443D1009243B9974003F2635 /* AddCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardButton.swift; sourceTree = "<group>"; };
 		443D100F243C4B99003F2635 /* TodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
 		443D1011243C4D87003F2635 /* TodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCell.swift; sourceTree = "<group>"; };
+		443D1013243CC60C003F2635 /* ContentTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTextView.swift; sourceTree = "<group>"; };
+		443D1015243CC77A003F2635 /* EditingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingCardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,7 @@
 				443D0FEA243B3F3D003F2635 /* SceneDelegate.swift */,
 				443D0FEC243B3F3D003F2635 /* ViewController.swift */,
 				443D100F243C4B99003F2635 /* TodoViewController.swift */,
+				443D1015243CC77A003F2635 /* EditingCardViewController.swift */,
 				443D0FEE243B3F3D003F2635 /* Main.storyboard */,
 				443D0FF1243B3F3E003F2635 /* Assets.xcassets */,
 				443D0FF3243B3F3E003F2635 /* LaunchScreen.storyboard */,
@@ -83,6 +88,7 @@
 				443D1007243B968F003F2635 /* CardCountLabel.swift */,
 				443D1009243B9974003F2635 /* AddCardButton.swift */,
 				443D1011243C4D87003F2635 /* TodoCell.swift */,
+				443D1013243CC60C003F2635 /* ContentTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -161,10 +167,12 @@
 				443D0FED243B3F3D003F2635 /* ViewController.swift in Sources */,
 				443D0FE9243B3F3D003F2635 /* AppDelegate.swift in Sources */,
 				443D1012243C4D87003F2635 /* TodoCell.swift in Sources */,
+				443D1014243CC60C003F2635 /* ContentTextView.swift in Sources */,
 				443D1008243B968F003F2635 /* CardCountLabel.swift in Sources */,
 				443D0FEB243B3F3D003F2635 /* SceneDelegate.swift in Sources */,
 				443D1010243C4B99003F2635 /* TodoViewController.swift in Sources */,
 				443D100A243B9974003F2635 /* AddCardButton.swift in Sources */,
+				443D1016243CC77A003F2635 /* EditingCardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
