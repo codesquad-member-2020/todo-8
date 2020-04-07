@@ -1,24 +1,3 @@
-// const firstTodo = document.querySelector('.todo-list li')
-
-
-
-// firstTodo.addEventListener("ondragstart", (e) => {
-//   // console.log(e)
-//   e.dataTransfer.setData("text", e.target.id);
-// })
-
-// firstTodo.addEventListener("dragOver", e => 
-//   e.preventDefault()
-// )
-
-// firstTodo.addEventListener("drop", e => {
-//   e.preventDefault();
-//   var data = e.dataTransfer.getData("text");
-//   console.log(data)
-//   e.target.appendChild(document.getElementById(data));
-// })
-
-
 var dragSrcEl = null;
 
 function handleDragStart(e) {
