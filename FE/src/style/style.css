@@ -6,6 +6,10 @@ body {
   background-color: inherit;
 }
 
+.active {
+  display: none;
+}
+
 .header-container {
   height: 50px;;
   display: flex;
@@ -35,6 +39,8 @@ body {
   right: 0;
   border: 1px solid #ccc;
   background-color: #fff;
+  display: none;
+  visibility: hidden;
 }
 
 .menu-area {
@@ -160,12 +166,14 @@ div.ui.feed {
 
 /* 컬럼 할일 추가 영역 */
 .todo-textarea {
+  resize: vertical;
   border-radius: 4px;
   margin: 10px 5px 0px 5px;
   width: 95%;
   height: 50px;
   padding: 10px 10px;
   border: 1px solid #ccc;
+  max-height: 65px;
 }
 
 .todo-textarea::placeholder {

@@ -29,7 +29,7 @@
           <div class="todo-column-header">
             <span class="todo-num">3</span>
             <span class="todo-column-title">해야할 일</span>
-            <button class="todo-column-add-btn btn">
+            <button class="todo-column-add-btn todo-add-btn btn">
               <i class="plus icon"></i>
             </button>
             <button class="todo-column-remove-btn btn">
@@ -83,7 +83,7 @@
           <div class="todo-column-header">
             <span class="todo-num">2</span>
             <span class="todo-column-title">하는 중</span>
-            <button class="todo-column-add-btn btn">
+            <button class="todo-column-add-btn todo-add-btn btn">
               <i class="plus icon"></i>
             </button>
             <button class="todo-column-remove-btn btn">
@@ -125,8 +125,8 @@
         <div class="done-column column"> 
           <div class="todo-column-header">
             <span class="todo-num">1</span>
-            <span class="todo-column-title">하는 중</span>
-            <button class="todo-column-add-btn btn">
+            <span class="todo-column-title">다 했어</span>
+            <button class="todo-column-add-btn todo-add-btn btn">
               <i class="plus icon"></i>
             </button>
             <button class="todo-column-remove-btn btn">
@@ -251,7 +251,7 @@
   </body>
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
   <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
-  <script src="./main.js"></script>
+  <script src="./main.js" type="module"></script>
   <script>
     jb('.menu-btn').on("click", () => 
       jb('.menu-container')
