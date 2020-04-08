@@ -20,7 +20,6 @@ CREATE TABLE card
     id         bigint NOT NULL AUTO_INCREMENT primary key,
     title      varchar,
     content    varchar,
-    user       bigint references user (id),
     column     bigint references column (id),
     column_key int,
 );
