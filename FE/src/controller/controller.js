@@ -13,11 +13,15 @@ class Controller {
         case 'plus icon' :
           this.toggleTodoTextArea(event)
           break;
-        case 'x icon' :
+        case 'x icon card-remove' :
           this.removeTotoCard(event)
         default :
           return
       }
+    })
+
+    document.addEventListener("input", event => {
+      this.inputTodoEvent(event)
     })
   }
 
@@ -31,7 +35,34 @@ class Controller {
     } else {
       return false;
     }
+  }
+
+  inputTodoEvent(event) {
+    const {target: { value }} = event
+    const addCardBtn = event.target.closest('.todo-add-area').querySelector('.base-add-btn')
+
+    value ? 
+      (
+        addCardBtn.disabled = true,
+        addCardBtn.style.opacity = "1"
+      ) : (
+        addCardBtn.disabled = false,
+        addCardBtn.style.opacity = "0.5"
+      );
+
+    if(value.length > 20) {
+      alert("20자 이하로 작성해 주세요.")
+      e.target.value = e.target.value.substr(0, 20)
+      
+    }
+  }
+
+  addBtnDisabed() {
     
+  }
+
+  addTodoBtn() {
+
   }
 
 }
