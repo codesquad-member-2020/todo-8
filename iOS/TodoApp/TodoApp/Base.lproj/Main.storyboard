@@ -71,7 +71,7 @@
             <objects>
                 <viewController id="BlN-4l-ztd" customClass="TodoViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a5W-HH-5xp">
-                        <rect key="frame" x="0.0" y="0.0" width="385" height="814"/>
+                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="814"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Mq-JW-AzN">
@@ -86,8 +86,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="해야할 일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mp-Oc-WAQ">
-                                        <rect key="frame" x="60" y="15" width="63.5" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Column Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mp-Oc-WAQ">
+                                        <rect key="frame" x="60" y="15" width="96.5" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -191,6 +191,7 @@
                     </view>
                     <connections>
                         <outlet property="cardCountLabel" destination="jRf-VU-JqT" id="z0o-Th-va7"/>
+                        <outlet property="columnTitleLabel" destination="3Mp-Oc-WAQ" id="u7M-lZ-Gh3"/>
                         <outlet property="todoTableView" destination="kfl-ld-ek4" id="8Fc-EA-Oc5"/>
                     </connections>
                 </viewController>
@@ -203,7 +204,7 @@
             <objects>
                 <viewController id="GyP-ax-8bf" customClass="EditingCardViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3NH-Nx-1FC">
-                        <rect key="frame" x="0.0" y="0.0" width="385" height="794"/>
+                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="794"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-sH-0pQ">

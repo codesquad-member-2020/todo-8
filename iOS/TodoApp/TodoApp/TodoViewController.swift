@@ -19,6 +19,7 @@ class TodoViewController: UIViewController, UITableViewDataSource {
     }
     
     @IBOutlet weak var cardCountLabel: CardCountLabel!
+    @IBOutlet weak var columnTitleLabel: UILabel!
     @IBOutlet weak var todoTableView: UITableView!
     
     override func viewDidLoad() {
