@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     private var todoViewController: TodoViewController?
     private var progressingViewController: TodoViewController?
     private var completeViewController: TodoViewController?
+    private let dataManager = DataManager()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "todo" {
@@ -25,5 +26,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataManager.loadData {
+            self.todoViewController?.cards = self.dataManager.data(of: "1")
+            self.progressingViewController?.cards = self.dataManager.data(of: "2")
+            self.completeViewController?.cards = self.dataManager.data(of: "3")
+        }
     }
 }
