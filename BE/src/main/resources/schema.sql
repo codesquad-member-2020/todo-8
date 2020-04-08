@@ -1,8 +1,27 @@
 DROP TABLE IF EXISTS user CASCADE;
 
-CREATE TABLE user (
-  seq           bigint NOT NULL AUTO_INCREMENT,
-  id            varchar(50) NOT NULL,
-  PRIMARY KEY (seq),
-  CONSTRAINT unq_user_id UNIQUE (id)
+CREATE TABLE user
+(
+    id      bigint  NOT NULL AUTO_INCREMENT primary key,
+    user_id varchar NOT NULL
 );
+
+
+CREATE TABLE column
+(
+    id       bigint not null AUTO_INCREMENT primary key,
+    title    varchar,
+    user_key int,
+    user     bigint references user (id)
+);
+
+CREATE TABLE card
+(
+    id         bigint NOT NULL AUTO_INCREMENT primary key,
+    title      varchar,
+    content    varchar,
+    user       bigint references user (id),
+    column     bigint references column (id),
+    column_key int,
+);
+

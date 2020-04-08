@@ -1,1 +1,3 @@
-INSERT INTO user(seq,id) VALUES (null,'guest1234');
+INSERT INTO user(id, user_id)
+VALUES (1, 'guest1234');
+
