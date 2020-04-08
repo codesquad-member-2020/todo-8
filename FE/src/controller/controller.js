@@ -9,17 +9,24 @@ class Controller {
 
   eventHandler() {
     document.addEventListener("click", event => {
-      this.toggleTodoTextArea(event)
+      switch(event.target.className) {
+        case 'plus icon' :
+          this.toggleTodoTextArea(event)
+          break;
+        case 'x icon' :
+          this.removeTotoCard(event)
+        default :
+          return
+      }
     })
   }
 
   toggleTodoTextArea({target}) {
-    if(target.className !== 'plus icon') return
     target.closest('.column').querySelector('.todo-add-area').classList.toggle("active")
   }
 
-  addCard() {
-
+  removeTotoCard({target}) {
+    target.closest('.todo-items').remove()
   }
 
 }
