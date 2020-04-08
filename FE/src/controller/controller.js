@@ -26,7 +26,12 @@ class Controller {
   }
 
   removeTotoCard({target}) {
-    target.closest('.todo-items').remove()
+    if(confirm("선택하신 카드를 삭제하시겠습니까?") == true) {
+      target.closest('.todo-items').remove();
+    } else {
+      return false;
+    }
+    
   }
 
 }
