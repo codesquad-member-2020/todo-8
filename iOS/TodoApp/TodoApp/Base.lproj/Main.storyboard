@@ -168,6 +168,11 @@
                                                 <constraint firstItem="dZo-Km-bgS" firstAttribute="top" secondItem="s6g-V5-mHS" secondAttribute="top" constant="15" id="zjM-Ok-AKS"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="authorLabel" destination="I2i-dT-uOs" id="AkC-mb-0c9"/>
+                                            <outlet property="contentLabel" destination="XN6-Zo-xJf" id="4FB-6a-hgG"/>
+                                            <outlet property="titleLabel" destination="iNn-o9-VcL" id="pVv-N1-msW"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
