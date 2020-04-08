@@ -1,50 +1,63 @@
 package com.codesquad.todo8.model;
 
 import com.google.common.base.Objects;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.data.annotation.Id;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
-  @Id
-  private Long seq;
+    @Id
+    private Long id;
 
-  private final String id;
+    private final String userId;
 
-  public User(String id) {
-    this.id = id;
-  }
+    private List<Column> columns = new ArrayList<>();
 
-  public Long getSeq() {
-    return seq;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public User(String userId) {
+        this.userId = userId;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public Long getId() {
+        return id;
     }
-    User user = (User) o;
-    return Objects.equal(seq, user.seq);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hashCode(seq);
-  }
+    public String getUserId() {
+        return userId;
+    }
 
-  @Override
-  public String toString() {
-    return new ToStringBuilder(this)
-        .append("seq", seq)
-        .append("id", id)
-        .toString();
-  }
+    public List<Column> getColumns() {
+        return columns;
+    }
+
+    public void addColumn(Column column) {
+        this.columns.add(column);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return Objects.equal(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userId='" + userId + '\'' +
+                ", columns=" + columns +
+                '}';
+    }
 }
