@@ -19,6 +19,7 @@
 		443D1012243C4D87003F2635 /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1011243C4D87003F2635 /* TodoCell.swift */; };
 		443D1014243CC60C003F2635 /* ContentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1013243CC60C003F2635 /* ContentTextView.swift */; };
 		443D1016243CC77A003F2635 /* EditingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1015243CC77A003F2635 /* EditingCardViewController.swift */; };
+		44A7DBC7243DC1CD00F374D2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBC6243DC1CD00F374D2 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		443D1011243C4D87003F2635 /* TodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCell.swift; sourceTree = "<group>"; };
 		443D1013243CC60C003F2635 /* ContentTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTextView.swift; sourceTree = "<group>"; };
 		443D1015243CC77A003F2635 /* EditingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingCardViewController.swift; sourceTree = "<group>"; };
+		44A7DBC6243DC1CD00F374D2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		443D0FE7243B3F3D003F2635 /* TodoApp */ = {
 			isa = PBXGroup;
 			children = (
+				44A7DBC5243DC1B900F374D2 /* Model */,
 				443D1006243B965F003F2635 /* View */,
 				443D0FE8243B3F3D003F2635 /* AppDelegate.swift */,
 				443D0FEA243B3F3D003F2635 /* SceneDelegate.swift */,
@@ -91,6 +94,14 @@
 				443D1013243CC60C003F2635 /* ContentTextView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		44A7DBC5243DC1B900F374D2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				44A7DBC6243DC1CD00F374D2 /* NetworkManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +177,7 @@
 			files = (
 				443D0FED243B3F3D003F2635 /* ViewController.swift in Sources */,
 				443D0FE9243B3F3D003F2635 /* AppDelegate.swift in Sources */,
+				44A7DBC7243DC1CD00F374D2 /* NetworkManager.swift in Sources */,
 				443D1012243C4D87003F2635 /* TodoCell.swift in Sources */,
 				443D1014243CC60C003F2635 /* ContentTextView.swift in Sources */,
 				443D1008243B968F003F2635 /* CardCountLabel.swift in Sources */,
