@@ -1,4 +1,4 @@
-package com.codesquad.todo8;
+package com.codesquad.todo8.model;
 
 import com.google.common.base.Objects;
 import org.apache.commons.lang3.builder.ToStringBuilder;
