@@ -1,5 +1,6 @@
-package com.codesquad.todo8;
+package com.codesquad.todo8.configure;
 
+import com.codesquad.todo8.controller.JwtInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -16,7 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(jwtInterceptor)
-        .addPathPatterns("/api/**");
-
+        .excludePathPatterns("/h2-console/**")
+        .addPathPatterns("/**");
   }
 }

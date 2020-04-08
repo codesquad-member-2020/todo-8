@@ -1,5 +1,6 @@
-package com.codesquad.todo8;
+package com.codesquad.todo8.controller;
 
+import com.codesquad.todo8.service.UserService;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import javax.servlet.http.HttpServletRequest;
@@ -28,9 +29,10 @@ public class JwtInterceptor implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
       Object handler) {
-    String jwt = request.getHeader("Authorization").split(" ")[1];
-    logger.debug("JWT : {}", jwt);
-    return validationToken(jwt);
+    return true;
+//    String jwt = request.getHeader("Authorization").split(" ")[1];
+//    logger.debug("JWT : {}", jwt);
+//    return validationToken(jwt);
   }
 
   private Boolean validationToken(String jwt) {

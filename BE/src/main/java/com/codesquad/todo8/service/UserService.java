@@ -1,5 +1,7 @@
-package com.codesquad.todo8;
+package com.codesquad.todo8.service;
 
+import com.codesquad.todo8.model.User;
+import com.codesquad.todo8.repository.UserRepository;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

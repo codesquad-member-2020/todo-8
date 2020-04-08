@@ -1,5 +1,6 @@
-package com.codesquad.todo8;
+package com.codesquad.todo8.repository;
 
+import com.codesquad.todo8.model.User;
 import java.util.Optional;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
