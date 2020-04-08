@@ -19,6 +19,9 @@ class Controller {
         case 'base-add-btn' : 
           this.addTodoBtn(event)
           break;
+        case 'base-cancel-btn' :
+          this.cancelTodoBtn(event)
+          break;
         default :
           break;
       }
@@ -78,6 +81,16 @@ class Controller {
     `
 
     parentNode.querySelector('.todo-list').insertAdjacentHTML('afterbegin', todoList)
+    this.initTextarea(target)
+  }
+
+  cancelTodoBtn({ target }) {
+    this.initTextarea(target)
+  }
+
+  initTextarea(targetEl) {
+    const parentNode = targetEl.closest('.column')
+    parentNode.querySelector('.todo-textarea').value = ''
   }
 
 }
