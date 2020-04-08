@@ -25,4 +25,14 @@ class DataManager {
             }
         }
     }
+    
+    func data(of identifier: String) -> [Card] {
+        guard let data = data else { return [Card]() }
+        for column in data {
+            if column.id == identifier {
+                return column.cards
+            }
+        }
+        return [Card]()
+    }
 }
