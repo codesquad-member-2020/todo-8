@@ -63,8 +63,8 @@ class Controller {
     }
   }
 
-  addTodoBtn({ target }) {
-    const parentNode = target.closest('.column')
+  addTodoBtn(event) {
+    const parentNode = event.target.closest('.column')
     const todoValue = parentNode.querySelector('.todo-textarea').value
     const todoList = `
       <li class="todo-items" draggable="true">
@@ -79,13 +79,14 @@ class Controller {
         </div>
       </li>
     `
-
     parentNode.querySelector('.todo-list').insertAdjacentHTML('afterbegin', todoList)
-    this.initTextarea(target)
+    this.initTextarea(event.target)
+    this.inputTodoEvent(event)
   }
 
-  cancelTodoBtn({ target }) {
-    this.initTextarea(target)
+  cancelTodoBtn(event) {
+    this.initTextarea(event.target)
+    this.inputTodoEvent(event)
   }
 
   initTextarea(targetEl) {
