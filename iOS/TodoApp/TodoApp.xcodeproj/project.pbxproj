@@ -21,6 +21,7 @@
 		443D1016243CC77A003F2635 /* EditingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1015243CC77A003F2635 /* EditingCardViewController.swift */; };
 		44A7DBC7243DC1CD00F374D2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBC6243DC1CD00F374D2 /* NetworkManager.swift */; };
 		44A7DBCB243DC3ED00F374D2 /* TodoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBCA243DC3ED00F374D2 /* TodoData.swift */; };
+		44A7DBCD243DC4BD00F374D2 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBCC243DC4BD00F374D2 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		443D1015243CC77A003F2635 /* EditingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingCardViewController.swift; sourceTree = "<group>"; };
 		44A7DBC6243DC1CD00F374D2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		44A7DBCA243DC3ED00F374D2 /* TodoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoData.swift; sourceTree = "<group>"; };
+		44A7DBCC243DC4BD00F374D2 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			children = (
 				44A7DBC6243DC1CD00F374D2 /* NetworkManager.swift */,
 				44A7DBCA243DC3ED00F374D2 /* TodoData.swift */,
+				44A7DBCC243DC4BD00F374D2 /* DataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				443D0FED243B3F3D003F2635 /* ViewController.swift in Sources */,
+				44A7DBCD243DC4BD00F374D2 /* DataManager.swift in Sources */,
 				443D0FE9243B3F3D003F2635 /* AppDelegate.swift in Sources */,
 				44A7DBC7243DC1CD00F374D2 /* NetworkManager.swift in Sources */,
 				44A7DBCB243DC3ED00F374D2 /* TodoData.swift in Sources */,
