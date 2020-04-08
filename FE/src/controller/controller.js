@@ -15,8 +15,12 @@ class Controller {
           break;
         case 'x icon card-remove' :
           this.removeTotoCard(event)
+          break;
+        case 'base-add-btn' : 
+          this.addTodoBtn(event)
+          break;
         default :
-          return
+          break;
       }
     })
 
@@ -43,26 +47,37 @@ class Controller {
 
     value ? 
       (
-        addCardBtn.disabled = true,
-        addCardBtn.style.opacity = "1"
-      ) : (
-        addCardBtn.disabled = false,
-        addCardBtn.style.opacity = "0.5"
+        addCardBtn.style.opacity = "1",
+        addCardBtn.disabled = false
+        ) : (
+        addCardBtn.style.opacity = "0.5",
+        addCardBtn.disabled = true
       );
 
-    if(value.length > 20) {
-      alert("20자 이하로 작성해 주세요.")
-      e.target.value = e.target.value.substr(0, 20)
-      
+    if(value.length > 15) {
+      alert("15자 이하로 작성해 주세요.")
+      event.target.value = event.target.value.substr(0, 15)
     }
   }
 
-  addBtnDisabed() {
-    
-  }
+  addTodoBtn({ target }) {
+    const parentNode = target.closest('.column')
+    const todoValue = parentNode.querySelector('.todo-textarea').value
+    const todoList = `
+      <li class="todo-items" draggable="true">
+        <div class="todo-items-title">
+          <span>
+            <i class="file alternate outline icon"></i>
+          ${todoValue}</span>
+          <button class="todo-items-btn btn"><i class="x icon card-remove"></i></button>
+        </div>
+        <div class="todo-writer-container">
+          <span class="todo-items-writer">Added by Huey</span>
+        </div>
+      </li>
+    `
 
-  addTodoBtn() {
-
+    parentNode.querySelector('.todo-list').insertAdjacentHTML('afterbegin', todoList)
   }
 
 }
