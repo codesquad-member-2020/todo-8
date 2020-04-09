@@ -26,13 +26,13 @@ class DataManager {
         }
     }
     
-    func data(of identifier: String) -> [Card] {
-        guard let data = data else { return [Card]() }
+    func data(of identifier: String?) -> Column? {
+        guard let data = data else { return nil }
         for column in data {
             if column.id == identifier {
-                return column.cards
+                return column
             }
         }
-        return [Card]()
+        return nil
     }
 }

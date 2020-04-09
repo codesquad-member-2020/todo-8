@@ -9,30 +9,45 @@
 import UIKit
 
 class ViewController: UIViewController {
+    enum Identifier: String {
+        case todo = "1"
+        case progressing = "2"
+        case complete = "3"
+        
+        func isValid(identifier: String?, completion: ()->() ) {
+            if identifier == rawValue {
+                completion()
+            }
+        }
+    }
+    
     private var todoViewController: TodoViewController?
     private var progressingViewController: TodoViewController?
     private var completeViewController: TodoViewController?
     private let dataManager = DataManager()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "todo" {
-            todoViewController = segue.destination as? TodoViewController
-        } else if segue.identifier == "progressing" {
-            progressingViewController = segue.destination as? TodoViewController
-        } else if segue.identifier == "complete" {
-            completeViewController = segue.destination as? TodoViewController
+        Identifier.todo.isValid(identifier: segue.identifier) {
+            self.todoViewController = segue.destination as? TodoViewController
+        }
+        Identifier.progressing.isValid(identifier: segue.identifier) {
+            self.progressingViewController = segue.destination as? TodoViewController
+        }
+        Identifier.complete.isValid(identifier: segue.identifier) {
+            self.completeViewController = segue.destination as? TodoViewController
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.todoViewController?.columnTitleLabel.text = "해야할 일"
-        self.progressingViewController?.columnTitleLabel.text = "하고있는 일"
-        self.completeViewController?.columnTitleLabel.text = "완료한 일"
+        updateData()
+    }
+    
+    private func updateData() {
         dataManager.loadData {
-            self.todoViewController?.cards = self.dataManager.data(of: "1")
-            self.progressingViewController?.cards = self.dataManager.data(of: "2")
-            self.completeViewController?.cards = self.dataManager.data(of: "3")
+            self.todoViewController?.updateColumnData(self.dataManager.data(of: Identifier.todo.rawValue))
+            self.progressingViewController?.updateColumnData(self.dataManager.data(of: Identifier.progressing.rawValue))
+            self.completeViewController?.updateColumnData(self.dataManager.data(of: Identifier.complete.rawValue))
         }
     }
 }
