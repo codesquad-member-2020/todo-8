@@ -9,17 +9,19 @@
 import Foundation
 
 class DataManager {
+    static let dataDidLoad = NSNotification.Name.init("dataDidLoad")
+    
     private var data: [Column]?
     
-    func loadData(completion: @escaping () -> ()) {
+    func loadData() {
         let url = NetworkManager.serverUrl
-        NetworkManager.getRequest(url: url) { (data, _, error) in
+        NetworkManager.httpRequest(url: url, method: .GET) { (data, _, error) in
             guard let data = data else { return }
             do {
                 let decoder = JSONDecoder()
                 let decodedData = try decoder.decode(TodoData.self, from: data)
                 self.data = decodedData.columns
-                completion()
+                NotificationCenter.default.post(name: DataManager.dataDidLoad, object: nil)
             } catch {
                 
             }
