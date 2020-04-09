@@ -40,14 +40,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateData()
+        addObservers()
+        dataManager.loadData()
     }
     
-    private func updateData() {
-        dataManager.loadData {
-            self.todoViewController?.updateColumnData(self.dataManager.data(of: Identifier.todo.rawValue))
-            self.progressingViewController?.updateColumnData(self.dataManager.data(of: Identifier.progressing.rawValue))
-            self.completeViewController?.updateColumnData(self.dataManager.data(of: Identifier.complete.rawValue))
-        }
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: DataManager.dataDidLoad, object: nil)
+    }
+    
+    @objc private func updateData() {
+        todoViewController?.updateColumnData(self.dataManager.data(of: Identifier.todo.rawValue))
+        progressingViewController?.updateColumnData(self.dataManager.data(of: Identifier.progressing.rawValue))
+        completeViewController?.updateColumnData(self.dataManager.data(of: Identifier.complete.rawValue))
     }
 }
