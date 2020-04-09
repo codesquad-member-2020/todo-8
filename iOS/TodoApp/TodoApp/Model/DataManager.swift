@@ -15,7 +15,7 @@ class DataManager {
     
     func loadData() {
         let url = NetworkManager.serverUrl
-        NetworkManager.getRequest(url: url) { (data, _, error) in
+        NetworkManager.httpRequest(url: url, method: .GET) { (data, _, error) in
             guard let data = data else { return }
             do {
                 let decoder = JSONDecoder()
