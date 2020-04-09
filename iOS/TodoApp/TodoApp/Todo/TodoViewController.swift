@@ -13,14 +13,6 @@ class TodoViewController: UIViewController {
     @IBOutlet weak var columnTitleLabel: UILabel!
     @IBOutlet weak var todoTableView: UITableView!
     
-    private var columnData: Column? {
-        didSet {
-            DispatchQueue.main.async {
-                self.updateColumnTitleLabel(self.columnData?.title)
-            }
-            dataSource.updateCards(columnData?.cards)
-        }
-    }
     private let dataSource = TodoTableViewDataSource()
     
     override func viewDidLoad() {
@@ -35,7 +27,10 @@ class TodoViewController: UIViewController {
     }
     
     func updateColumnData(_ column: Column?) {
-        columnData = column
+        dataSource.updateCards(column?.cards)
+        DispatchQueue.main.async {
+            self.updateColumnTitleLabel(column?.title)
+        }
     }
     
     private func updateCardCountLabel(_ count: String?) {
