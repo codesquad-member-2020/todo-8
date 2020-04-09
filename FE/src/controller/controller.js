@@ -4,6 +4,7 @@ class Controller {
   }
 
   initialize() {
+    this.dragAndDrop()
     this.eventHandler()
   }
 
@@ -38,7 +39,9 @@ class Controller {
 
   removeTotoCard({target}) {
     if(confirm("선택하신 카드를 삭제하시겠습니까?") == true) {
+      const parentNode = target.closest('.column')
       target.closest('.todo-items').remove();
+      this.changeCardNumber(parentNode)
     } else {
       return false;
     }
@@ -82,6 +85,7 @@ class Controller {
     parentNode.querySelector('.todo-list').insertAdjacentHTML('afterbegin', todoList)
     this.initTextarea(event.target)
     this.inputTodoEvent(event)
+    this.changeCardNumber(parentNode)
   }
 
   cancelTodoBtn(event) {
@@ -94,6 +98,17 @@ class Controller {
     parentNode.querySelector('.todo-textarea').value = ''
   }
 
+  changeCardNumber(parentNode) {
+    const todoNumber = parentNode.querySelector('.todo-list').childElementCount
+    parentNode.querySelector('.todo-num').innerText = todoNumber
+  }
+
+  dragAndDrop() {
+    $( ".droppable-area1, .droppable-area2, .droppable-area3" ).sortable({
+      connectWith: ".todo-list",
+      stack: '.todo-list ul'
+    }).disableSelection();
+  }
 }
 
 export default Controller
