@@ -17,7 +17,7 @@ class TodoTableViewDataSource: NSObject, UITableViewDataSource {
     private var cardsChanged: (String) -> () = { _ in }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cards?.count ?? 1
+        return cards?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
