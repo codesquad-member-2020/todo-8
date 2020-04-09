@@ -17,10 +17,9 @@ class ContentTextViewDelegate: NSObject, UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == .placeholderText {
-            DispatchQueue.main.async {
-                textView.selectedTextRange = self.beginning(of: textView)
-            }
+        guard textView.textColor == .placeholderText else { return }
+        DispatchQueue.main.async {
+            textView.selectedTextRange = self.beginning(of: textView)
         }
     }
     
