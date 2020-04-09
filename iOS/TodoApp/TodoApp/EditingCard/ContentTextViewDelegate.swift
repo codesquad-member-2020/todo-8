@@ -1,27 +1,25 @@
 //
-//  EditingCardViewController.swift
+//  ContentTextViewDelegate.swift
 //  TodoApp
 //
-//  Created by TTOzzi on 2020/04/07.
+//  Created by TTOzzi on 2020/04/09.
 //  Copyright © 2020 TTOzzi. All rights reserved.
 //
 
 import UIKit
 
-class EditingCardViewController: UIViewController, UITextViewDelegate {
+class ContentTextViewDelegate: NSObject, UITextViewDelegate {
     private let contentCharactorCountLimit = 500
     
-    @IBOutlet weak var contentTextView: ContentTextView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        contentTextView.delegate = self
+    private func beginning(of textView: UITextView) -> UITextRange? {
+        let beginningPoint = textView.beginningOfDocument
+        return textView.textRange(from: beginningPoint, to: beginningPoint)
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == .placeholderText {
             DispatchQueue.main.async {
-                textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+                textView.selectedTextRange = self.beginning(of: textView)
             }
         }
     }
@@ -32,7 +30,7 @@ class EditingCardViewController: UIViewController, UITextViewDelegate {
         let updatedText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         if updatedText.isEmpty {
             textView.setPlaceholder()
-            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+            textView.selectedTextRange = beginning(of: textView)
         } else if textView.textColor == .placeholderText && !text.isEmpty {
             textView.textColor = UIColor.black
             textView.text = text
@@ -40,9 +38,5 @@ class EditingCardViewController: UIViewController, UITextViewDelegate {
             return true
         }
         return false
-    }
-    
-    @IBAction func cancelButtonTabbed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
     }
 }
