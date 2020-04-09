@@ -21,19 +21,19 @@
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Bh-Q7-asN">
                                         <rect key="frame" x="0.0" y="0.0" width="384.5" height="814"/>
                                         <connections>
-                                            <segue destination="BlN-4l-ztd" kind="embed" identifier="1" id="Rez-l1-aSB"/>
+                                            <segue destination="BlN-4l-ztd" kind="embed" identifier="" id="Rez-l1-aSB"/>
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9cj-GG-OCY">
                                         <rect key="frame" x="404.5" y="0.0" width="385" height="814"/>
                                         <connections>
-                                            <segue destination="BlN-4l-ztd" kind="embed" identifier="2" id="AEZ-kb-US6"/>
+                                            <segue destination="BlN-4l-ztd" kind="embed" identifier="" id="AEZ-kb-US6"/>
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sw4-uA-B9y">
                                         <rect key="frame" x="809.5" y="0.0" width="384.5" height="814"/>
                                         <connections>
-                                            <segue destination="BlN-4l-ztd" kind="embed" identifier="3" id="pwQ-U9-pKK"/>
+                                            <segue destination="BlN-4l-ztd" kind="embed" identifier="" id="pwQ-U9-pKK"/>
                                         </connections>
                                     </containerView>
                                 </subviews>
@@ -204,7 +204,7 @@
             <objects>
                 <viewController id="GyP-ax-8bf" customClass="EditingCardViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3NH-Nx-1FC">
-                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="794"/>
+                        <rect key="frame" x="0.0" y="0.0" width="385" height="794"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-sH-0pQ">
