@@ -26,7 +26,7 @@ class TodoTableViewDataSource: NSObject, UITableViewDataSource {
                 return TodoCell()
         }
         let card = cards[indexPath.row]
-        cell.configure(title: card.title, content: card.contents, author: card.author)
+        cell.configure(with: card)
         return cell
     }
     

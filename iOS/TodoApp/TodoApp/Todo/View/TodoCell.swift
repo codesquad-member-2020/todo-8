@@ -11,6 +11,14 @@ import UIKit
 class TodoCell: UITableViewCell {
     static let reuseIdentifier = "TodoCell"
     
+    private var viewModel: Card? {
+        didSet {
+            self.titleLabel.text = viewModel?.title
+            self.contentLabel.text = viewModel?.contents
+            self.authorLabel.text = "author by \(viewModel?.author ?? "unknown")"
+        }
+    }
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -23,9 +31,8 @@ class TodoCell: UITableViewCell {
         super.init(coder: coder)
     }
     
-    func configure(title: String, content: String, author: String) {
-        self.titleLabel.text = title
-        self.contentLabel.text = content
-        self.authorLabel.text = "author by \(author)"
+    func configure(with card: Card?) {
+        guard viewModel != card else { return }
+        viewModel = card
     }
 }

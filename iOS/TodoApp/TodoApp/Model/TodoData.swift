@@ -18,7 +18,7 @@ struct Column: Codable {
     var cards: [Card]
 }
 
-struct Card: Codable {
+struct Card: Codable, Equatable {
     var id: String
     var title: String
     var author: String
