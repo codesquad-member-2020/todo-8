@@ -1,8 +1,8 @@
 INSERT INTO `user` (id, user_name) VALUES (null,'nigayo');
 
-INSERT INTO category (id, user_id, title) VALUES (null,'1', '할일');
-INSERT INTO category (id, user_id, title) VALUES (null,'1', '하는중');
-INSERT INTO category (id, user_id, title) VALUES (null,'1', '다했음');
+INSERT INTO category (id, user_id, title, author) VALUES (null,'1', '할일', 'nigayo');
+INSERT INTO category (id, user_id, title, author) VALUES (null,'1', '하는중','nigayo');
+INSERT INTO category (id, user_id, title, author) VALUES (null,'1', '다했음', 'nigayo');
 
 INSERT INTO card (id, category_id, title, author, contents) VALUES (null,'1','페이지네이션 UI 리서치', 'nigayo', '리서치를 열심히하자');
 INSERT INTO card (id, category_id, title, author, contents, category_key) VALUES (null,'1','상세페이지 API', 'nigayo','API API', 1);
