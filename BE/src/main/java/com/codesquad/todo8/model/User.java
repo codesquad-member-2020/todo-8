@@ -1,50 +1,31 @@
 package com.codesquad.todo8.model;
 
-import com.google.common.base.Objects;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+@Table
 public class User {
 
   @Id
-  private Long seq;
+  private Long id;
 
-  private final String id;
+  private String userName;
 
-  public User(String id) {
-    this.id = id;
-  }
-
-  public Long getSeq() {
-    return seq;
-  }
-
-  public String getId() {
+  public Long getId() {
     return id;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    User user = (User) o;
-    return Objects.equal(seq, user.seq);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hashCode(seq);
+  public String getUserId() {
+    return userName;
   }
 
   @Override
   public String toString() {
-    return new ToStringBuilder(this)
-        .append("seq", seq)
+    return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
         .append("id", id)
+        .append("userName", userName)
         .toString();
   }
 }

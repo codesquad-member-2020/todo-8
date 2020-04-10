@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
-  @Query("SELECT * FROM user u WHERE u.id = :userId")
-  Optional<User> findById(@Param(value = "userId") String userId);
+  @Query("SELECT u.id, u.user_name FROM user u WHERE u.user_name = :name")
+  Optional<User> findByName(@Param(value = "name") String userName);
 
 }
