@@ -66,12 +66,27 @@
             </objects>
             <point key="canvasLocation" x="846.2311557788945" y="137.41007194244605"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="TA2-mI-mXt">
+            <objects>
+                <viewController id="V6k-0P-BU8" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Mp-q5-xIt">
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="1Sw-NM-Hcs"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ig1-to-0lT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1528" y="138"/>
+        </scene>
         <!--Todo View Controller-->
         <scene sceneID="IOf-YD-9N1">
             <objects>
                 <viewController id="BlN-4l-ztd" customClass="TodoViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a5W-HH-5xp">
-                        <rect key="frame" x="0.0" y="0.0" width="385" height="814"/>
+                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="814"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Mq-JW-AzN">
@@ -204,7 +219,7 @@
             <objects>
                 <viewController id="GyP-ax-8bf" customClass="EditingCardViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3NH-Nx-1FC">
-                        <rect key="frame" x="0.0" y="0.0" width="385" height="794"/>
+                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="794"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-sH-0pQ">
@@ -264,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bcc-4M-MI6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1537" y="350"/>
+            <point key="canvasLocation" x="1075" y="888"/>
         </scene>
     </scenes>
     <resources>
