@@ -1,8 +1,8 @@
 package com.codesquad.todo8.controller;
 
 
-import com.codesquad.todo8.dto.BoardDto;
 import com.codesquad.todo8.model.Activity;
+import com.codesquad.todo8.model.BoardResponse;
 import com.codesquad.todo8.model.Card;
 import com.codesquad.todo8.model.CardRequest;
 import com.codesquad.todo8.model.Category;
@@ -34,11 +34,11 @@ public class TodoRestController {
   }
 
   @GetMapping("board")
-  public BoardDto main(HttpServletRequest request) {
+  public BoardResponse main(HttpServletRequest request) {
 //    Long id = getUserId(request);
     List<Activity> activities = todoService.findAllActivity("nigayo");
     List<Category> categories = todoService.findAllContents(1L);
-    return new BoardDto(categories, activities);
+    return BoardResponse.of(categories, activities);
 
   }
 
