@@ -29,8 +29,10 @@ class Controller {
     })
 
     document.addEventListener("dblclick", event => {
-      if(event.target.closest('.todo-items') === null) return
-      this.updateTodoCard(event)
+      const todoListParentNode = event.target.closest('.todo-items')
+      console.log(todoListParentNode)
+      if(todoListParentNode === null) return
+      this.updateTodoCard(event, todoListParentNode)
     })
 
     document.addEventListener("input", event => {
@@ -116,8 +118,9 @@ class Controller {
     }).disableSelection();
   }
 
-  updateTodoCard(event) {
-    
+  updateTodoCard(event, todoListParentNode) {
+    console.log(event,  todoListParentNode)
+    jb('.ui.basic.modal').modal('show');
   }
 }
 
