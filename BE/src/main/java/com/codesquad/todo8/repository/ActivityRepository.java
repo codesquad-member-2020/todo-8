@@ -8,5 +8,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface ActivityRepository extends CrudRepository<Activity, Long> {
 
   @Query("SELECT * FROM activity a WHERE a.author = :author")
-  List<Activity> findAllByUserId(String author);
+  List<Activity> findAllByAuthor(String author);
 }
