@@ -254,3 +254,22 @@ div.ui.feed {
   -khtml-user-drag: element;
   -webkit-user-drag: element;
 }
+
+/* 카드수정 모달 */
+
+.content {
+  text-align: center;
+}
+
+.content > input {
+  font-family: inherit;
+  width: 300px;
+  height: 50px;
+  background-color: rgba(0,0,0,0.3);
+  outline: 2px solid yellow;
+  box-sizing: border-box;
+  border: none;
+  color: #22be34;
+  font-weight: bold;
+  text-align: center;
+}

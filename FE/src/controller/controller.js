@@ -6,6 +6,9 @@ class Controller {
   initialize() {
     this.dragAndDrop()
     this.eventHandler()
+    this.eventLog = {
+
+    }
   }
 
   eventHandler() {
@@ -23,13 +26,33 @@ class Controller {
         case 'base-cancel-btn' :
           this.cancelTodoBtn(event)
           break;
+        case 'ui green ok inverted button' :
+          this.updateCheckBtn()
+          break;
+        case 'ui red basic cancel inverted button' :
+          this.updateCancelBtn()
+          break;
         default :
           break;
       }
     })
 
+    document.addEventListener("dblclick", event => {
+      if(event.target.closest('.todo-items') === null) return
+      this.todoListValue = event.target.closest('.todo-items').firstElementChild.innerText
+      this.targetListValue = event.target.closest('.todo-items').firstElementChild
+      this.setTodoCard(event)
+    })
+
     document.addEventListener("input", event => {
-      this.inputTodoEvent(event)
+
+      switch(event.target.className) {
+        case 'todo-textarea' :
+          this.inputTodoEvent(event)
+          break;
+        case 'todo-input-value' : 
+          this.updateTodoCard(event)
+      }
     })
   }
 
@@ -49,6 +72,7 @@ class Controller {
 
   inputTodoEvent(event) {
     const {target: { value }} = event
+    const TEXT_LIMIT_LENGTH = 15
     const addCardBtn = event.target.closest('.todo-add-area').querySelector('.base-add-btn')
 
     value ? 
@@ -60,9 +84,9 @@ class Controller {
         addCardBtn.disabled = true
       );
 
-    if(value.length > 15) {
+    if(value.length > TEXT_LIMIT_LENGTH) {
       alert("15자 이하로 작성해 주세요.")
-      event.target.value = event.target.value.substr(0, 15)
+      event.target.value = event.target.value.substr(0, TEXT_LIMIT_LENGTH)
     }
   }
 
@@ -108,6 +132,39 @@ class Controller {
       connectWith: ".todo-list",
       stack: '.todo-list ul'
     }).disableSelection();
+  }
+
+  setTodoCard(event) {
+    jb('.ui.basic.modal').modal('show');
+    document.querySelector('.todo-input-value').value = this.todoListValue
+  }
+
+  updateTodoCard(event) {
+    const TEXT_LIMIT_LENGTH = 15
+    const updateBtn = document.querySelector('.ok.inverted.button')
+    this.todoListValue = event.target.value
+    
+    event.target.value ? 
+      (
+        updateBtn.style.opacity = "1",
+        updateBtn.disabled = false
+        ) : (
+        updateBtn.style.opacity = "0.5",
+        updateBtn.disabled = true
+      );
+
+    if(this.todoListValue.length > TEXT_LIMIT_LENGTH) {
+      event.target.value = event.target.value.substr(0, TEXT_LIMIT_LENGTH)
+      alert("15자 이하로 작성해 주세요.")
+    }
+  }
+
+  updateCheckBtn() {
+    this.targetListValue.querySelector('span').innerHTML = this.todoListValue
+  }
+
+  updateCancelBtn() {
+    return
   }
 }
 
