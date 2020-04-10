@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         DispatchQueue.main.async {
             self.children.forEach {
                 guard let todoViewController = $0 as? TodoViewController else { return }
-                todoViewController.updateColumnData(self.dataManager.data(of: "\(columnId)"))
+                todoViewController.updateColumnData(self.dataManager.data(of: columnId))
                 columnId += 1
             }
         }

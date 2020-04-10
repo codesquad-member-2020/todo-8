@@ -28,7 +28,7 @@ class EditingCardViewController: UIViewController {
     @IBAction func completeButtonTabbed(_ sender: UIButton) {
         guard let title = titleTextField.text,
             let content = contentTextView.text else { return }
-        let card = Card(id: "", title: title, author: "iOS", contents: content, createdDate: "", modifiedDate: "")
+        let card = Card(id: 0, title: title, author: "iOS", contents: content, createdDate: "", modifiedDate: "")
         dismiss(animated: true) {
             self.completion(card)
         }

@@ -28,7 +28,7 @@ class DataManager {
         }
     }
     
-    func data(of identifier: String?) -> Column? {
+    func data(of identifier: Int?) -> Column? {
         guard let data = data else { return nil }
         for column in data {
             if column.id == identifier {
