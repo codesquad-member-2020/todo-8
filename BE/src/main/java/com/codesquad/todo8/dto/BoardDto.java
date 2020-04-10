@@ -2,33 +2,33 @@ package com.codesquad.todo8.dto;
 
 import com.codesquad.todo8.model.Activity;
 import com.codesquad.todo8.model.Category;
+import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import java.util.List;
-
 public class BoardDto {
-    List<Category> category;
 
-    List<Activity> activity;
+  List<Category> category;
 
-    public BoardDto(List<Category> category, List<Activity> activity) {
-        this.category = category;
-        this.activity = activity;
-    }
+  List<Activity> activity;
 
-    public List<Category> getCategory() {
-        return category;
-    }
+  public BoardDto(List<Category> category, List<Activity> activity) {
+    this.category = category;
+    this.activity = activity;
+  }
 
-    public List<Activity> getActivity() {
-        return activity;
-    }
+  public List<Category> getCategory() {
+    return category;
+  }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("category", category)
-                .append("activity", activity)
-                .toString();
-    }
+  public List<Activity> getActivity() {
+    return activity;
+  }
+
+  @Override
+  public String toString() {
+    return new ToStringBuilder(this)
+        .append("category", category)
+        .append("activity", activity)
+        .toString();
+  }
 }

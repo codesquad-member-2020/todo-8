@@ -1,8 +1,8 @@
 package com.codesquad.todo8.service;
 
 
-import com.codesquad.todo8.model.Card;
 import com.codesquad.todo8.model.Activity;
+import com.codesquad.todo8.model.Card;
 import com.codesquad.todo8.model.Category;
 import com.codesquad.todo8.repository.ActivityRepository;
 import com.codesquad.todo8.repository.CardRepository;
@@ -14,20 +14,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class TodoService {
 
-    private final CategoryRepository categoryRepository;
-    private final ActivityRepository activityRepository;
-    private final CardRepository cardRepository;
+  private final CategoryRepository categoryRepository;
+  private final ActivityRepository activityRepository;
+  private final CardRepository cardRepository;
 
-    public TodoService(CategoryRepository categoryRepository,
-                       ActivityRepository activityRepository, CardRepository cardRepository) {
-        this.categoryRepository = categoryRepository;
-        this.activityRepository = activityRepository;
-        this.cardRepository = cardRepository;
-    }
+  public TodoService(CategoryRepository categoryRepository,
+      ActivityRepository activityRepository, CardRepository cardRepository) {
+    this.categoryRepository = categoryRepository;
+    this.activityRepository = activityRepository;
+    this.cardRepository = cardRepository;
+  }
+
   @Transactional(readOnly = true)
-    public List<Activity> findAllActivity(String author) {
-        return activityRepository.findAllByUserId(author);
-    }
+  public List<Activity> findAllActivity(String author) {
+    return activityRepository.findAllByUserId(author);
+  }
 
 
   @Transactional(readOnly = true)
@@ -43,7 +44,7 @@ public class TodoService {
     return card;
   }
 
-   public void addActivity(Activity newActivity) {
-        activityRepository.save(newActivity);
-    }
+  public void addActivity(Activity newActivity) {
+    activityRepository.save(newActivity);
+  }
 }

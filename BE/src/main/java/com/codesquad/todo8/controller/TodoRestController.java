@@ -1,10 +1,10 @@
 package com.codesquad.todo8.controller;
 
 
-import com.codesquad.todo8.model.Card;
-import com.codesquad.todo8.model.CardRequest;
 import com.codesquad.todo8.dto.BoardDto;
 import com.codesquad.todo8.model.Activity;
+import com.codesquad.todo8.model.Card;
+import com.codesquad.todo8.model.CardRequest;
 import com.codesquad.todo8.model.Category;
 import com.codesquad.todo8.model.User;
 import com.codesquad.todo8.service.TodoService;
