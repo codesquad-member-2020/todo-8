@@ -1,5 +1,6 @@
 package com.codesquad.todo8.service;
 
+import com.codesquad.todo8.model.Card;
 import com.codesquad.todo8.model.Category;
 import com.codesquad.todo8.repository.CardRepository;
 import com.codesquad.todo8.repository.CategoryRepository;
@@ -22,5 +23,13 @@ public class TodoService {
   @Transactional(readOnly = true)
   public List<Category> findAllContents(Long id) {
     return categoryRepository.findAllByUserId(id);
+  }
+
+  @Transactional
+  public Card createCard(Card card) {
+    Category category = categoryRepository.findById(card.getCategoryId()).get();
+    category.addCard(card);
+    categoryRepository.save(category);
+    return card;
   }
 }
