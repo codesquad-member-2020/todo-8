@@ -45,7 +45,7 @@ class TodoTableViewDataSource: NSObject, UITableViewDataSource {
         self.cardsChanged = changed
     }
     
-    func appendCard(_ card: Card) {
-        self.cards?.append(card)
+    func addCard(_ card: Card) {
+        self.cards?.insert(card, at: 0)
     }
 }

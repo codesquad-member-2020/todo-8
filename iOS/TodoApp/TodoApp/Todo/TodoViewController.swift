@@ -45,7 +45,7 @@ class TodoViewController: UIViewController {
         guard let editingCardViewController = storyboard?.instantiateViewController(identifier: "edit") as? EditingCardViewController else { return }
         present(editingCardViewController, animated: true) {
             editingCardViewController.completion = { card in
-                self.dataSource.appendCard(card)
+                self.dataSource.addCard(card)
             }
         }
     }
