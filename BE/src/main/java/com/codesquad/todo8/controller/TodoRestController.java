@@ -31,8 +31,8 @@ public class TodoRestController {
 
   @GetMapping("board")
   public List<Category> main(HttpServletRequest request) {
-    Long id = getUserId(request);
-    return todoService.findAllContents(id);
+//    Long id = getUserId(request);
+    return todoService.findAllContents(1L);
   }
 
   @PostMapping("/cards")
