@@ -18,6 +18,7 @@ class EditingCardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         contentTextView.delegate = contentTextViewDelegate
+        titleTextField.becomeFirstResponder()
     }
     
     @IBAction func cancelButtonTabbed(_ sender: UIButton) {
