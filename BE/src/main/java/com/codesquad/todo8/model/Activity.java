@@ -20,7 +20,7 @@ public class Activity {
 
   private Long arrival;
 
-  @Column(value = "created_time")
+  @Column(value = "create_at")
   private LocalDateTime createdTime;
 
   public Activity() {
