@@ -78,13 +78,37 @@
                     <view key="view" contentMode="scaleToFill" id="8Mp-q5-xIt">
                         <rect key="frame" x="0.0" y="0.0" width="388" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRa-n4-VYD">
+                                <rect key="frame" x="13" y="0.0" width="375" height="33.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activities" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TOc-2f-ic8">
+                                        <rect key="frame" x="8" y="4.5" width="85.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="quaternaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="TOc-2f-ic8" firstAttribute="centerY" secondItem="tRa-n4-VYD" secondAttribute="centerY" id="QCZ-Rg-iep"/>
+                                    <constraint firstItem="TOc-2f-ic8" firstAttribute="leading" secondItem="tRa-n4-VYD" secondAttribute="leading" constant="8" id="oOr-dx-lUT"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="tRa-n4-VYD" firstAttribute="trailing" secondItem="1Sw-NM-Hcs" secondAttribute="trailing" id="Kul-C3-hs5"/>
+                            <constraint firstItem="tRa-n4-VYD" firstAttribute="leading" secondItem="1Sw-NM-Hcs" secondAttribute="leading" id="ig6-rv-ffo"/>
+                            <constraint firstItem="tRa-n4-VYD" firstAttribute="top" secondItem="1Sw-NM-Hcs" secondAttribute="top" id="qr5-nV-e9I"/>
+                            <constraint firstItem="tRa-n4-VYD" firstAttribute="height" secondItem="1Sw-NM-Hcs" secondAttribute="height" multiplier="0.05" id="yFA-Pi-ZkU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="1Sw-NM-Hcs"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ig1-to-0lT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528" y="138"/>
+            <point key="canvasLocation" x="1527.6381909547738" y="137.41007194244605"/>
         </scene>
         <!--Todo View Controller-->
         <scene sceneID="IOf-YD-9N1">
