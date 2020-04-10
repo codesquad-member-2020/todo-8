@@ -28,6 +28,11 @@ class Controller {
       }
     })
 
+    document.addEventListener("dblclick", event => {
+      if(event.target.closest('.todo-items') === null) return
+      this.updateTodoCard(event)
+    })
+
     document.addEventListener("input", event => {
       this.inputTodoEvent(event)
     })
@@ -49,6 +54,7 @@ class Controller {
 
   inputTodoEvent(event) {
     const {target: { value }} = event
+    const TEXT_LIMIT_LENGTH = 15
     const addCardBtn = event.target.closest('.todo-add-area').querySelector('.base-add-btn')
 
     value ? 
@@ -60,9 +66,9 @@ class Controller {
         addCardBtn.disabled = true
       );
 
-    if(value.length > 15) {
+    if(value.length > TEXT_LIMIT_LENGTH) {
       alert("15자 이하로 작성해 주세요.")
-      event.target.value = event.target.value.substr(0, 15)
+      event.target.value = event.target.value.substr(0, TEXT_LIMIT_LENGTH)
     }
   }
 
@@ -108,6 +114,10 @@ class Controller {
       connectWith: ".todo-list",
       stack: '.todo-list ul'
     }).disableSelection();
+  }
+
+  updateTodoCard(event) {
+    
   }
 }
 
