@@ -44,6 +44,13 @@ public class TodoService {
     return card;
   }
 
+  @Transactional
+  public Card deleteCard(Long cardId) {
+    Card deletedCard = cardRepository.findById(cardId).get();
+    cardRepository.delete(deletedCard);
+    return deletedCard;
+  }
+
   public void addActivity(Activity newActivity) {
     activityRepository.save(newActivity);
   }

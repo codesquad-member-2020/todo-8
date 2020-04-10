@@ -40,8 +40,8 @@ public class Card {
   }
 
   public static Card of(Long categoryId, String author, String title, String contents) {
-    return new Card(null, categoryId, author, title, contents, LocalDateTime.now(),
-        LocalDateTime.now());
+    return new Card(null, categoryId, author, title, contents, null,
+        null);
   }
 
   public Long getId() {
