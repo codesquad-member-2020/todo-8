@@ -51,6 +51,14 @@ public class Category {
     return author;
   }
 
+  public void addCard(Card card) {
+    this.cards.add(card);
+  }
+
+  public void moveCard(int index, Card card) {
+    this.cards.add(index, card);
+  }
+
   @Override
   public String toString() {
     return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)

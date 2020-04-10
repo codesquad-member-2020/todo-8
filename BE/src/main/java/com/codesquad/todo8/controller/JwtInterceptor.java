@@ -14,9 +14,10 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Component
 public class JwtInterceptor implements HandlerInterceptor {
 
-  // JWT 요청 : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imd1ZXN0MTIzNCJ9.ziPecPMs-euqNDajS5_C0uO7-uCkT5Y0kD_GACuxWH4
+  // JWT 요청 : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Im5pZ2F5byJ9.Vs0bzwNZ9QgGiPYzvEgGsL0Iylp6NjnPcaQtI_h3AxE
   private static Logger logger = LoggerFactory.getLogger(JwtInterceptor.class);
   private final UserService userService;
+
   @Value("${jwt.token.secret}")
   private String key;
 
@@ -30,14 +31,18 @@ public class JwtInterceptor implements HandlerInterceptor {
     return true;
 //    String jwt = request.getHeader("Authorization").split(" ")[1];
 //    logger.debug("JWT : {}", jwt);
-//    return validationToken(jwt);
+//    if (validationToken(jwt)) {
+//      request.setAttribute("userName", getUserName(jwt));
+//      return true;
+//    }
+//    return false;
   }
 
   private Boolean validationToken(String jwt) {
     String userName = "";
     if (jwt != null) {
-      userName = getUserId(jwt);
-      logger.debug("userId : {}", userName);
+      userName = getUserName(jwt);
+      logger.debug("userName : {}", userName);
     }
 
     if (userName != null) {
@@ -46,14 +51,14 @@ public class JwtInterceptor implements HandlerInterceptor {
     return false;
   }
 
-  private String getUserId(String jwt) {
+  private String getUserName(String jwt) {
     try {
       return Jwts.parserBuilder()
           .setSigningKey(key)
           .build()
           .parseClaimsJws(jwt)
           .getBody()
-          .get("id", String.class);
+          .get("userName", String.class);
     } catch (JwtException e) {
       logger.debug("JwtException : {}", e.getMessage());
       return null;
