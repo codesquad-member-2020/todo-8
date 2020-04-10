@@ -23,12 +23,12 @@ CREATE TABLE category (
 CREATE TABLE card (
     id              bigint NOT NULL AUTO_INCREMENT primary key,
     category_id     bigint REFERENCES category (id),
+    category_key    int,
     title           varchar(50) NOT NULL,
     author          varchar(25) NOT NULL REFERENCES `user` (user_name),
     contents        varchar(500),
     create_at       datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    modify_at       datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    category_key    int NOT NULL DEFAULT '0',
+    modify_at       datetime NOT NULL DEFAULT CURRENT_TIMESTAMP()
     PRIMARY KEY (id)
 );
 
