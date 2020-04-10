@@ -1,5 +1,6 @@
 package com.codesquad.todo8.controller;
 
+import com.codesquad.todo8.dto.BoardDto;
 import com.codesquad.todo8.model.Activity;
 import com.codesquad.todo8.model.Category;
 import com.codesquad.todo8.service.TodoService;
@@ -21,16 +22,16 @@ public class TodoRestController {
   }
 
   @GetMapping
-  public List<Category> main(HttpServletRequest request) {
+  public BoardDto main(HttpServletRequest request) {
 //    Long userId = Long.parseLong(request.getAttribute("userId").toString());
-
     List<Activity> activities = todoService.findAllActivity("nigayo");
-    return todoService.findAllContents(1L);
+    List<Category> categories = todoService.findAllContents(1L);
+    return new BoardDto(categories, activities);
   }
 
 //    @PostMapping("/columns")
 //    public String addColumn(@RequestBody Column column) {
-//    Todo Column이 안 받아짐
+//    Todo Column이 안 받아짐`
 //        System.out.println("--------------------");
 //        User user = userRepository.findById(1).get();
 //        Column newColumn = new Column(column.getTitle());
