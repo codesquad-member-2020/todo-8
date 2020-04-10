@@ -1,0 +1,73 @@
+package com.codesquad.todo8.model;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.data.annotation.Id;
+
+public class Activity {
+    @Id
+    private Long id;
+
+    private String author;
+
+    private String action;
+
+    private String targetName;
+
+    private Long departure;
+
+    private Long arrival;
+
+    public Activity() {
+    }
+
+    public Activity(String author, String action, String targetName, Long departure, Long arrival) {
+        this.author = author;
+        this.action = action;
+        this.targetName = targetName;
+        this.departure = departure;
+        this.arrival = arrival;
+    }
+
+    public Activity(String author, String action, String targetName) {
+        this.author = author;
+        this.action = action;
+        this.targetName = targetName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public String getTargetName() {
+        return targetName;
+    }
+
+    public Long getDeparture() {
+        return departure;
+    }
+
+    public Long getArrival() {
+        return arrival;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("id", id)
+                .append("author", author)
+                .append("action", action)
+                .append("targetName", targetName)
+                .append("departure", departure)
+                .append("arrival", arrival)
+                .toString();
+    }
+}
