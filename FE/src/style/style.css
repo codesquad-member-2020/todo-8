@@ -209,7 +209,7 @@ div.ui.feed {
 
 .todo-list {
   height: 345px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .todo-items {

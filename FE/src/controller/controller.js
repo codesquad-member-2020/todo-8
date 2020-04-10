@@ -159,7 +159,7 @@ class Controller {
     }
   }
 
-  updateCheckBtn() {
+  updateCheckBtn(event) {
     this.targetListValue.querySelector('span').innerHTML = this.todoListValue
   }
 
