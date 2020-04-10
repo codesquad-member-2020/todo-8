@@ -19,6 +19,8 @@ public class Category {
 
   private String title;
 
+  private String author;
+
   @Column(value = "create_at")
   private LocalDateTime createdDate;
 
@@ -45,12 +47,17 @@ public class Category {
     return cards;
   }
 
+  public String getAuthor() {
+    return author;
+  }
+
   @Override
   public String toString() {
-    return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
+    return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
         .append("id", id)
         .append("userId", userId)
         .append("title", title)
+        .append("author", author)
         .append("createdDate", createdDate)
         .append("cards", cards)
         .toString();
