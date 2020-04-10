@@ -6,6 +6,9 @@ class Controller {
   initialize() {
     this.dragAndDrop()
     this.eventHandler()
+    this.eventLog = {
+
+    }
   }
 
   eventHandler() {
@@ -138,8 +141,18 @@ class Controller {
 
   updateTodoCard(event) {
     const TEXT_LIMIT_LENGTH = 15
+    const updateBtn = document.querySelector('.ok.inverted.button')
     this.todoListValue = event.target.value
-    console.log(this.todoListValue)
+    
+    event.target.value ? 
+      (
+        updateBtn.style.opacity = "1",
+        updateBtn.disabled = false
+        ) : (
+        updateBtn.style.opacity = "0.5",
+        updateBtn.disabled = true
+      );
+
     if(this.todoListValue.length > TEXT_LIMIT_LENGTH) {
       event.target.value = event.target.value.substr(0, TEXT_LIMIT_LENGTH)
       alert("15자 이하로 작성해 주세요.")
