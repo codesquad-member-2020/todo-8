@@ -13,8 +13,8 @@ INSERT INTO card (id, category_id, title, author, contents, category_key) VALUES
 INSERT INTO card (id, category_id, title, author, contents, category_key) VALUES (null,'3','데모 환경 분석','nigayo', '잘돌아간다', 1);
 INSERT INTO card (id, category_id, title, author, contents, category_key) VALUES (null,'3','프로젝트 생성', 'nigayo','생성했다', 2);
 
-INSERT INTO activity (id, author, action, target_name, departure, arrival) VALUES(1, 'nigayo', 'moved','github 공부하기', 0, 1);
-INSERT INTO activity (id, author, action, target_name) VALUES(2, 'nigayo', 'added','설정 파일 분리 리팩토링');
-INSERT INTO activity (id, author, action, target_name) VALUES(3, 'nigayo', 'deleted','삭제해보자');
+INSERT INTO activity (id, author, action, target_name, departure, arrival) VALUES(null, 'nigayo', 'moved','github 공부하기', 0, 1);
+INSERT INTO activity (id, author, action, target_name) VALUES(null, 'nigayo', 'added','설정 파일 분리 리팩토링');
+INSERT INTO activity (id, author, action, target_name) VALUES(null, 'nigayo', 'deleted','삭제해보자');
 
 

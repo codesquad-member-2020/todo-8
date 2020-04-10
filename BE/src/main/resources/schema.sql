@@ -24,24 +24,25 @@ CREATE TABLE category
 );
 
 CREATE TABLE card (
-    id              bigint NOT NULL AUTO_INCREMENT primary key,
+    id              bigint NOT NULL AUTO_INCREMENT,
     category_id     bigint REFERENCES category (id),
     category_key    int,
     title           varchar(50) NOT NULL,
     author          varchar(25) NOT NULL REFERENCES `user` (user_name),
     contents        varchar(500),
     create_at       datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    modify_at       datetime NOT NULL DEFAULT CURRENT_TIMESTAMP()
+    modify_at       datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     PRIMARY KEY (id)
 );
 
 CREATE TABLE activity
 (
-    id           bigint   NOT NULL AUTO_INCREMENT primary key,
-    author       varchar(25),
-    action       varchar(25),
-    target_name  varchar(50),
+    id           bigint   NOT NULL AUTO_INCREMENT,
+    author       varchar(25)  NOT NULL REFERENCES `user` (user_name),
+    action       varchar(25)  NOT NULL,
+    target_name  varchar(50)  NOT NULL,
     departure    bigint,
     arrival      bigint,
-    created_time datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-)
+    create_at    datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    PRIMARY KEY (id)
+);
