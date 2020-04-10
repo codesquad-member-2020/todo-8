@@ -27,7 +27,7 @@ public class TodoService {
 
   @Transactional(readOnly = true)
   public List<Activity> findAllActivity(String author) {
-    return activityRepository.findAllByUserId(author);
+    return activityRepository.findAllByAuthor(author);
   }
 
 
