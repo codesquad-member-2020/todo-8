@@ -29,14 +29,21 @@ class Controller {
     })
 
     document.addEventListener("dblclick", event => {
-      const todoListParentNode = event.target.closest('.todo-items')
-      console.log(todoListParentNode)
-      if(todoListParentNode === null) return
-      this.updateTodoCard(event, todoListParentNode)
+      if(event.target.closest('.todo-items') === null) return
+      this.todoListValue = event.target.closest('.todo-items').firstElementChild.innerText
+      this.targetListValue = event.target.closest('.todo-items').firstElementChild
+      this.setTodoCard(event)
     })
 
     document.addEventListener("input", event => {
-      this.inputTodoEvent(event)
+
+      switch(event.target.className) {
+        case 'todo-textarea' :
+          this.inputTodoEvent(event)
+          break;
+        case 'todo-input-value' : 
+          this.updateTodoCard(event)
+      }
     })
   }
 
@@ -118,9 +125,16 @@ class Controller {
     }).disableSelection();
   }
 
-  updateTodoCard(event, todoListParentNode) {
-    console.log(event,  todoListParentNode)
+  setTodoCard(event) {
     jb('.ui.basic.modal').modal('show');
+    document.querySelector('.todo-input-value').value = this.todoListValue
+  }
+
+  updateTodoCard(event) {
+    this.todoListValue = event.target.value
+    console.log(this.todoListValue, this.targetListValue)
+
+    this.targetListValue.querySelector('span').innerHTML = this.todoListValue
   }
 }
 
