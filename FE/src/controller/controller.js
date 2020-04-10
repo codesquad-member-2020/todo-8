@@ -23,6 +23,12 @@ class Controller {
         case 'base-cancel-btn' :
           this.cancelTodoBtn(event)
           break;
+        case 'ui green ok inverted button' :
+          this.updateCheckBtn()
+          break;
+        case 'ui red basic cancel inverted button' :
+          this.updateCancelBtn()
+          break;
         default :
           break;
       }
@@ -131,10 +137,21 @@ class Controller {
   }
 
   updateTodoCard(event) {
+    const TEXT_LIMIT_LENGTH = 15
     this.todoListValue = event.target.value
-    console.log(this.todoListValue, this.targetListValue)
+    console.log(this.todoListValue)
+    if(this.todoListValue.length > TEXT_LIMIT_LENGTH) {
+      event.target.value = event.target.value.substr(0, TEXT_LIMIT_LENGTH)
+      alert("15자 이하로 작성해 주세요.")
+    }
+  }
 
+  updateCheckBtn() {
     this.targetListValue.querySelector('span').innerHTML = this.todoListValue
+  }
+
+  updateCancelBtn() {
+    return
   }
 }
 
