@@ -40,4 +40,13 @@ class TodoViewController: UIViewController {
     private func updateColumnTitleLabel(_ title: String?) {
         columnTitleLabel.text = title
     }
+    
+    @IBAction func addCardButtonTabbed(_ sender: AddCardButton) {
+        guard let editingCardViewController = storyboard?.instantiateViewController(identifier: "edit") as? EditingCardViewController else { return }
+        present(editingCardViewController, animated: true) {
+            editingCardViewController.completion = { card in
+                self.dataSource.appendCard(card)
+            }
+        }
+    }
 }

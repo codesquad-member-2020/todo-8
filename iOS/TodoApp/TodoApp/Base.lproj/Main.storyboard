@@ -150,7 +150,7 @@
                                             <accessibilityTraits key="traits" button="YES" image="YES"/>
                                         </accessibility>
                                         <connections>
-                                            <segue destination="GyP-ax-8bf" kind="presentation" id="fxO-yL-gNA"/>
+                                            <action selector="addCardButtonTabbed:" destination="BlN-4l-ztd" eventType="touchUpInside" id="y8X-4h-O6w"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -254,9 +254,9 @@
         <!--Editing Card View Controller-->
         <scene sceneID="5sk-ZQ-Myt">
             <objects>
-                <viewController id="GyP-ax-8bf" customClass="EditingCardViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="edit" id="GyP-ax-8bf" customClass="EditingCardViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3NH-Nx-1FC">
-                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="794"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-sH-0pQ">
@@ -267,25 +267,28 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kxi-0A-pbg">
-                                <rect key="frame" x="20" y="95" width="289.5" height="36"/>
+                                <rect key="frame" x="20" y="95" width="1099" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKD-Dk-ugj">
-                                <rect key="frame" x="319.5" y="95" width="35" height="34"/>
+                                <rect key="frame" x="1129" y="95" width="35" height="34"/>
                                 <state key="normal" image="arrow.up.circle.fill" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30" scale="default"/>
                                 </state>
+                                <connections>
+                                    <action selector="completeButtonTabbed:" destination="GyP-ax-8bf" eventType="touchUpInside" id="1w7-30-iut"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YWP-mF-4OG" customClass="ContentTextView" customModule="TodoApp" customModuleProvider="target">
-                                <rect key="frame" x="20" y="161" width="334.5" height="392"/>
+                                <rect key="frame" x="20" y="161" width="1144" height="412"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author by iOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNh-v6-KSH">
-                                <rect key="frame" x="20" y="573" width="334.5" height="21"/>
+                                <rect key="frame" x="20" y="593" width="1144" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -312,11 +315,12 @@
                     </view>
                     <connections>
                         <outlet property="contentTextView" destination="YWP-mF-4OG" id="tRJ-dX-qid"/>
+                        <outlet property="titleTextField" destination="kxi-0A-pbg" id="xdM-mD-qlE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bcc-4M-MI6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1075" y="888"/>
+            <point key="canvasLocation" x="1389" y="888"/>
         </scene>
     </scenes>
     <resources>

@@ -44,4 +44,8 @@ class TodoTableViewDataSource: NSObject, UITableViewDataSource {
     func updateNotify(changed: @escaping (String) -> ()) {
         self.cardsChanged = changed
     }
+    
+    func appendCard(_ card: Card) {
+        self.cards?.append(card)
+    }
 }
