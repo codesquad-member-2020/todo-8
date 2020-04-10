@@ -15,6 +15,4 @@ public class HealthCheckRestController {
   public String healthCheck() {
     return dateFormat.format(System.currentTimeMillis());
   }
-
-
 }
