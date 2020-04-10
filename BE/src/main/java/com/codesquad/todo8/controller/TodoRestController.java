@@ -1,7 +1,10 @@
 package com.codesquad.todo8.controller;
 
+
 import com.codesquad.todo8.model.Card;
 import com.codesquad.todo8.model.CardRequest;
+import com.codesquad.todo8.dto.BoardDto;
+import com.codesquad.todo8.model.Activity;
 import com.codesquad.todo8.model.Category;
 import com.codesquad.todo8.model.User;
 import com.codesquad.todo8.service.TodoService;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 public class TodoRestController {
@@ -30,9 +34,12 @@ public class TodoRestController {
   }
 
   @GetMapping("board")
-  public List<Category> main(HttpServletRequest request) {
+  public BoardDto main(HttpServletRequest request) {
 //    Long id = getUserId(request);
-    return todoService.findAllContents(1L);
+    List<Activity> activities = todoService.findAllActivity("nigayo");
+    List<Category> categories = todoService.findAllContents(1L);
+    return new BoardDto(categories, activities);
+
   }
 
   @PostMapping("/cards")
