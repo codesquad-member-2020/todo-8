@@ -44,6 +44,11 @@
                                     <navigationItem id="YGX-rS-i6C">
                                         <barButtonItem key="rightBarButtonItem" title="Menu" id="wzz-d5-cpH">
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <segue destination="V6k-0P-BU8" kind="popoverPresentation" popoverAnchorBarButtonItem="wzz-d5-cpH" id="68g-gn-Zzj">
+                                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                </segue>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -71,7 +76,7 @@
             <objects>
                 <viewController id="V6k-0P-BU8" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Mp-q5-xIt">
-                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
+                        <rect key="frame" x="0.0" y="0.0" width="388" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="1Sw-NM-Hcs"/>
