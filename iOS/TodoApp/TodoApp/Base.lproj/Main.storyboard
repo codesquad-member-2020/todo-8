@@ -44,6 +44,11 @@
                                     <navigationItem id="YGX-rS-i6C">
                                         <barButtonItem key="rightBarButtonItem" title="Menu" id="wzz-d5-cpH">
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <segue destination="V6k-0P-BU8" kind="popoverPresentation" popoverAnchorBarButtonItem="wzz-d5-cpH" id="68g-gn-Zzj">
+                                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                </segue>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -66,12 +71,59 @@
             </objects>
             <point key="canvasLocation" x="846.2311557788945" y="137.41007194244605"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="TA2-mI-mXt">
+            <objects>
+                <viewController id="V6k-0P-BU8" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Mp-q5-xIt">
+                        <rect key="frame" x="0.0" y="0.0" width="388" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRa-n4-VYD">
+                                <rect key="frame" x="13" y="0.0" width="375" height="33.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activities" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TOc-2f-ic8">
+                                        <rect key="frame" x="8" y="4.5" width="85.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="quaternaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="TOc-2f-ic8" firstAttribute="centerY" secondItem="tRa-n4-VYD" secondAttribute="centerY" id="QCZ-Rg-iep"/>
+                                    <constraint firstItem="TOc-2f-ic8" firstAttribute="leading" secondItem="tRa-n4-VYD" secondAttribute="leading" constant="8" id="oOr-dx-lUT"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vN6-aY-Yu4">
+                                <rect key="frame" x="13" y="33.5" width="375" height="633.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="1Sw-NM-Hcs" firstAttribute="trailing" secondItem="vN6-aY-Yu4" secondAttribute="trailing" id="HdM-kZ-XXu"/>
+                            <constraint firstItem="tRa-n4-VYD" firstAttribute="trailing" secondItem="1Sw-NM-Hcs" secondAttribute="trailing" id="Kul-C3-hs5"/>
+                            <constraint firstItem="vN6-aY-Yu4" firstAttribute="top" secondItem="tRa-n4-VYD" secondAttribute="bottom" id="VBu-E9-Rs1"/>
+                            <constraint firstItem="vN6-aY-Yu4" firstAttribute="leading" secondItem="1Sw-NM-Hcs" secondAttribute="leading" id="Xqa-Nh-dNB"/>
+                            <constraint firstItem="1Sw-NM-Hcs" firstAttribute="bottom" secondItem="vN6-aY-Yu4" secondAttribute="bottom" id="gw9-FQ-87U"/>
+                            <constraint firstItem="tRa-n4-VYD" firstAttribute="leading" secondItem="1Sw-NM-Hcs" secondAttribute="leading" id="ig6-rv-ffo"/>
+                            <constraint firstItem="tRa-n4-VYD" firstAttribute="top" secondItem="1Sw-NM-Hcs" secondAttribute="top" id="qr5-nV-e9I"/>
+                            <constraint firstItem="tRa-n4-VYD" firstAttribute="height" secondItem="1Sw-NM-Hcs" secondAttribute="height" multiplier="0.05" id="yFA-Pi-ZkU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1Sw-NM-Hcs"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ig1-to-0lT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1527.6381909547738" y="137.41007194244605"/>
+        </scene>
         <!--Todo View Controller-->
         <scene sceneID="IOf-YD-9N1">
             <objects>
                 <viewController id="BlN-4l-ztd" customClass="TodoViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a5W-HH-5xp">
-                        <rect key="frame" x="0.0" y="0.0" width="385" height="814"/>
+                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="814"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Mq-JW-AzN">
@@ -204,7 +256,7 @@
             <objects>
                 <viewController id="GyP-ax-8bf" customClass="EditingCardViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3NH-Nx-1FC">
-                        <rect key="frame" x="0.0" y="0.0" width="385" height="794"/>
+                        <rect key="frame" x="0.0" y="0.0" width="384.5" height="794"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-sH-0pQ">
@@ -264,7 +316,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bcc-4M-MI6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1537" y="350"/>
+            <point key="canvasLocation" x="1075" y="888"/>
         </scene>
     </scenes>
     <resources>
