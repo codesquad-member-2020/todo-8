@@ -16,11 +16,9 @@ public class JwtInterceptor implements HandlerInterceptor {
 
   // JWT 요청 : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imd1ZXN0MTIzNCJ9.ziPecPMs-euqNDajS5_C0uO7-uCkT5Y0kD_GACuxWH4
   private static Logger logger = LoggerFactory.getLogger(JwtInterceptor.class);
-
+  private final UserService userService;
   @Value("${jwt.token.secret}")
   private String key;
-
-  private final UserService userService;
 
   public JwtInterceptor(UserService userService) {
     this.userService = userService;
@@ -36,14 +34,14 @@ public class JwtInterceptor implements HandlerInterceptor {
   }
 
   private Boolean validationToken(String jwt) {
-    String userId = "";
+    String userName = "";
     if (jwt != null) {
-      userId = getUserId(jwt);
-      logger.debug("userId : {}", userId);
+      userName = getUserId(jwt);
+      logger.debug("userId : {}", userName);
     }
 
-    if (userId != null) {
-      return userService.findById(userId).isPresent();
+    if (userName != null) {
+      return userService.getUserByName(userName).isPresent();
     }
     return false;
   }

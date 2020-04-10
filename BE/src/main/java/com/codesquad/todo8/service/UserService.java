@@ -16,8 +16,7 @@ public class UserService {
   }
 
   @Transactional(readOnly = true)
-  public Optional<User> findById(String userId) {
-    return userRepository.findById(userId);
+  public Optional<User> getUserByName(String name) {
+    return userRepository.findByName(name);
   }
-
 }

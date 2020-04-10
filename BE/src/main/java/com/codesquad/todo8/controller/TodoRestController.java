@@ -1,26 +1,28 @@
 package com.codesquad.todo8.controller;
 
-import com.codesquad.todo8.model.Card;
-import com.codesquad.todo8.model.Column;
-import com.codesquad.todo8.model.User;
-import com.codesquad.todo8.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
+import com.codesquad.todo8.model.Category;
+import com.codesquad.todo8.service.TodoService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/board")
 public class TodoRestController {
 
-    @Autowired
-    private UserRepository userRepository;
+  private final TodoService todoService;
 
-    @GetMapping("/columns")
-    public List<Column> getColumn() throws Exception {
-        User user = userRepository.findById(1).orElseThrow(Exception::new);
-        return user.getColumns();
-    }
+  public TodoRestController(TodoService todoService) {
+    this.todoService = todoService;
+  }
+
+  @GetMapping
+  public List<Category> main(HttpServletRequest request) {
+//    Long userId = Long.parseLong(request.getAttribute("userId").toString());
+    return todoService.findAllContents(1L);
+  }
 
 //    @PostMapping("/columns")
 //    public String addColumn(@RequestBody Column column) {
@@ -32,22 +34,22 @@ public class TodoRestController {
 //        userRepository.save(user);
 //        return "ok";
 //    }
-
-    @PostMapping("/columns")
-    public String addColumn() throws Exception {
-        System.out.println("--------------------");
-        User user = userRepository.findById(1).orElseThrow(Exception::new);
-        Column column = new Column("testColumn");
-        Column newColumn = new Column(column.getTitle());
-        user.addColumn(newColumn);
-        userRepository.save(user);
-        return "ok";
-    }
-
-    @PostMapping("/columns/{columnId}/cards")
-    public void addCard(@PathVariable int columnId, @RequestBody Card card) throws Exception {
-        User user = userRepository.findById(1).orElseThrow(Exception::new);
-        user.getColumns().get(columnId).addCard(card);
-        userRepository.save(user);
-    }
+//
+//    @PostMapping("/columns")
+//    public String addColumn() throws Exception {
+//        System.out.println("--------------------");
+//        User user = userRepository.findById(1).orElseThrow(Exception::new);
+//        Column column = new Column("testColumn");
+//        Column newColumn = new Column(column.getTitle());
+//        user.addColumn(newColumn);
+//        userRepository.save(user);
+//        return "ok";
+//    }
+//
+//    @PostMapping("/columns/{columnId}/cards")
+//    public void addCard(@PathVariable int columnId, @RequestBody Card card) throws Exception {
+//        User user = userRepository.findById(1).orElseThrow(Exception::new);
+//        user.getColumns().get(columnId).addCard(card);
+//        userRepository.save(user);
+//    }
 }
