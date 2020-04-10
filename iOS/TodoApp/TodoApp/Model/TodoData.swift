@@ -9,7 +9,7 @@
 import Foundation
 
 struct TodoData: Codable {
-    var columns: [Column]
+    var category: [Column]
 }
 
 struct Column: Codable {
