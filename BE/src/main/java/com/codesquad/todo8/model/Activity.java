@@ -1,8 +1,10 @@
 package com.codesquad.todo8.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+
+import java.time.LocalDateTime;
 
 public class Activity {
     @Id
@@ -17,6 +19,9 @@ public class Activity {
     private Long departure;
 
     private Long arrival;
+
+    @Column(value = "created_time")
+    private LocalDateTime createdTime;
 
     public Activity() {
     }
@@ -33,6 +38,10 @@ public class Activity {
         this.author = author;
         this.action = action;
         this.targetName = targetName;
+    }
+
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
     }
 
     public Long getId() {
@@ -61,13 +70,14 @@ public class Activity {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+        return new ToStringBuilder(this)
                 .append("id", id)
                 .append("author", author)
                 .append("action", action)
                 .append("targetName", targetName)
                 .append("departure", departure)
                 .append("arrival", arrival)
+                .append("createdTime", createdTime)
                 .toString();
     }
 }
