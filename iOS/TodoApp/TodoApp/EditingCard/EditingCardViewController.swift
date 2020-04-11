@@ -11,10 +11,8 @@ import UIKit
 class EditingCardViewController: UIViewController {
     private var contentTextViewDelegate: ContentTextViewDelegate!
     private var titleTextFieldDelegate: TitleTextFieldDelegate!
-    var completion: (Card) -> () = { _ in }
-    
-    private var textViewIsValid = false
-    private var textFieldIsValid = false
+    private var completion: (Card) -> () = { _ in }
+    private var editingViewModel: EditingViewModel!
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextView: ContentTextView!
@@ -22,26 +20,23 @@ class EditingCardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        contentTextViewDelegate = ContentTextViewDelegate(bind: { result in
-            self.textViewIsValid = result
-            self.check()
+        editingViewModel = EditingViewModel(bind: { isEnabled in
+            self.completeButton.isEnabled = isEnabled
         })
-        titleTextFieldDelegate = TitleTextFieldDelegate(bind: { result in
-            self.textFieldIsValid = result
-            self.check()
+        titleTextFieldDelegate = TitleTextFieldDelegate(bind: { title in
+            self.editingViewModel.setTitle(title)
+        })
+        titleTextField.delegate = titleTextFieldDelegate
+        contentTextViewDelegate = ContentTextViewDelegate(bind: { content in
+            self.editingViewModel.setContent(content)
         })
         contentTextView.delegate = contentTextViewDelegate
-        titleTextField.delegate = titleTextFieldDelegate
         titleTextField.becomeFirstResponder()
         completeButton.isEnabled = false
     }
     
-    private func check() {
-        guard textViewIsValid, textFieldIsValid else {
-            completeButton.isEnabled = false
-            return
-        }
-        completeButton.isEnabled = true
+    func setCompletion(_ completion: @escaping (Card) -> ()) {
+        self.completion = completion
     }
     
     @IBAction func cancelButtonTabbed(_ sender: UIButton) {
@@ -49,9 +44,7 @@ class EditingCardViewController: UIViewController {
     }
     
     @IBAction func completeButtonTabbed(_ sender: UIButton) {
-        guard let title = titleTextField.text,
-            let content = contentTextView.text else { return }
-        let card = Card(id: 0, title: title, author: "iOS", contents: content, createdDate: "", modifiedDate: "")
+        let card = editingViewModel.convertToCard()
         dismiss(animated: true) {
             self.completion(card)
         }

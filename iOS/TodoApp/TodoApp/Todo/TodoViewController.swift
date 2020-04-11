@@ -44,10 +44,10 @@ class TodoViewController: UIViewController {
     @IBAction func addCardButtonTabbed(_ sender: AddCardButton) {
         guard let editingCardViewController = storyboard?.instantiateViewController(identifier: "edit") as? EditingCardViewController else { return }
         present(editingCardViewController, animated: true) {
-            editingCardViewController.completion = { card in
+            editingCardViewController.setCompletion({ card in
                 self.dataSource.addCard(card)
                 self.todoTableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-            }
+            })
         }
     }
 }

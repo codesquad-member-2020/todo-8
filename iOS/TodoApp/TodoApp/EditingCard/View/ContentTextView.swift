@@ -9,7 +9,7 @@
 import UIKit
 
 class ContentTextView: UITextView {
-    private let placeholder = "Content"
+    static let placeholder = "Content"
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
@@ -28,7 +28,7 @@ class ContentTextView: UITextView {
     }
     
     func setPlaceholder() {
-        self.text = placeholder
+        self.text = ContentTextView.placeholder
         self.textColor = .placeholderText
     }
 }

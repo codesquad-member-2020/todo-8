@@ -10,9 +10,9 @@ import UIKit
 
 class ContentTextViewDelegate: NSObject, UITextViewDelegate {
     private let contentCharactorCountLimit = 500
-    private var isValid: (Bool) -> ()
+    private var isValid: (String) -> ()
     
-    init(bind closure: @escaping (Bool) -> ()) {
+    init(bind closure: @escaping (String) -> ()) {
         self.isValid = closure
     }
     
@@ -29,7 +29,7 @@ class ContentTextViewDelegate: NSObject, UITextViewDelegate {
     }
 
     func textViewDidChangeSelection(_ textView: UITextView) {
-        isValid(!textView.text.isEmpty && textView.textColor != .placeholderText)
+        isValid(textView.text)
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
