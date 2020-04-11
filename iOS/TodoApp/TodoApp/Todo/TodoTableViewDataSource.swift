@@ -30,11 +30,22 @@ class TodoTableViewDataSource: NSObject, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            cards?.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
     func updateCards(_ cards: [Card]?) {
         self.cards = cards
     }
     
     func updateNotify(changed: @escaping (String) -> ()) {
         self.cardsChanged = changed
+    }
+    
+    func addCard(_ card: Card) {
+        self.cards?.insert(card, at: 0)
     }
 }

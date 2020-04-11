@@ -10,6 +10,11 @@ import UIKit
 
 class ContentTextViewDelegate: NSObject, UITextViewDelegate {
     private let contentCharactorCountLimit = 500
+    private var isValid: (String) -> ()
+    
+    init(bind closure: @escaping (String) -> ()) {
+        self.isValid = closure
+    }
     
     private func beginning(of textView: UITextView) -> UITextRange? {
         let beginningPoint = textView.beginningOfDocument
@@ -21,6 +26,10 @@ class ContentTextViewDelegate: NSObject, UITextViewDelegate {
         DispatchQueue.main.async {
             textView.selectedTextRange = self.beginning(of: textView)
         }
+    }
+
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        isValid(textView.text)
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

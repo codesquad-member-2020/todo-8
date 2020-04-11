@@ -20,7 +20,7 @@ class DataManager {
             do {
                 let decoder = JSONDecoder()
                 let decodedData = try decoder.decode(TodoData.self, from: data)
-                self.data = decodedData.columns
+                self.data = decodedData.category
                 NotificationCenter.default.post(name: DataManager.dataDidLoad, object: nil)
             } catch {
                 
@@ -28,7 +28,7 @@ class DataManager {
         }
     }
     
-    func data(of identifier: String?) -> Column? {
+    func data(of identifier: Int?) -> Column? {
         guard let data = data else { return nil }
         for column in data {
             if column.id == identifier {

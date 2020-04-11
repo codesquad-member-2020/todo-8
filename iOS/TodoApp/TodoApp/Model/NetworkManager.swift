@@ -17,7 +17,7 @@ class NetworkManager {
     }
     
     static let session = URLSession.shared
-    static let serverUrl = "https://6ec56bee-8e56-4fa0-9d11-6e4240ebd3d7.mock.pstmn.io/"
+    static let serverUrl = "http://34.236.252.205/api/board"
     
     static func httpRequest(url: String, method: HTTPMethod, completionHandler: @escaping (Data?, URLResponse?, Error?) -> ()) {
         guard let url = URL(string: url) else { return }

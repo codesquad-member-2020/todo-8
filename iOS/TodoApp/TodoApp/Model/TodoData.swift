@@ -9,17 +9,17 @@
 import Foundation
 
 struct TodoData: Codable {
-    var columns: [Column]
+    var category: [Column]
 }
 
 struct Column: Codable {
-    var id: String
+    var id: Int
     var title: String
     var cards: [Card]
 }
 
 struct Card: Codable, Equatable {
-    var id: String
+    var id: Int
     var title: String
     var author: String
     var contents: String

@@ -21,7 +21,6 @@ class TodoViewController: UIViewController {
         dataSource.updateNotify { count in
             DispatchQueue.main.async {
                 self.updateCardCountLabel(count)
-                self.todoTableView.reloadData()
             }
         }
     }
@@ -30,6 +29,7 @@ class TodoViewController: UIViewController {
         dataSource.updateCards(column?.cards)
         DispatchQueue.main.async {
             self.updateColumnTitleLabel(column?.title)
+            self.todoTableView.reloadData()
         }
     }
     
@@ -39,5 +39,15 @@ class TodoViewController: UIViewController {
     
     private func updateColumnTitleLabel(_ title: String?) {
         columnTitleLabel.text = title
+    }
+    
+    @IBAction func addCardButtonTabbed(_ sender: AddCardButton) {
+        guard let editingCardViewController = storyboard?.instantiateViewController(identifier: "edit") as? EditingCardViewController else { return }
+        present(editingCardViewController, animated: true) {
+            editingCardViewController.setCompletion({ card in
+                self.dataSource.addCard(card)
+                self.todoTableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+            })
+        }
     }
 }
