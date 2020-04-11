@@ -314,6 +314,7 @@
                         <viewLayoutGuide key="safeArea" id="qXT-ur-60j"/>
                     </view>
                     <connections>
+                        <outlet property="completeButton" destination="mKD-Dk-ugj" id="ltK-24-GVj"/>
                         <outlet property="contentTextView" destination="YWP-mF-4OG" id="tRJ-dX-qid"/>
                         <outlet property="titleTextField" destination="kxi-0A-pbg" id="xdM-mD-qlE"/>
                     </connections>

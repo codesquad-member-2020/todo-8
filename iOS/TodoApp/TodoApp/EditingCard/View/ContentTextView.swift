@@ -22,7 +22,7 @@ class ContentTextView: UITextView {
         setProperties()
         setPlaceholder()
     }
-    
+
     private func setProperties() {
         self.autocorrectionType = .no
     }

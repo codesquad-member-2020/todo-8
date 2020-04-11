@@ -24,6 +24,7 @@
 		44A7DBCD243DC4BD00F374D2 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBCC243DC4BD00F374D2 /* DataManager.swift */; };
 		44A7DBEF243EE02200F374D2 /* TodoTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBEE243EE02200F374D2 /* TodoTableViewDataSource.swift */; };
 		44A7DBF1243EE52600F374D2 /* ContentTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBF0243EE52600F374D2 /* ContentTextViewDelegate.swift */; };
+		44FAC1A02441FAE800950BB9 /* TitleTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FAC19F2441FAE800950BB9 /* TitleTextFieldDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		44A7DBCC243DC4BD00F374D2 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		44A7DBEE243EE02200F374D2 /* TodoTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewDataSource.swift; sourceTree = "<group>"; };
 		44A7DBF0243EE52600F374D2 /* ContentTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTextViewDelegate.swift; sourceTree = "<group>"; };
+		44FAC19F2441FAE800950BB9 /* TitleTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextFieldDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				443D1015243CC77A003F2635 /* EditingCardViewController.swift */,
+				44FAC19F2441FAE800950BB9 /* TitleTextFieldDelegate.swift */,
 				44A7DBF0243EE52600F374D2 /* ContentTextViewDelegate.swift */,
 				44A7DBF5243EE5B900F374D2 /* View */,
 			);
@@ -225,6 +228,7 @@
 				443D1010243C4B99003F2635 /* TodoViewController.swift in Sources */,
 				443D100A243B9974003F2635 /* AddCardButton.swift in Sources */,
 				443D1016243CC77A003F2635 /* EditingCardViewController.swift in Sources */,
+				44FAC1A02441FAE800950BB9 /* TitleTextFieldDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
