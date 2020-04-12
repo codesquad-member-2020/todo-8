@@ -30,7 +30,6 @@ public class TodoService {
     return activityRepository.findAllByAuthor(author);
   }
 
-
   @Transactional(readOnly = true)
   public List<Category> findAllContents(Long id) {
     return categoryRepository.findAllByUserId(id);
@@ -44,6 +43,7 @@ public class TodoService {
     return card;
   }
 
+  @Transactional
   public Card updateCard(Card newCard, Long cardId) throws Exception {
     Card card = cardRepository.findById(cardId).orElseThrow(Exception::new);
     card.update(newCard);
@@ -51,6 +51,7 @@ public class TodoService {
     return card;
   }
 
+  @Transactional
   public void moveCard(Long cardId, Long categoryId) throws Exception {
     Category category = categoryRepository.findById(categoryId).orElseThrow(Exception::new);
     Card card = cardRepository.findById(cardId).orElseThrow(Exception::new);
@@ -61,6 +62,7 @@ public class TodoService {
     categoryRepository.save(category);
   }
 
+  @Transactional
   public void moveCard(Long cardId, Long categoryId, int cardIndex) throws Exception {
     Category category = categoryRepository.findById(categoryId).orElseThrow(Exception::new);
     Card card = cardRepository.findById(cardId).orElseThrow(Exception::new);
