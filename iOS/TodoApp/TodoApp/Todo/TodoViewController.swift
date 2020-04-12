@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodoViewController: UIViewController {
+class TodoViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var cardCountLabel: CardCountLabel!
     @IBOutlet weak var columnTitleLabel: UILabel!
     @IBOutlet weak var todoTableView: UITableView!
@@ -18,11 +18,27 @@ class TodoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         todoTableView.dataSource = dataSource
+        todoTableView.delegate = self
         dataSource.updateNotify { count in
             DispatchQueue.main.async {
                 self.updateCardCountLabel(count)
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in
+
+            let moveToDone = UIAction(title: "Move to done", image: UIImage(systemName: "paperplane")) { _ in
+
+            }
+            let edit = UIAction(title: "Edit", image: UIImage(systemName: "pencil.and.outline")) { _ in
+                
+            }
+            let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { _ in
+            }
+            return UIMenu(title: "", children: [moveToDone, edit, delete])
+        })
     }
     
     func updateColumnData(_ column: Column?) {
