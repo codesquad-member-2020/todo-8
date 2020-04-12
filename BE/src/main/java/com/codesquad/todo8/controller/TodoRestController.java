@@ -59,6 +59,11 @@ public class TodoRestController {
     return todoService.updateCard(card, cardId);
   }
 
+  @PatchMapping("/cards/{cardId}/category/{categoryId}")
+  public Card moveCard(@PathVariable Long cardId, @PathVariable Long categoryId) throws Exception {
+    return todoService.moveCard(cardId, categoryId);
+  }
+
   private Long getUserId(HttpServletRequest request) {
     String userName = request.getAttribute("userName").toString();
     User user = null;

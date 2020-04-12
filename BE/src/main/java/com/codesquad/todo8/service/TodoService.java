@@ -51,6 +51,17 @@ public class TodoService {
     return card;
   }
 
+  public Card moveCard(Long cardId, Long categoryId) throws Exception {
+    Category category = categoryRepository.findById(categoryId).orElseThrow(Exception::new);
+    Card card = cardRepository.findById(cardId).orElseThrow(Exception::new);
+    cardRepository.delete(card);
+    cardRepository.save(card);
+
+    category.addCard(card);
+    categoryRepository.save(category);
+
+    return card;
+  }
 
   public void addActivity(Activity newActivity) {
     activityRepository.save(newActivity);
