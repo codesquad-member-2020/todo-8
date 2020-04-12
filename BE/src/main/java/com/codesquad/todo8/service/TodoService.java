@@ -44,6 +44,14 @@ public class TodoService {
     return card;
   }
 
+  public Card updateCard(Card newCard, Long cardId) throws Exception {
+    Card card = cardRepository.findById(cardId).orElseThrow(Exception::new);
+    card.update(newCard);
+    cardRepository.save(card);
+    return card;
+  }
+
+
   public void addActivity(Activity newActivity) {
     activityRepository.save(newActivity);
   }

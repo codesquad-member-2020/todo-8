@@ -44,6 +44,12 @@ public class Card {
         LocalDateTime.now());
   }
 
+  public void update(Card card) {
+    this.title = card.title;
+    this.contents = card.contents;
+    this.modifiedDate = LocalDateTime.now();
+  }
+
   public Long getId() {
     return id;
   }
