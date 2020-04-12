@@ -8,39 +8,24 @@
 
 import UIKit
 
-class TodoViewController: UIViewController, UITableViewDelegate {
+class TodoViewController: UIViewController {
     @IBOutlet weak var cardCountLabel: CardCountLabel!
     @IBOutlet weak var columnTitleLabel: UILabel!
     @IBOutlet weak var todoTableView: UITableView!
     
     private let dataSource = TodoTableViewDataSource()
+    private var todoTableViewDelegate: TodoTableViewDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         todoTableView.dataSource = dataSource
-        todoTableView.delegate = self
+        todoTableViewDelegate = TodoTableViewDelegate(dataSource: dataSource)
+        todoTableView.delegate = todoTableViewDelegate
         dataSource.updateNotify { count in
             DispatchQueue.main.async {
                 self.updateCardCountLabel(count)
             }
         }
-    }
-    
-    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in
-
-            let moveToDone = UIAction(title: "Move to done", image: UIImage(systemName: "paperplane")) { _ in
-
-            }
-            let edit = UIAction(title: "Edit", image: UIImage(systemName: "pencil.and.outline")) { _ in
-                
-            }
-            let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { _ in
-                self.dataSource.removeCard(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            }
-            return UIMenu(title: "", children: [moveToDone, edit, delete])
-        })
     }
     
     func updateColumnData(_ column: Column?) {
