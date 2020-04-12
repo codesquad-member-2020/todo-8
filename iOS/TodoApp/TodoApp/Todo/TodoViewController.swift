@@ -36,6 +36,8 @@ class TodoViewController: UIViewController, UITableViewDelegate {
                 
             }
             let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { _ in
+                self.dataSource.removeCard(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
             }
             return UIMenu(title: "", children: [moveToDone, edit, delete])
         })

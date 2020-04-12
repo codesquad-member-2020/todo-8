@@ -48,4 +48,8 @@ class TodoTableViewDataSource: NSObject, UITableViewDataSource {
     func addCard(_ card: Card) {
         self.cards?.insert(card, at: 0)
     }
+    
+    func removeCard(at index: Int) {
+        self.cards?.remove(at: index)
+    }
 }
