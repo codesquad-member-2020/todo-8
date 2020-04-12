@@ -60,8 +60,10 @@ public class TodoRestController {
   }
 
   @PatchMapping("/cards/{cardId}/category/{categoryId}")
-  public Card moveCard(@PathVariable Long cardId, @PathVariable Long categoryId) throws Exception {
-    return todoService.moveCard(cardId, categoryId);
+  public String moveCard(@PathVariable Long cardId, @PathVariable Long categoryId)
+      throws Exception {
+    todoService.moveCard(cardId, categoryId);
+    return "ok";
   }
 
   private Long getUserId(HttpServletRequest request) {

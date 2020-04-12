@@ -51,7 +51,7 @@ public class TodoService {
     return card;
   }
 
-  public Card moveCard(Long cardId, Long categoryId) throws Exception {
+  public void moveCard(Long cardId, Long categoryId) throws Exception {
     Category category = categoryRepository.findById(categoryId).orElseThrow(Exception::new);
     Card card = cardRepository.findById(cardId).orElseThrow(Exception::new);
     cardRepository.delete(card);
@@ -59,8 +59,16 @@ public class TodoService {
 
     category.addCard(card);
     categoryRepository.save(category);
+  }
 
-    return card;
+  public void moveCard(Long cardId, Long categoryId, int cardIndex) throws Exception {
+    Category category = categoryRepository.findById(categoryId).orElseThrow(Exception::new);
+    Card card = cardRepository.findById(cardId).orElseThrow(Exception::new);
+    cardRepository.delete(card);
+    cardRepository.save(card);
+
+    category.addCard(card, cardIndex);
+    categoryRepository.save(category);
   }
 
   public void addActivity(Activity newActivity) {

@@ -55,6 +55,10 @@ public class Category {
     this.cards.add(card);
   }
 
+  public void addCard(Card card, int index) {
+    this.cards.add(index, card);
+  }
+
   public void moveCard(int index, Card card) {
     this.cards.add(index, card);
   }
