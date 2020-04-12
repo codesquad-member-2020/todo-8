@@ -10,26 +10,22 @@ import Foundation
 
 class EditingViewModel {
     private let placeholderText = ContentTextView.placeholder
-    private var title = "" {
+    private(set) var title = "" {
         didSet {
             checkCondition()
         }
     }
-    private var content = "" {
+    private(set) var content = "" {
         didSet {
             checkCondition()
         }
     }
-    private var buttonIsEnabled = false {
+    private(set) var buttonIsEnabled = false {
         didSet {
             textChanged(buttonIsEnabled)
         }
     }
-    private var textChanged: (Bool) -> ()
-    
-    init(bind closure: @escaping (Bool) -> ()) {
-        self.textChanged = closure
-    }
+    private var textChanged: (Bool) -> () = { _ in }
 
     func setTitle(_ title: String) {
         self.title = title
@@ -37,6 +33,15 @@ class EditingViewModel {
     
     func setContent(_ content: String) {
         self.content = content
+    }
+    
+    func updateNotify(_ handler: @escaping (Bool) -> ()) {
+        self.textChanged = handler
+    }
+    
+    func updateData(_ card: Card) {
+        title = card.title
+        content = card.contents
     }
     
     func convertToCard() -> Card {

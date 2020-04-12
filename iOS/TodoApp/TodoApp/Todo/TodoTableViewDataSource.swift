@@ -48,10 +48,18 @@ class TodoTableViewDataSource: NSObject, UITableViewDataSource {
     func addCard(_ card: Card) {
         self.cards?.insert(card, at: 0)
     }
+    
+    func replaceCard(_ index: Int, with card: Card) {
+        self.cards?[index] = card
+    }
 }
 
 extension TodoTableViewDataSource: LinkedDataSource {
     func removeCard(at index: Int) {
         self.cards?.remove(at: index)
+    }
+    
+    func getCard(at index: Int) -> Card? {
+        return self.cards?[index]
     }
 }

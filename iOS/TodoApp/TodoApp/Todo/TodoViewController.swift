@@ -19,7 +19,7 @@ class TodoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         todoTableView.dataSource = dataSource
-        todoTableViewDelegate = TodoTableViewDelegate(dataSource: dataSource)
+        todoTableViewDelegate = TodoTableViewDelegate(presentingViewController: self, dataSource: dataSource)
         todoTableView.delegate = todoTableViewDelegate
         dataSource.updateNotify { count in
             DispatchQueue.main.async {
@@ -50,6 +50,19 @@ class TodoViewController: UIViewController {
             editingCardViewController.setCompletion({ card in
                 self.dataSource.addCard(card)
                 self.todoTableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+            })
+        }
+    }
+}
+
+extension TodoViewController: PresentingViewController {
+    func presentEditingCardView(with card: Card?, selectedIndex: IndexPath) {
+        guard let editingCardViewController = storyboard?.instantiateViewController(identifier: "edit") as? EditingCardViewController else { return }
+        editingCardViewController.setContents(card)
+        present(editingCardViewController, animated: true) {
+            editingCardViewController.setCompletion({ card in
+                self.dataSource.replaceCard(selectedIndex.row, with: card)
+                self.todoTableView.reloadRows(at: [selectedIndex], with: .automatic)
             })
         }
     }

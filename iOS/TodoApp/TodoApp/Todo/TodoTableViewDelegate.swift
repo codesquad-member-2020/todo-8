@@ -8,14 +8,21 @@
 
 import UIKit
 
+protocol PresentingViewController {
+    func presentEditingCardView(with: Card?, selectedIndex: IndexPath)
+}
+
 protocol LinkedDataSource {
     func removeCard(at: Int)
+    func getCard(at: Int) -> Card?
 }
 
 class TodoTableViewDelegate: NSObject, UITableViewDelegate {
+    private let presentingViewController: PresentingViewController
     private let dataSource: LinkedDataSource
     
-    init(dataSource: LinkedDataSource) {
+    init(presentingViewController: PresentingViewController, dataSource: LinkedDataSource) {
+        self.presentingViewController = presentingViewController
         self.dataSource = dataSource
     }
     
@@ -24,6 +31,7 @@ class TodoTableViewDelegate: NSObject, UITableViewDelegate {
             let moveToDone = UIAction(title: "Move to done", image: UIImage(systemName: "paperplane")) { _ in
             }
             let edit = UIAction(title: "Edit", image: UIImage(systemName: "pencil.and.outline")) { _ in
+                self.presentingViewController.presentEditingCardView(with: self.dataSource.getCard(at: indexPath.row), selectedIndex: indexPath)
             }
             let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { _ in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {

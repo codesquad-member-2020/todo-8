@@ -14,13 +14,11 @@ class ContentTextView: UITextView {
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         setProperties()
-        setPlaceholder()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setProperties()
-        setPlaceholder()
     }
 
     private func setProperties() {
