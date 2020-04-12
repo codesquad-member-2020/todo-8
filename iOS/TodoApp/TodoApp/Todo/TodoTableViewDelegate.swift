@@ -26,8 +26,10 @@ class TodoTableViewDelegate: NSObject, UITableViewDelegate {
             let edit = UIAction(title: "Edit", image: UIImage(systemName: "pencil.and.outline")) { _ in
             }
             let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { _ in
-                self.dataSource.removeCard(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
+                    self.dataSource.removeCard(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
             }
             return UIMenu(title: "", children: [moveToDone, edit, delete])
         })
