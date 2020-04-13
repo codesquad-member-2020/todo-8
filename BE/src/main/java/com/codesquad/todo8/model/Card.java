@@ -49,6 +49,12 @@ public class Card {
     return LocalDateTime.now();
   }
 
+  public void update(Card card) {
+    this.title = card.title;
+    this.contents = card.contents;
+    this.modifiedDate = LocalDateTime.now();
+  }
+
   public Long getId() {
     return id;
   }
@@ -76,7 +82,6 @@ public class Card {
   public LocalDateTime getModifiedDate() {
     return modifiedDate;
   }
-
 
   @Override
   public boolean equals(Object o) {
