@@ -4,20 +4,19 @@ import static com.codesquad.todo8.api.ApiResult.OK;
 
 import com.codesquad.todo8.api.ApiResult;
 import com.codesquad.todo8.model.Activity;
-import com.codesquad.todo8.model.BoardResponse;
 import com.codesquad.todo8.model.Card;
-import com.codesquad.todo8.model.CardRequest;
 import com.codesquad.todo8.model.Category;
 import com.codesquad.todo8.model.User;
+import com.codesquad.todo8.model.api.BoardResponse;
+import com.codesquad.todo8.model.api.CardRequest;
 import com.codesquad.todo8.service.TodoService;
-import com.codesquad.todo8.service.UserService;
+import com.codesquad.todo8.service.user.UserService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,7 +48,7 @@ public class TodoRestController {
   }
 
   @PostMapping("/cards")
-  public ApiResult createCard(@RequestBody CardRequest cardRequest) {
+  public ApiResult<Card> createCard(@RequestBody CardRequest cardRequest) {
     Card card = Card.of(
         cardRequest.getCategoryId(),
         cardRequest.getAuthor(),
@@ -60,19 +59,26 @@ public class TodoRestController {
   }
 
   @PatchMapping("/cards/{cardId}")
-  public ApiResult updateCard(@PathVariable Long cardId, @RequestBody Card card) {
+  public ApiResult<Card> updateCard(@PathVariable Long cardId,
+      @RequestBody CardRequest cardRequest) {
+    Card card = Card.of(
+        cardRequest.getCategoryId(),
+        cardRequest.getAuthor(),
+        cardRequest.getTitle(),
+        cardRequest.getContents()
+    );
     return OK(todoService.updateCard(card, cardId));
   }
 
   @PatchMapping("/cards/{cardId}/position")
-  public ApiResult moveCard(@PathVariable Long cardId, @RequestParam("category") Long categoryId,
-      @RequestParam("index") int cardIndex) {
-    Card card = todoService.moveCard(cardId, categoryId, cardIndex);
-    return OK(card);
+  public ApiResult<Card> moveCard(@PathVariable Long cardId,
+      @RequestParam("category") Long categoryId,
+      @RequestParam("index") int index) {
+    return OK(todoService.moveCard(cardId, categoryId, index));
   }
 
   @DeleteMapping("/cards/{id}")
-  public ApiResult deleteCard(@PathVariable(value = "id") Long cardId) {
+  public ApiResult<Card> deleteCard(@PathVariable(value = "id") Long cardId) {
     return OK(todoService.deleteCard(cardId));
   }
 
