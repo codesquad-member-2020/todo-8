@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     
     private func addObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: DataManager.dataDidLoad, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(moveToDone(_:)), name: TodoTableViewDelegate.moveToDone, object: nil)
     }
     
     @objc private func updateData() {
@@ -30,5 +31,11 @@ class ViewController: UIViewController {
                 columnId += 1
             }
         }
+    }
+    
+    @objc private func moveToDone(_ notification: NSNotification) {
+        guard let card = notification.userInfo?[TodoTableViewDelegate.moveToDone] as? Card else { return }
+        guard let doneController = self.children.last as? TodoViewController else { return }
+        doneController.todoTableViewDataSource.addCard(card)
     }
 }

@@ -19,6 +19,7 @@ protocol LinkedDataSource {
 }
 
 class TodoTableViewDelegate: NSObject, UITableViewDelegate {
+    static let moveToDone = NSNotification.Name.init("moveToDone")
     private let presentingViewController: PresentingViewController
     private let dataSource: LinkedDataSource
     
@@ -30,6 +31,11 @@ class TodoTableViewDelegate: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in
             let moveToDone = UIAction(title: "Move to done", image: UIImage(systemName: "paperplane")) { _ in
+                guard let card = self.dataSource.getCard(at: indexPath) else { return }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
+                    self.dataSource.removeCard(at: indexPath)
+                }
+                NotificationCenter.default.post(name: TodoTableViewDelegate.moveToDone, object: nil, userInfo: [TodoTableViewDelegate.moveToDone:card])
             }
             let edit = UIAction(title: "Edit", image: UIImage(systemName: "pencil.and.outline")) { _ in
                 self.presentingViewController.presentEditingCardView(with: self.dataSource.getCard(at: indexPath), selectedIndex: indexPath)

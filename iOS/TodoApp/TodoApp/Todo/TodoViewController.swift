@@ -13,7 +13,7 @@ class TodoViewController: UIViewController {
     @IBOutlet weak var columnTitleLabel: UILabel!
     @IBOutlet weak var todoTableView: UITableView!
     
-    private var todoTableViewDataSource: TodoTableViewDataSource!
+    private(set) var todoTableViewDataSource: TodoTableViewDataSource!
     private var todoTableViewDelegate: TodoTableViewDelegate!
     
     override func viewDidLoad() {
