@@ -25,6 +25,7 @@ public class Activity {
 
   public Activity() {
   }
+
   public Activity(String author, String action, String targetName, Long departure, Long arrival) {
     this.author = author;
     this.action = action;
@@ -39,8 +40,8 @@ public class Activity {
     this.targetName = targetName;
   }
 
-  public LocalDateTime getCreatedTime() {
-    return createdTime;
+  public LocalDateTime getCreatedDate() {
+    return createdDate;
   }
 
   public Long getId() {
@@ -76,7 +77,7 @@ public class Activity {
         .append("targetName", targetName)
         .append("departure", departure)
         .append("arrival", arrival)
-        .append("createdTime", createdTime)
+        .append("createdTime", createdDate)
         .toString();
   }
 }

@@ -45,7 +45,6 @@ public class Card {
         now);
   }
 
-
   private static LocalDateTime getNow() {
     return LocalDateTime.now();
   }
