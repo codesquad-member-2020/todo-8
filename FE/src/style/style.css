@@ -31,6 +31,12 @@ body {
   color: #fff;
 }
 
+.feed-container {
+  margin: 20px 0px;
+  max-height: 600px;
+  overflow: auto;
+}
+
 .menu-container {
   width: 400px;
   z-index: 10;
