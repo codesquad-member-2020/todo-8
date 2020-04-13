@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
@@ -28,27 +29,23 @@ public class JwtInterceptor implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
       Object handler) {
-    return true;
-//    String jwt = request.getHeader("Authorization").split(" ")[1];
-//    logger.debug("JWT : {}", jwt);
-//    if (validationToken(jwt)) {
-//      request.setAttribute("userName", getUserName(jwt));
-//      return true;
-//    }
-//    return false;
+//    return true;
+    String jwt = request.getHeader("Authorization").split(" ")[1];
+    logger.debug("JWT : {}", jwt);
+    if (validationToken(jwt)) {
+      request.setAttribute("userName", getUserName(jwt));
+      return true;
+    }
+    return false;
   }
 
   private Boolean validationToken(String jwt) {
     String userName = "";
-    if (jwt != null) {
+    if (!StringUtils.isEmpty(jwt)) {
       userName = getUserName(jwt);
       logger.debug("userName : {}", userName);
     }
-
-    if (userName != null) {
-      return userService.getUserByName(userName).isPresent();
-    }
-    return false;
+    return userService.getUserByName(userName).isPresent();
   }
 
   private String getUserName(String jwt) {
