@@ -25,7 +25,7 @@ public class GeneralExceptionHandler {
   @ExceptionHandler(UserNotFoundException.class)
   public ResponseEntity<?> UserNotFound(UserNotFoundException e) {
     logger.debug("UserNotFound, {}", e.getMessage());
-    return newResponse(e, HttpStatus.NOT_FOUND);
+    return newResponse(e, HttpStatus.UNAUTHORIZED);
   }
 
   @ExceptionHandler(CardNotFoundException.class)
