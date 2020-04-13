@@ -45,7 +45,7 @@ public class JwtInterceptor implements HandlerInterceptor {
       userName = getUserName(jwt);
       logger.debug("userName : {}", userName);
     }
-    return userService.getUserByName(userName).isPresent();
+    return userService.getUserByName(userName).getUserId().equals(userName);
   }
 
   private String getUserName(String jwt) {

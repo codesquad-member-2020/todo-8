@@ -13,7 +13,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,11 +62,7 @@ public class TodoRestController {
   private Long getUserId(HttpServletRequest request) {
     String userName = request.getAttribute("userName").toString();
     User user = null;
-    try {
-      user = userService.getUserByName(userName).orElseThrow(NotFoundException::new);
-    } catch (NotFoundException e) {
-      logger.debug("UserName Not Found : {}", userName);
-    }
+    user = userService.getUserByName(userName);
     return user.getId();
   }
 }
