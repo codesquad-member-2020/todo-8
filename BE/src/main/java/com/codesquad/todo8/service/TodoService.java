@@ -52,17 +52,6 @@ public class TodoService {
   }
 
   @Transactional
-  public void moveCard(Long cardId, Long categoryId) throws Exception {
-    Category category = categoryRepository.findById(categoryId).orElseThrow(Exception::new);
-    Card card = cardRepository.findById(cardId).orElseThrow(Exception::new);
-    cardRepository.delete(card);
-    cardRepository.save(card);
-
-    category.addCard(card);
-    categoryRepository.save(category);
-  }
-
-  @Transactional
   public void moveCard(Long cardId, Long categoryId, int cardIndex) throws Exception {
     Category category = categoryRepository.findById(categoryId).orElseThrow(Exception::new);
     Card card = cardRepository.findById(cardId).orElseThrow(Exception::new);
