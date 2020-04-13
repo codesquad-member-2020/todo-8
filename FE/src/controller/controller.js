@@ -177,6 +177,11 @@ class Controller {
 
   updateCheckBtn(event) {
     this.targetListValue.querySelector('span').innerHTML = this.todoListValue
+
+    const updateColumn = this.targetListValue.closest('.column').querySelector('.todo-column-title').innerText
+    this.setLogMessage('updated', this.todoListValue, updateColumn)
+    console.log(this.eventLog)
+    this.activityLogEvent()
   }
 
   updateCancelBtn() {
@@ -184,6 +189,7 @@ class Controller {
   }
 
   activityLogEvent() {
+    console.log('실행?')
     this.addLogMessage(this.eventLog)
   }
 
