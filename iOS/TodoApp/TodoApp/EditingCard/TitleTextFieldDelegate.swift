@@ -9,13 +9,13 @@
 import UIKit
 
 class TitleTextFieldDelegate: NSObject, UITextFieldDelegate {
-    private var isValid: (String) -> ()
+    private var textDidChanged: (String) -> ()
     
     init(bind closure: @escaping (String) -> ()) {
-        self.isValid = closure
+        self.textDidChanged = closure
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        isValid(textField.text!)
+        textDidChanged(textField.text!)
     }
 }
