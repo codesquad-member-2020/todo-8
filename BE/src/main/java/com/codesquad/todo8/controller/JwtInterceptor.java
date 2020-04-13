@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
@@ -40,15 +41,11 @@ public class JwtInterceptor implements HandlerInterceptor {
 
   private Boolean validationToken(String jwt) {
     String userName = "";
-    if (jwt != null) {
+    if (!StringUtils.isEmpty(jwt)) {
       userName = getUserName(jwt);
       logger.debug("userName : {}", userName);
     }
-
-    if (userName != null) {
-      return userService.getUserByName(userName).isPresent();
-    }
-    return false;
+    return userService.getUserByName(userName).getUserId().equals(userName);
   }
 
   private String getUserName(String jwt) {

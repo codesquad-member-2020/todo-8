@@ -1,8 +1,11 @@
 package com.codesquad.todo8.service;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.codesquad.todo8.error.UserNotFoundException;
 import com.codesquad.todo8.model.User;
 import com.codesquad.todo8.repository.UserRepository;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +19,7 @@ public class UserService {
   }
 
   @Transactional(readOnly = true)
-  public Optional<User> getUserByName(String name) {
-    return userRepository.findByName(name);
+  public User getUserByName(String name) {
+    return userRepository.findByName(name).orElseThrow(() -> new UserNotFoundException(name));
   }
 }

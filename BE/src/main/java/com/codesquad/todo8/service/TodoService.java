@@ -1,6 +1,9 @@
 package com.codesquad.todo8.service;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.codesquad.todo8.error.CardNotFoundException;
 import com.codesquad.todo8.model.Activity;
 import com.codesquad.todo8.model.Card;
 import com.codesquad.todo8.model.Category;
@@ -38,15 +41,17 @@ public class TodoService {
 
   @Transactional
   public Card createCard(Card card) {
-    Category category = categoryRepository.findById(card.getCategoryId()).get();
-    category.addCard(card);
+    Category category = categoryRepository.findById(card.getCategoryId())
+        .orElseThrow(() -> new CardNotFoundException(card.getId()));
+    category.addFirstCard(card);
     categoryRepository.save(category);
     return card;
   }
 
   @Transactional
   public Card deleteCard(Long cardId) {
-    Card deletedCard = cardRepository.findById(cardId).get();
+    Card deletedCard = cardRepository.findById(cardId)
+        .orElseThrow(() -> new CardNotFoundException(cardId));
     cardRepository.delete(deletedCard);
     return deletedCard;
   }

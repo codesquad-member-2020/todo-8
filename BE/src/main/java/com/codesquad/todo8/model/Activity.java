@@ -21,7 +21,10 @@ public class Activity {
   private Long arrival;
 
   @Column(value = "create_at")
-  private LocalDateTime createdDate;
+  private LocalDateTime createdTime;
+
+  public Activity() {
+  }
 
   public Activity(String author, String action, String targetName, Long departure, Long arrival) {
     this.author = author;
@@ -37,8 +40,8 @@ public class Activity {
     this.targetName = targetName;
   }
 
-  public LocalDateTime getCreatedDate() {
-    return createdDate;
+  public LocalDateTime getCreatedTime() {
+    return createdTime;
   }
 
   public Long getId() {
@@ -74,7 +77,7 @@ public class Activity {
         .append("targetName", targetName)
         .append("departure", departure)
         .append("arrival", arrival)
-        .append("createdTime", createdDate)
+        .append("createdTime", createdTime)
         .toString();
   }
 }
