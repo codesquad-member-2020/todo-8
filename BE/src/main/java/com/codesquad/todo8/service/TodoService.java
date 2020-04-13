@@ -1,5 +1,7 @@
 package com.codesquad.todo8.service;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.codesquad.todo8.error.CardNotFoundException;
 import com.codesquad.todo8.model.Activity;

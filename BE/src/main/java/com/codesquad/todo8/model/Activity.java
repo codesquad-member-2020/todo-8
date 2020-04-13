@@ -40,8 +40,8 @@ public class Activity {
     this.targetName = targetName;
   }
 
-  public LocalDateTime getCreatedDate() {
-    return createdDate;
+  public LocalDateTime getCreatedTime() {
+    return createdTime;
   }
 
   public Long getId() {
@@ -77,7 +77,7 @@ public class Activity {
         .append("targetName", targetName)
         .append("departure", departure)
         .append("arrival", arrival)
-        .append("createdTime", createdDate)
+        .append("createdTime", createdTime)
         .toString();
   }
 }

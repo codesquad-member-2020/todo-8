@@ -1,6 +1,8 @@
 package com.codesquad.todo8.controller;
 
+import static com.codesquad.todo8.api.ApiResult.OK;
 
+import com.codesquad.todo8.api.ApiResult;
 import com.codesquad.todo8.model.Activity;
 import com.codesquad.todo8.model.BoardResponse;
 import com.codesquad.todo8.model.Card;
@@ -35,27 +37,28 @@ public class TodoRestController {
   }
 
   @GetMapping("board")
-  public BoardResponse main(HttpServletRequest request) {
+  public ApiResult<BoardResponse> main(HttpServletRequest request) {
 //    Long id = getUserId(request);
     List<Activity> activities = todoService.findAllActivity("nigayo");
     List<Category> categories = todoService.findAllContents(1L);
-    return BoardResponse.of(categories, activities);
+    return OK(BoardResponse.of(categories, activities));
 
   }
 
   @PostMapping("/cards")
-  public Card createCard(@RequestBody CardRequest cardRequest) {
-    return todoService.createCard(Card.of(
+  public ApiResult createCard(@RequestBody CardRequest cardRequest) {
+    Card card = Card.of(
         cardRequest.getCategoryId(),
         cardRequest.getAuthor(),
         cardRequest.getTitle(),
         cardRequest.getContents()
-    ));
+    );
+    return OK(todoService.createCard(card));
   }
 
   @DeleteMapping("/cards/{id}")
-  public Card deleteCard(@PathVariable(value = "id") Long cardId) {
-    return todoService.deleteCard(cardId);
+  public ApiResult deleteCard(@PathVariable(value = "id") Long cardId) {
+    return OK(todoService.deleteCard(cardId));
   }
 
 
