@@ -1,5 +1,6 @@
 package com.codesquad.todo8.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -15,6 +16,7 @@ public class Category {
   @Id
   private Long id;
 
+  @JsonIgnore
   private Long userId;
 
   private String title;
