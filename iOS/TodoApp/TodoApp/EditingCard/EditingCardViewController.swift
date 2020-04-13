@@ -9,6 +9,8 @@
 import UIKit
 
 class EditingCardViewController: UIViewController {
+    static let identifier = "edit"
+    
     private var contentTextViewDelegate: ContentTextViewDelegate!
     private var titleTextFieldDelegate: TitleTextFieldDelegate!
     private var completion: (Card) -> () = { _ in }

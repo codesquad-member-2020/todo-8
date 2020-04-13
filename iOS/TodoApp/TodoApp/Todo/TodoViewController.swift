@@ -46,7 +46,7 @@ class TodoViewController: UIViewController {
     }
     
     @IBAction func addCardButtonTabbed(_ sender: AddCardButton) {
-        guard let editingCardViewController = storyboard?.instantiateViewController(identifier: "edit") as? EditingCardViewController else { return }
+        guard let editingCardViewController = storyboard?.instantiateViewController(identifier: EditingCardViewController.identifier) as? EditingCardViewController else { return }
         let newCard = Card(id: 0, title: "", author: "iOS", contents: "", createdDate: "", modifiedDate: "")
         editingCardViewController.setContents(newCard)
         present(editingCardViewController, animated: true) {
@@ -63,7 +63,7 @@ extension TodoViewController: PresentingViewController {
     }
 
     func presentEditingCardView(with card: Card?, selectedIndex: IndexPath) {
-        guard let editingCardViewController = storyboard?.instantiateViewController(identifier: "edit") as? EditingCardViewController else { return }
+        guard let editingCardViewController = storyboard?.instantiateViewController(identifier: EditingCardViewController.identifier) as? EditingCardViewController else { return }
         editingCardViewController.setContents(card)
         present(editingCardViewController, animated: true) {
             editingCardViewController.setCompletion({ card in
