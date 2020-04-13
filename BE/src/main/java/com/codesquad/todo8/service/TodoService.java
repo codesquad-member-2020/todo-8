@@ -59,6 +59,15 @@ public class TodoService {
     card.update(newCard);
     cardRepository.save(card);
 
+    Activity activity = Activity.update(
+        card.getAuthor(),
+        "updated",
+        card.getTitle(),
+        null,
+        null
+    );
+    saveActivity(activity);
+
     return card;
   }
 
@@ -73,6 +82,16 @@ public class TodoService {
 
     category.addCard(card, cardIndex);
     categoryRepository.save(category);
+
+    Activity activity = Activity.move(
+        card.getAuthor(),
+        "moved",
+        card.getTitle(),
+        card.getCategoryId(),
+        categoryId
+    );
+    saveActivity(activity);
+
 
     return cardRepository.findById(cardId).orElseThrow(() -> new CardNotFoundException(cardId));
   }
