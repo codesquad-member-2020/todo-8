@@ -60,16 +60,15 @@ public class TodoRestController {
   }
 
   @PatchMapping("/cards/{cardId}")
-  public Card updateCard(@PathVariable Long cardId, @RequestBody Card card) throws Exception {
-    return todoService.updateCard(card, cardId);
+  public ApiResult updateCard(@PathVariable Long cardId, @RequestBody Card card) {
+    return OK(todoService.updateCard(card, cardId));
   }
 
   @PatchMapping("/cards/{cardId}/position")
-  public String moveCard(@PathVariable Long cardId, @RequestParam("category") Long categoryId,
-      @RequestParam("index") int cardIndex)
-      throws Exception {
-    todoService.moveCard(cardId, categoryId, cardIndex);
-    return "ok";
+  public ApiResult moveCard(@PathVariable Long cardId, @RequestParam("category") Long categoryId,
+      @RequestParam("index") int cardIndex) {
+    Card card = todoService.moveCard(cardId, categoryId, cardIndex);
+    return OK(card);
   }
 
   @DeleteMapping("/cards/{id}")
