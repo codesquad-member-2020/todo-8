@@ -54,7 +54,7 @@ public class Category {
   }
 
   //카테고리에 제일 위에 카드가 들어가도록 한다.
-  public void addCard(Card card) {
+  public void addFirstCard(Card card) {
     this.cards.add(0, card);
   }
 

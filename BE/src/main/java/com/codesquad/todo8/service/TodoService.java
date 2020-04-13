@@ -43,7 +43,7 @@ public class TodoService {
   public Card createCard(Card card) {
     Category category = categoryRepository.findById(card.getCategoryId())
         .orElseThrow(() -> new CardNotFoundException(card.getId()));
-    category.addCard(card);
+    category.addFirstCard(card);
     categoryRepository.save(category);
     return card;
   }
