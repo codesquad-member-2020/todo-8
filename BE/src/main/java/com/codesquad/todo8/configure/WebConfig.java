@@ -18,6 +18,7 @@ public class WebConfig implements WebMvcConfigurer {
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(jwtInterceptor)
         .excludePathPatterns("/h2-console/**")
+        .excludePathPatterns("/hcheck/")
         .addPathPatterns("/**");
   }
 }
