@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS `user` CASCADE;
 DROP TABLE IF EXISTS list CASCADE;
 DROP TABLE IF EXISTS card CASCADE;
 DROP TABLE IF EXISTS activity CASCADE;
+DROP TABLE IF EXISTS category CASCADE;
 
 CREATE TABLE user
 (
@@ -22,9 +23,10 @@ CREATE TABLE category
     PRIMARY KEY (id)
 );
 
-CREATE TABLE card (
+CREATE TABLE card
+(
     id              bigint NOT NULL AUTO_INCREMENT,
-    category_id     bigint REFERENCES category (id),
+    category_id     bigint NOT NULL REFERENCES category (id),
     category_key    int,
     title           varchar(50) NOT NULL,
     author          varchar(25) NOT NULL REFERENCES `user` (user_name),
