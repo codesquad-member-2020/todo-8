@@ -6,8 +6,12 @@ class Controller {
   initialize() {
     this.dragAndDrop()
     this.eventHandler()
+    this.todoStatus = ''
     this.eventLog = {
-
+      time: '방금',
+      event: '',
+      title: '',
+      column: ''
     }
   }
 
@@ -45,7 +49,6 @@ class Controller {
     })
 
     document.addEventListener("input", event => {
-
       switch(event.target.className) {
         case 'todo-textarea' :
           this.inputTodoEvent(event)
@@ -58,16 +61,6 @@ class Controller {
 
   toggleTodoTextArea({target}) {
     target.closest('.column').querySelector('.todo-add-area').classList.toggle("active")
-  }
-
-  removeTotoCard({target}) {
-    if(confirm("선택하신 카드를 삭제하시겠습니까?") == true) {
-      const parentNode = target.closest('.column')
-      target.closest('.todo-items').remove();
-      this.changeCardNumber(parentNode)
-    } else {
-      return false;
-    }
   }
 
   inputTodoEvent(event) {
@@ -90,6 +83,12 @@ class Controller {
     }
   }
 
+  setLogMessage(event, title, column) {
+    this.eventLog.event = event
+    this.eventLog.title = title
+    this.eventLog.column = column
+  }
+
   addTodoBtn(event) {
     const parentNode = event.target.closest('.column')
     const todoValue = parentNode.querySelector('.todo-textarea').value
@@ -106,10 +105,27 @@ class Controller {
         </div>
       </li>
     `
-    parentNode.querySelector('.todo-list').insertAdjacentHTML('afterbegin', todoList)
-    this.initTextarea(event.target)
-    this.inputTodoEvent(event)
-    this.changeCardNumber(parentNode)
+    parentNode.querySelector('.todo-list').insertAdjacentHTML('afterbegin', todoList);
+    this.initTextarea(event.target);
+    this.inputTodoEvent(event);
+    this.changeCardNumber(parentNode);
+    const addColumn = parentNode.querySelector('.todo-column-title').innerText;
+    this.setLogMessage('added', todoValue, addColumn);
+    this.activityLogEvent();
+  }
+
+  removeTotoCard({target}) {
+    if(confirm("선택하신 카드를 삭제하시겠습니까?") == true) {
+      const parentNode = target.closest('.column')
+      target.closest('.todo-items').remove();
+      const removeTitle = target.closest('.todo-items').querySelector('span').innerText.trim()
+      const removeColumn = parentNode.querySelector('.todo-column-title').innerText
+      this.changeCardNumber(parentNode)
+      this.setLogMessage('removed', removeTitle, removeColumn)
+      this.activityLogEvent();
+    } else {
+      return false;
+    }
   }
 
   cancelTodoBtn(event) {
@@ -165,6 +181,48 @@ class Controller {
 
   updateCancelBtn() {
     return
+  }
+
+  activityLogEvent() {
+    this.addLogMessage(this.eventLog)
+  }
+
+  computedDate() {
+    // 현재시간에서 추가할떄의 시간을 빼주어서 얼마나 경과되었는지를 계산
+  }
+
+  addLogMessage({time, event, title, column}) {
+    const addEventMessage = `
+    <div class="ui feed">
+          <div class="event">
+            <div class="label">
+              <img src="./assets/image/cat.jpeg" />
+            </div>
+            <div class="content">
+              <div class="date">
+                <font style="vertical-align: inherit;">
+                  ${time} 
+                </font>
+              </div>
+              <div class="summary">
+                <a>
+                  <font style="vertical-align: inherit;">@huey</font>
+                </a>
+                  <font style="vertical-align: inherit;"> ${event} </font>
+                <a>
+                  <font style="vertical-align: inherit;">
+                    ${title}
+                  </font>
+                </a>
+                <font style="vertical-align: inherit;">
+                  to ${column}
+                </font>
+              </div>
+            </div>
+          </div>
+        </div>
+    `
+    document.querySelector('.feed-container').insertAdjacentHTML('afterbegin', addEventMessage)
   }
 }
 
