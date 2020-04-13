@@ -54,8 +54,8 @@ class EditingCardViewController: UIViewController {
     }
     
     private func updateWithViewModel() {
-        titleTextField.text = editingViewModel.title
-        contentTextView.text = editingViewModel.content
+        titleTextField.text = editingViewModel.card?.title
+        contentTextView.text = editingViewModel.card?.contents
     }
     
     @IBAction func cancelButtonTabbed(_ sender: UIButton) {
@@ -63,7 +63,7 @@ class EditingCardViewController: UIViewController {
     }
     
     @IBAction func completeButtonTabbed(_ sender: UIButton) {
-        let card = editingViewModel.convertToCard()
+        guard let card = editingViewModel.card else { return }
         dismiss(animated: true) {
             self.completion(card)
         }

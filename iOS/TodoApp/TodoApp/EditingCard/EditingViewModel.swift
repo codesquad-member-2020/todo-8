@@ -10,12 +10,7 @@ import Foundation
 
 class EditingViewModel {
     private let placeholderText = ContentTextView.placeholder
-    private(set) var title = "" {
-        didSet {
-            checkCondition()
-        }
-    }
-    private(set) var content = "" {
+    private(set) var card: Card? {
         didSet {
             checkCondition()
         }
@@ -26,13 +21,13 @@ class EditingViewModel {
         }
     }
     private var textChanged: (Bool) -> () = { _ in }
-
+    
     func setTitle(_ title: String) {
-        self.title = title
+        self.card?.title = title
     }
     
     func setContent(_ content: String) {
-        self.content = content
+        self.card?.contents = content
     }
     
     func updateNotify(_ handler: @escaping (Bool) -> ()) {
@@ -40,18 +35,16 @@ class EditingViewModel {
     }
     
     func updateData(_ card: Card) {
-        title = card.title
-        content = card.contents
-    }
-    
-    func convertToCard() -> Card {
-        return Card(id: 0, title: title, author: "iOS", contents: content, createdDate: "", modifiedDate: "")
+        self.card = card
     }
     
     private func checkCondition() {
-        guard !title.isEmpty, !content.isEmpty, content != placeholderText else {
-            buttonIsEnabled = false
-            return
+        guard let card = card,
+            !card.title.isEmpty,
+            !card.contents.isEmpty,
+            card.contents != placeholderText else {
+                buttonIsEnabled = false
+                return
         }
         buttonIsEnabled = true
     }
