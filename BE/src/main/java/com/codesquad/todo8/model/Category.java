@@ -1,5 +1,6 @@
 package com.codesquad.todo8.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -15,6 +16,7 @@ public class Category {
   @Id
   private Long id;
 
+  @JsonIgnore
   private Long userId;
 
   private String title;
@@ -51,8 +53,9 @@ public class Category {
     return author;
   }
 
-  public void addCard(Card card) {
-    this.cards.add(card);
+  //카테고리에 제일 위에 카드가 들어가도록 한다.
+  public void addFirstCard(Card card) {
+    this.cards.add(0, card);
   }
 
   public void addCard(Card card, int index) {

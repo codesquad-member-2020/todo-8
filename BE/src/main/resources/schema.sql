@@ -11,7 +11,6 @@ CREATE TABLE user
     CONSTRAINT unq_user_id UNIQUE (user_name),
 );
 
-
 CREATE TABLE category
 (
     id        bigint      NOT NULL AUTO_INCREMENT,
@@ -32,7 +31,7 @@ CREATE TABLE card (
     contents        varchar(500),
     create_at       datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     modify_at       datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    PRIMARY KEY (id)
+    PRIMARY KEY (id, category_id)
 );
 
 CREATE TABLE activity

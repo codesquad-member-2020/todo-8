@@ -28,7 +28,7 @@ public class Card {
   @Column(value = "modify_at")
   private LocalDateTime modifiedDate;
 
-  public Card(Long id, Long categoryId, String author, String title, String contents,
+  private Card(Long id, Long categoryId, String author, String title, String contents,
       LocalDateTime createdDate, LocalDateTime modifiedDate) {
     this.id = id;
     this.categoryId = categoryId;
@@ -40,8 +40,13 @@ public class Card {
   }
 
   public static Card of(Long categoryId, String author, String title, String contents) {
-    return new Card(null, categoryId, author, title, contents, LocalDateTime.now(),
-        LocalDateTime.now());
+    LocalDateTime now = getNow();
+    return new Card(null, categoryId, author, title, contents, now,
+        now);
+  }
+
+  private static LocalDateTime getNow() {
+    return LocalDateTime.now();
   }
 
   public void update(Card card) {
