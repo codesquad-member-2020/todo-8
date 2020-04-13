@@ -48,7 +48,15 @@ public class TodoRestController {
 
   }
 
-  @PostMapping("/cards")
+  @GetMapping("activities/{author}")
+  public ApiResult<List<Activity>> logs(@PathVariable(value = "author") String author) {
+    List<Activity> activities = todoService.findAllActivity(author);
+    return OK(activities);
+
+  }
+
+
+  @PostMapping("cards")
   public ApiResult<Card> createCard(@RequestBody CardRequest cardRequest) {
     Card card = Card.of(
         cardRequest.getCategoryId(),
@@ -59,7 +67,7 @@ public class TodoRestController {
     return OK(todoService.createCard(card));
   }
 
-  @PutMapping("/cards/{cardId}")
+  @PutMapping("cards/{cardId}")
   public ApiResult<Card> updateCard(@PathVariable Long cardId,
       @RequestBody CardRequest cardRequest) {
     Card card = Card.of(
@@ -71,14 +79,14 @@ public class TodoRestController {
     return OK(todoService.updateCard(card, cardId));
   }
 
-  @PutMapping("/cards/{cardId}/position")
+  @PutMapping("cards/{cardId}/position")
   public ApiResult<Card> moveCard(@PathVariable Long cardId,
       @RequestParam("category") Long categoryId,
       @RequestParam("index") int index) {
     return OK(todoService.moveCard(cardId, categoryId, index));
   }
 
-  @DeleteMapping("/cards/{id}")
+  @DeleteMapping("cards/{id}")
   public ApiResult<Card> deleteCard(@PathVariable(value = "id") Long cardId) {
     return OK(todoService.deleteCard(cardId));
   }
