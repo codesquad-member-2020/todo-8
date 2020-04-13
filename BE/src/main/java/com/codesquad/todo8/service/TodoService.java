@@ -1,9 +1,7 @@
 package com.codesquad.todo8.service;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.codesquad.todo8.error.CardNotFoundException;
+import com.codesquad.todo8.error.CategoryNotFoundException;
 import com.codesquad.todo8.model.Activity;
 import com.codesquad.todo8.model.Card;
 import com.codesquad.todo8.model.Category;
@@ -33,7 +31,6 @@ public class TodoService {
     return activityRepository.findAllByAuthor(author);
   }
 
-
   @Transactional(readOnly = true)
   public List<Category> findAllContents(Long id) {
     return categoryRepository.findAllByUserId(id);
@@ -46,6 +43,31 @@ public class TodoService {
     category.addFirstCard(card);
     categoryRepository.save(category);
     return card;
+  }
+
+  @Transactional
+  public Card updateCard(Card newCard, Long cardId) {
+    Card card = cardRepository.findById(cardId)
+        .orElseThrow(() -> new CardNotFoundException(cardId));
+    card.update(newCard);
+    cardRepository.save(card);
+
+    return card;
+  }
+
+  @Transactional
+  public Card moveCard(Long cardId, Long categoryId, int cardIndex) {
+    Card card = cardRepository.findById(cardId)
+        .orElseThrow(() -> new CardNotFoundException(cardId));
+    deleteCard(card.getId());
+
+    Category category = categoryRepository.findById(categoryId)
+        .orElseThrow(() -> new CategoryNotFoundException(categoryId));
+
+    category.addCard(card, cardIndex);
+    categoryRepository.save(category);
+
+    return cardRepository.findById(cardId).orElseThrow(() -> new CardNotFoundException(cardId));
   }
 
   @Transactional
