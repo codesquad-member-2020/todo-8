@@ -52,7 +52,7 @@ public class Card {
   public void update(Card card) {
     this.title = card.title;
     this.contents = card.contents;
-    this.modifiedDate = LocalDateTime.now();
+    this.modifiedDate = getNow();
   }
 
   public Long getId() {
