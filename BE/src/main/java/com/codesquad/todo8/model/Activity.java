@@ -23,9 +23,6 @@ public class Activity {
   @Column(value = "create_at")
   private LocalDateTime createdTime;
 
-  public Activity() {
-  }
-
   public Activity(String author, String action, String targetName, Long departure, Long arrival) {
     this.author = author;
     this.action = action;
