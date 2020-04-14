@@ -14,7 +14,7 @@ class DataManager {
     private var data: [Column]?
     
     func loadData() {
-        let url = NetworkManager.serverUrl
+        let url = NetworkManager.serverUrl + "board"
         NetworkManager.httpRequest(url: url, method: .GET) { (data, _, error) in
             guard let data = data else { return }
             do {

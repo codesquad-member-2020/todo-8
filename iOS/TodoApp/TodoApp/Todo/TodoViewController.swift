@@ -65,7 +65,7 @@ class TodoViewController: UIViewController {
     
     @IBAction func addCardButtonTabbed(_ sender: AddCardButton) {
         guard let editingCardViewController = storyboard?.instantiateViewController(identifier: EditingCardViewController.identifier) as? EditingCardViewController else { return }
-        let newCard = Card(id: 0, title: "", author: "iOS", contents: "", createdDate: "", modifiedDate: "")
+        let newCard = Card(id: 0, title: "", author: "nigayo", contents: "", createdDate: "", modifiedDate: "")
         editingCardViewController.setContents(newCard)
         present(editingCardViewController, animated: true) {
             editingCardViewController.setCompletion({ card in
@@ -82,14 +82,24 @@ extension TodoViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(cardReplaced(_:)), name: ColumnManager.cardReplaced, object: manager)
         NotificationCenter.default.addObserver(self, selector: #selector(updateCardCountLabel), name: Task.cardChanged, object: nil)
     }
-    
+        
     @objc private func cardAdded(_ notification: NSNotification) {
-        guard let indexPath = notification.userInfo?["indexPath"] as? IndexPath else { return }
+        guard let indexPath = notification.userInfo?["indexPath"] as? IndexPath,
+            let card = notification.userInfo?["card"] as? Card else { return }
+        let data = ["categoryId": "\(manager!.id)", "author": card.author, "title": card.title, "contents": card.contents]
+        let body = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+        NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards", method: .POST, body: body) { (data, _, _) in
+            //
+        }
         self.todoTableView.insertRows(at: [indexPath], with: .automatic)
     }
     
     @objc private func cardRemoved(_ notification: NSNotification) {
-        guard let indexPath = notification.userInfo?["indexPath"] as? IndexPath else { return }
+        guard let indexPath = notification.userInfo?["indexPath"] as? IndexPath,
+            let cardID = notification.userInfo?["id"] as? Int else { return }
+        NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards/" + "\(cardID)", method: .DELETE) { (data, _, _) in
+            //
+        }
         self.todoTableView.deleteRows(at: [indexPath], with: .automatic)
     }
     

@@ -33,12 +33,12 @@ class ColumnManager {
     
     func insertCard(at indexPath: IndexPath = IndexPath(row: 0, section: 0), with card: Card) {
         task.insert(card, at: 0)
-        NotificationCenter.default.post(name: ColumnManager.cardInserted, object: self, userInfo: ["indexPath": indexPath])
+        NotificationCenter.default.post(name: ColumnManager.cardInserted, object: self, userInfo: ["indexPath": indexPath, "card": card])
     }
     
     func removeCard(at indexPath: IndexPath) {
-        task.remove(at: indexPath.row)
-        NotificationCenter.default.post(name: ColumnManager.cardRemoved, object: self, userInfo: ["indexPath": indexPath])
+        let card = task.remove(at: indexPath.row)
+        NotificationCenter.default.post(name: ColumnManager.cardRemoved, object: self, userInfo: ["indexPath": indexPath, "id": card.id])
     }
     
     func replaceCard(at indexPath: IndexPath, with card: Card) {

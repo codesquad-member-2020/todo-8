@@ -32,8 +32,8 @@ class Task {
         cards.insert(card, at: index)
     }
     
-    func remove(at index: Int) {
-        cards.remove(at: index)
+    func remove(at index: Int) -> Card {
+        return cards.remove(at: index)
     }
     
     func replace(at index: Int, with card: Card) {
