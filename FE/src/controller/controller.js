@@ -146,7 +146,17 @@ class Controller {
   dragAndDrop() {
     $( ".droppable-area1, .droppable-area2, .droppable-area3" ).sortable({
       connectWith: ".todo-list",
-      stack: '.todo-list ul'
+      stack: '.todo-list ul',
+      opacity: 0.5,
+      // beforeStop: function( event, ui ) { console.log(event)}
+      beforeStop: function(event, ui) {
+        console.log(event)
+        console.log(ui)
+      },
+      // start: function( event, ui ) {
+      //   console.log(event, ui)
+      // }
+
     }).disableSelection();
   }
 
