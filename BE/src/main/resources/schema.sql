@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS `user` CASCADE;
-DROP TABLE IF EXISTS list CASCADE;
 DROP TABLE IF EXISTS card CASCADE;
 DROP TABLE IF EXISTS activity CASCADE;
 DROP TABLE IF EXISTS category CASCADE;
@@ -38,7 +37,7 @@ CREATE TABLE card
 
 CREATE TABLE activity
 (
-    id           bigint   NOT NULL AUTO_INCREMENT,
+    id           bigint       NOT NULL AUTO_INCREMENT,
     author       varchar(25)  NOT NULL REFERENCES `user` (user_name),
     action       varchar(25)  NOT NULL,
     target_name  varchar(50)  NOT NULL,
