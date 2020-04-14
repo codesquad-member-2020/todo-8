@@ -11,7 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Activity {
 
   @Id
-  private Long id;
+  private final Long id;
 
   private final String author;
 
@@ -26,14 +26,19 @@ public class Activity {
   @Column(value = "create_at")
   private final LocalDateTime createdTime;
 
-  private Activity(String author, String action, String targetName, Long departure,
+  public Activity(Long id, String author, String action, String targetName, Long departure,
       Long arrival, LocalDateTime createdTime) {
+    this.id = id;
     this.author = author;
     this.action = action;
     this.targetName = targetName;
     this.departure = departure;
     this.arrival = arrival;
     this.createdTime = createdTime;
+  }
+
+  Activity withId(Long id) {
+    return new Activity(id, this.author, this.action, this.targetName, this.departure, this.arrival, this.createdTime);
   }
 
   public LocalDateTime getCreatedTime() {
@@ -96,6 +101,7 @@ public class Activity {
 
   public static class Builder {
 
+    private Long id;
     private String author;
     private String action;
     private String targetName;
@@ -108,11 +114,18 @@ public class Activity {
     }
 
     public Builder(Activity activity) {
+      this.id = activity.id;
       this.author = activity.author;
       this.action = activity.action;
       this.targetName = activity.targetName;
       this.departure = activity.departure;
       this.arrival = activity.arrival;
+      this.createdTime = activity.createdTime;
+    }
+
+    public Builder id(Long id) {
+      this.id = id;
+      return this;
     }
 
     public Builder author(String author) {
@@ -146,7 +159,7 @@ public class Activity {
     }
 
     public Activity build() {
-      return new Activity(author, action, targetName, departure, arrival, createdTime);
+      return new Activity(id, author, action, targetName, departure, arrival, createdTime);
     }
   }
 
