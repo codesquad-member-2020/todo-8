@@ -1,5 +1,6 @@
 package com.codesquad.todo8.controller.authentication;
 
+import com.codesquad.todo8.error.UnauthorizedException;
 import com.codesquad.todo8.service.user.UserService;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -57,8 +58,7 @@ public class JwtInterceptor implements HandlerInterceptor {
           .getBody()
           .get("userName", String.class);
     } catch (JwtException e) {
-      logger.debug("JwtException : {}", e.getMessage());
-      return null;
+      throw new UnauthorizedException(e.getMessage());
     }
   }
 }

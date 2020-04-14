@@ -1,5 +1,6 @@
 package com.codesquad.todo8.controller;
 
+import com.codesquad.todo8.error.UnauthorizedException;
 import com.codesquad.todo8.model.api.ApiResult;
 import com.codesquad.todo8.error.CardNotFoundException;
 import com.codesquad.todo8.error.UserNotFoundException;
@@ -23,15 +24,22 @@ public class GeneralExceptionHandler {
   }
 
   @ExceptionHandler(UserNotFoundException.class)
-  public ResponseEntity<?> UserNotFound(UserNotFoundException e) {
+  public ResponseEntity<?> userNotFoundHandler(UserNotFoundException e) {
     logger.debug("UserNotFound, {}", e.getMessage());
-    return newResponse(e, HttpStatus.UNAUTHORIZED);
+    return newResponse(e, HttpStatus.NOT_FOUND);
   }
 
   @ExceptionHandler(CardNotFoundException.class)
-  public ResponseEntity<?> CardNotFound(CardNotFoundException e) {
+  public ResponseEntity<?> cardNotFoundHandler(CardNotFoundException e) {
     logger.debug("CardNotFound, {}", e.getMessage());
     return newResponse(e, HttpStatus.NOT_FOUND);
   }
+
+  @ExceptionHandler(UnauthorizedException.class)
+  public ResponseEntity<?> unauthorizedHandler(UnauthorizedException e) {
+    logger.debug("Unauthorized, {}", e.getMessage());
+    return newResponse(e, HttpStatus.UNAUTHORIZED);
+  }
+
 
 }
