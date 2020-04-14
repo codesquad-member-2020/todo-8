@@ -8,11 +8,13 @@
 
 import UIKit
 
+
 class TodoViewController: UIViewController {
     @IBOutlet weak var cardCountLabel: CardCountLabel!
     @IBOutlet weak var columnTitleLabel: UILabel!
     @IBOutlet weak var todoTableView: UITableView!
     
+    private var manager: ColumnManager!
     private(set) var todoTableViewDataSource: TodoTableViewDataSource!
     private var todoTableViewDelegate: TodoTableViewDelegate!
     
@@ -20,25 +22,32 @@ class TodoViewController: UIViewController {
         super.viewDidLoad()
         todoTableViewDataSource = TodoTableViewDataSource(presentingViewController: self)
         todoTableView.dataSource = todoTableViewDataSource
-        todoTableViewDelegate = TodoTableViewDelegate(presentingViewController: self, dataSource: todoTableViewDataSource)
+        todoTableViewDelegate = TodoTableViewDelegate(presentingViewController: self)
         todoTableView.delegate = todoTableViewDelegate
-        todoTableViewDataSource.updateNotify { count in
-            DispatchQueue.main.async {
-                self.updateCardCountLabel(count)
-            }
-        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCardCountLabel), name: NSNotification.Name.init("cardChanged"), object: nil)
     }
     
     func updateColumnData(_ column: Column?) {
-        todoTableViewDataSource.updateCards(column?.cards)
+        guard let column = column else { return }
+        let id = column.id
+        let title = column.title
+        let cards = column.cards
+        
+        manager = ColumnManager(id: id, title: title, cards: cards)
+        
+        todoTableViewDataSource.updateCards(manager!.task)
+        todoTableViewDelegate.updateCards(manager!.task)
         DispatchQueue.main.async {
-            self.updateColumnTitleLabel(column?.title)
+            self.updateColumnTitleLabel(self.manager.title)
+            self.updateCardCountLabel()
             self.todoTableView.reloadData()
         }
     }
     
-    private func updateCardCountLabel(_ count: String?) {
-        cardCountLabel.text = count
+    
+    @objc private func updateCardCountLabel() {
+        cardCountLabel.text = manager.cardCount()
     }
     
     private func updateColumnTitleLabel(_ title: String?) {

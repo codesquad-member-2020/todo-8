@@ -13,19 +13,22 @@ protocol PresentingViewController {
     func cardChanged(_ changes: TodoViewController.Changes, indexPath: IndexPath)
 }
 
-protocol LinkedDataSource {
-    func removeCard(at: IndexPath)
-    func getCard(at: IndexPath) -> Card?
-}
-
 class TodoTableViewDelegate: NSObject, UITableViewDelegate {
     static let moveToDone = NSNotification.Name.init("moveToDone")
     private let presentingViewController: PresentingViewController
-    private let dataSource: LinkedDataSource
+    private var task: Task?
     
-    init(presentingViewController: PresentingViewController, dataSource: LinkedDataSource) {
+    init(presentingViewController: PresentingViewController) {
         self.presentingViewController = presentingViewController
-        self.dataSource = dataSource
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title:  "Delete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            self.task?.cards.remove(at: indexPath.row)
+            self.presentingViewController.cardChanged(.remove, indexPath: indexPath)
+            success(true)
+        })
+        return UISwipeActionsConfiguration(actions:[deleteAction])
     }
     
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -41,9 +44,10 @@ class TodoTableViewDelegate: NSObject, UITableViewDelegate {
         let title = "Move to done"
         let image = UIImage(systemName: "paperplane")
         return UIAction(title: title, image: image) { _ in
-            guard let card = self.dataSource.getCard(at: indexPath) else { return }
+            guard let card = self.task?.cards[indexPath.row] else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
-                self.dataSource.removeCard(at: indexPath)
+                self.task?.cards.remove(at: indexPath.row)
+                self.presentingViewController.cardChanged(.remove, indexPath: indexPath)
             }
             NotificationCenter.default.post(name: TodoTableViewDelegate.moveToDone, object: nil, userInfo: [TodoTableViewDelegate.moveToDone:card])
         }
@@ -53,7 +57,7 @@ class TodoTableViewDelegate: NSObject, UITableViewDelegate {
         let title = "Edit"
         let image = UIImage(systemName: "pencil.and.outline")
         return UIAction(title: title, image: image) { _ in
-            self.presentingViewController.presentEditingCardView(with: self.dataSource.getCard(at: indexPath), selectedIndex: indexPath)
+            self.presentingViewController.presentEditingCardView(with: self.task?.cards[indexPath.row], selectedIndex: indexPath)
         }
     }
     
@@ -62,8 +66,13 @@ class TodoTableViewDelegate: NSObject, UITableViewDelegate {
         let image = UIImage(systemName: "trash")
         return UIAction(title: title, image: image, attributes: .destructive) { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
-                self.dataSource.removeCard(at: indexPath)
+                self.task?.cards.remove(at: indexPath.row)
+                self.presentingViewController.cardChanged(.remove, indexPath: indexPath)
             }
         }
+    }
+    
+    func updateCards(_ task: Task) {
+        self.task = task
     }
 }
