@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CategoryRepository extends CrudRepository<Category, Long> {
 
-  @Query("SELECT c.id, c.user_id, c.title, c.author, c.create_at FROM category c WHERE c.user_id = :id")
+  @Query("SELECT c.id, c.user_id, c.title, c.author, c.create_at "
+      + "FROM category c "
+      + "WHERE c.user_id = :id")
   List<Category> findAllByUserId(@Param(value = "id") Long id);
 }

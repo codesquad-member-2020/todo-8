@@ -1,4 +1,4 @@
-package com.codesquad.todo8.model;
+package com.codesquad.todo8.model.api;
 
 public class CardRequest {
 

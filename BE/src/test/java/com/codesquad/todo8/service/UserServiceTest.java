@@ -3,6 +3,7 @@ package com.codesquad.todo8.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.codesquad.todo8.model.User;
+import com.codesquad.todo8.service.user.UserService;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

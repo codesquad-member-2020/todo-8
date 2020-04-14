@@ -1,6 +1,6 @@
-package com.codesquad.todo8.controller;
+package com.codesquad.todo8.controller.authentication;
 
-import com.codesquad.todo8.service.UserService;
+import com.codesquad.todo8.service.user.UserService;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import javax.servlet.http.HttpServletRequest;

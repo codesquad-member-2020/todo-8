@@ -1,8 +1,8 @@
-package com.codesquad.todo8.service;
+package com.codesquad.todo8.service.user;
 
 import com.codesquad.todo8.error.UserNotFoundException;
 import com.codesquad.todo8.model.User;
-import com.codesquad.todo8.repository.UserRepository;
+import com.codesquad.todo8.repository.user.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

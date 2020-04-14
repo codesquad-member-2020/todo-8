@@ -1,4 +1,4 @@
-package com.codesquad.todo8.repository;
+package com.codesquad.todo8.repository.user;
 
 import com.codesquad.todo8.model.User;
 import java.util.Optional;
