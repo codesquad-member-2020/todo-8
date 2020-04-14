@@ -2,6 +2,7 @@ package com.codesquad.todo8.configure;
 
 import com.codesquad.todo8.controller.authentication.JwtInterceptor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -12,6 +13,15 @@ public class WebConfig implements WebMvcConfigurer {
 
   public WebConfig(JwtInterceptor jwtInterceptor) {
     this.jwtInterceptor = jwtInterceptor;
+  }
+
+  @Override
+  public void addCorsMappings(CorsRegistry registry) {
+    registry.addMapping("/**")
+        .allowedOrigins("*")
+        .allowedHeaders("*")
+        .allowedMethods("*");
+
   }
 
   @Override
