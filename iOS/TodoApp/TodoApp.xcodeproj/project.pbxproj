@@ -19,12 +19,12 @@
 		443D1012243C4D87003F2635 /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1011243C4D87003F2635 /* TodoCell.swift */; };
 		443D1014243CC60C003F2635 /* ContentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1013243CC60C003F2635 /* ContentTextView.swift */; };
 		443D1016243CC77A003F2635 /* EditingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1015243CC77A003F2635 /* EditingCardViewController.swift */; };
-		44A3C52A24436BA9002BDFE2 /* TodoTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A3C52924436BA9002BDFE2 /* TodoTableViewDelegate.swift */; };
 		44A7DBC7243DC1CD00F374D2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBC6243DC1CD00F374D2 /* NetworkManager.swift */; };
 		44A7DBCB243DC3ED00F374D2 /* TodoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBCA243DC3ED00F374D2 /* TodoData.swift */; };
 		44A7DBCD243DC4BD00F374D2 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBCC243DC4BD00F374D2 /* DataManager.swift */; };
 		44A7DBEF243EE02200F374D2 /* TodoTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBEE243EE02200F374D2 /* TodoTableViewDataSource.swift */; };
 		44A7DBF1243EE52600F374D2 /* ContentTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBF0243EE52600F374D2 /* ContentTextViewDelegate.swift */; };
+		44DDBA932445BB5300C74FF4 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DDBA922445BB5300C74FF4 /* Task.swift */; };
 		44DF93B924456A0D00B6998F /* ColumnManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF93B824456A0D00B6998F /* ColumnManager.swift */; };
 		44FAC1A02441FAE800950BB9 /* TitleTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FAC19F2441FAE800950BB9 /* TitleTextFieldDelegate.swift */; };
 		44FAC1A22442035200950BB9 /* EditingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FAC1A12442035200950BB9 /* EditingViewModel.swift */; };
@@ -45,12 +45,12 @@
 		443D1011243C4D87003F2635 /* TodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCell.swift; sourceTree = "<group>"; };
 		443D1013243CC60C003F2635 /* ContentTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTextView.swift; sourceTree = "<group>"; };
 		443D1015243CC77A003F2635 /* EditingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingCardViewController.swift; sourceTree = "<group>"; };
-		44A3C52924436BA9002BDFE2 /* TodoTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewDelegate.swift; sourceTree = "<group>"; };
 		44A7DBC6243DC1CD00F374D2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		44A7DBCA243DC3ED00F374D2 /* TodoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoData.swift; sourceTree = "<group>"; };
 		44A7DBCC243DC4BD00F374D2 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		44A7DBEE243EE02200F374D2 /* TodoTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewDataSource.swift; sourceTree = "<group>"; };
 		44A7DBF0243EE52600F374D2 /* ContentTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTextViewDelegate.swift; sourceTree = "<group>"; };
+		44DDBA922445BB5300C74FF4 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		44DF93B824456A0D00B6998F /* ColumnManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnManager.swift; sourceTree = "<group>"; };
 		44FAC19F2441FAE800950BB9 /* TitleTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextFieldDelegate.swift; sourceTree = "<group>"; };
 		44FAC1A12442035200950BB9 /* EditingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingViewModel.swift; sourceTree = "<group>"; };
@@ -116,7 +116,6 @@
 				44DF93B7244569F000B6998F /* Model */,
 				443D100F243C4B99003F2635 /* TodoViewController.swift */,
 				44A7DBEE243EE02200F374D2 /* TodoTableViewDataSource.swift */,
-				44A3C52924436BA9002BDFE2 /* TodoTableViewDelegate.swift */,
 				44A7DBF4243EE5A700F374D2 /* View */,
 			);
 			path = Todo;
@@ -156,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				44DF93B824456A0D00B6998F /* ColumnManager.swift */,
+				44DDBA922445BB5300C74FF4 /* Task.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -236,7 +236,6 @@
 				443D0FED243B3F3D003F2635 /* ViewController.swift in Sources */,
 				44A7DBCD243DC4BD00F374D2 /* DataManager.swift in Sources */,
 				443D0FE9243B3F3D003F2635 /* AppDelegate.swift in Sources */,
-				44A3C52A24436BA9002BDFE2 /* TodoTableViewDelegate.swift in Sources */,
 				44A7DBC7243DC1CD00F374D2 /* NetworkManager.swift in Sources */,
 				44A7DBCB243DC3ED00F374D2 /* TodoData.swift in Sources */,
 				44A7DBF1243EE52600F374D2 /* ContentTextViewDelegate.swift in Sources */,
@@ -248,6 +247,7 @@
 				443D1010243C4B99003F2635 /* TodoViewController.swift in Sources */,
 				443D100A243B9974003F2635 /* AddCardButton.swift in Sources */,
 				443D1016243CC77A003F2635 /* EditingCardViewController.swift in Sources */,
+				44DDBA932445BB5300C74FF4 /* Task.swift in Sources */,
 				44FAC1A02441FAE800950BB9 /* TitleTextFieldDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

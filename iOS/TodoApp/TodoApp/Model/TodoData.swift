@@ -23,6 +23,6 @@ struct Card: Codable, Equatable {
     var title: String
     var author: String
     var contents: String
-    var createdDate: [Int]
-    var modifiedDate: [Int]
+    var createdDate: String
+    var modifiedDate: String
 }

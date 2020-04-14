@@ -9,9 +9,13 @@
 import Foundation
 
 class ColumnManager {
-    var id: Int
-    var title: String
-    var task: Task
+    static let cardInserted = NSNotification.Name.init("cardInserted")
+    static let cardRemoved = NSNotification.Name.init("cardRemoved")
+    static let cardReplaced = NSNotification.Name.init("cardReplaced")
+    
+    private(set) var id: Int
+    private(set) var title: String
+    private(set) var task: Task
     
     init(id: Int, title: String, cards: [Card]) {
         self.id = id
@@ -20,18 +24,25 @@ class ColumnManager {
     }
     
     func cardCount() -> String {
-        return "\(task.cards.count)"
-    }
-}
-
-class Task {
-    var cards: [Card] {
-        didSet {
-            NotificationCenter.default.post(name: NSNotification.Name.init("cardChanged"), object: nil)
-        }
+        return "\(task.count)"
     }
     
-    init(cards: [Card]) {
-        self.cards = cards
+    func getCard(with index: Int) -> Card {
+        return task.getCard(with: index)
+    }
+    
+    func insertCard(at indexPath: IndexPath = IndexPath(row: 0, section: 0), with card: Card) {
+        task.insert(card, at: 0)
+        NotificationCenter.default.post(name: ColumnManager.cardInserted, object: self, userInfo: ["indexPath": indexPath])
+    }
+    
+    func removeCard(at indexPath: IndexPath) {
+        task.remove(at: indexPath.row)
+        NotificationCenter.default.post(name: ColumnManager.cardRemoved, object: self, userInfo: ["indexPath": indexPath])
+    }
+    
+    func replaceCard(at indexPath: IndexPath, with card: Card) {
+        task.replace(at: indexPath.row, with: card)
+        NotificationCenter.default.post(name: ColumnManager.cardReplaced, object: self, userInfo: ["indexPath": indexPath])
     }
 }
