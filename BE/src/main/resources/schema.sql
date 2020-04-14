@@ -1,14 +1,15 @@
 DROP TABLE IF EXISTS `user` CASCADE;
-DROP TABLE IF EXISTS list CASCADE;
+DROP TABLE IF EXISTS category CASCADE;
 DROP TABLE IF EXISTS card CASCADE;
 DROP TABLE IF EXISTS activity CASCADE;
+
 
 CREATE TABLE user
 (
     id        bigint      NOT NULL AUTO_INCREMENT,
     user_name varchar(25) NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT unq_user_id UNIQUE (user_name),
+    CONSTRAINT unq_user_id UNIQUE (user_name)
 );
 
 CREATE TABLE category
