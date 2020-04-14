@@ -13,61 +13,27 @@ public class Activity {
   @Id
   private Long id;
 
-  private String author;
+  private final String author;
 
-  private String action;
+  private final String action;
 
-  private String targetName;
+  private final String targetName;
 
-  private Long departure;
+  private final Long departure;
 
-  private Long arrival;
+  private final Long arrival;
 
   @Column(value = "create_at")
-  private LocalDateTime createdTime;
+  private final LocalDateTime createdTime;
 
-  private static LocalDateTime getNow() {
-    return LocalDateTime.now();
-  }
-
-  private Activity(Long id, String author, String action, String targetName, Long departure,
-      Long arrival) {
-    this.id = id;
+  private Activity(String author, String action, String targetName, Long departure,
+      Long arrival, LocalDateTime createdTime) {
     this.author = author;
     this.action = action;
     this.targetName = targetName;
     this.departure = departure;
     this.arrival = arrival;
-    this.createdTime = getNow();
-  }
-
-  private Activity(Long id, String author, String action, String targetName) {
-    this.id = id;
-    this.author = author;
-    this.action = action;
-    this.targetName = targetName;
-    this.createdTime = getNow();
-  }
-
-  public static Activity add(String author, String action, String targetName) {
-    return new Activity(null, author, action, targetName);
-  }
-
-  public static Activity remove(String author, String action, String targetName) {
-    return new Activity(null, author, action, targetName);
-  }
-
-  public static Activity update(String author, String action, String targetName, Long departure,
-      Long arrival) {
-    return new Activity(null, author, action, targetName, departure, arrival);
-  }
-
-  public static Activity move(String author, String action, String targetName, Long departure,
-      Long arrival) {
-    return new Activity(null, author, action, targetName, departure, arrival);
-  }
-
-  public Activity() {
+    this.createdTime = createdTime;
   }
 
   public LocalDateTime getCreatedTime() {
@@ -127,4 +93,62 @@ public class Activity {
         .append("createdTime", createdTime)
         .toString();
   }
+
+  public static class Builder {
+
+    private String author;
+    private String action;
+    private String targetName;
+    private Long departure;
+    private Long arrival;
+    private LocalDateTime createdTime;
+    ;
+
+    public Builder() {
+    }
+
+    public Builder(Activity activity) {
+      this.author = activity.author;
+      this.action = activity.action;
+      this.targetName = activity.targetName;
+      this.departure = activity.departure;
+      this.arrival = activity.arrival;
+    }
+
+    public Builder author(String author) {
+      this.author = author;
+      return this;
+    }
+
+    public Builder action(String action) {
+      this.action = action;
+      return this;
+    }
+
+    public Builder targetName(String targetName) {
+      this.targetName = targetName;
+      return this;
+    }
+
+    public Builder departure(Long departure) {
+      this.departure = departure;
+      return this;
+    }
+
+    public Builder arrival(Long arrival) {
+      this.arrival = arrival;
+      return this;
+    }
+
+    public Builder createdTime(LocalDateTime createdTime) {
+      this.createdTime = createdTime;
+      return this;
+    }
+
+    public Activity build() {
+      return new Activity(author, action, targetName, departure, arrival, createdTime);
+    }
+  }
+
+
 }
