@@ -16,15 +16,6 @@ public class WebConfig implements WebMvcConfigurer {
   }
 
   @Override
-  public void addCorsMappings(CorsRegistry registry) {
-    registry.addMapping("/**")
-        .allowedOrigins("*")
-        .allowedHeaders("*")
-        .allowedMethods("*");
-
-  }
-
-  @Override
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(jwtInterceptor)
         .excludePathPatterns("/h2-console/**")
