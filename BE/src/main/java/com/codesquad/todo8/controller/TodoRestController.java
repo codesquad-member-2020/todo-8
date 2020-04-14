@@ -55,7 +55,6 @@ public class TodoRestController {
 
   }
 
-
   @PostMapping("cards")
   public ApiResult<Card> createCard(@RequestBody CardRequest cardRequest) {
     Card card = Card.of(
