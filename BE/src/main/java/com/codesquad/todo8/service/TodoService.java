@@ -1,5 +1,7 @@
 package com.codesquad.todo8.service;
 
+import static java.time.LocalDateTime.now;
+
 import com.codesquad.todo8.error.CardNotFoundException;
 import com.codesquad.todo8.error.CategoryNotFoundException;
 import com.codesquad.todo8.model.Activity;
@@ -48,7 +50,7 @@ public class TodoService {
         .author(card.getAuthor())
         .action("added")
         .targetName(card.getTitle())
-        .createdTime(getNow())
+        .createdTime(now())
         .build();
     saveActivity(added);
     return card;
@@ -65,7 +67,7 @@ public class TodoService {
         .author(card.getAuthor())
         .action("updated")
         .targetName(card.getTitle())
-        .createdTime(getNow())
+        .createdTime(now())
         .build();
     saveActivity(updated);
 
@@ -90,7 +92,7 @@ public class TodoService {
         .targetName(card.getTitle())
         .departure(card.getCategoryId())
         .arrival(targetCategoryId)
-        .createdTime(getNow())
+        .createdTime(now())
         .build();
     saveActivity(moved);
 
@@ -107,7 +109,7 @@ public class TodoService {
         .author(deletedCard.getAuthor())
         .action("deleted")
         .targetName(deletedCard.getTitle())
-        .createdTime(getNow())
+        .createdTime(now())
         .build();
     saveActivity(deleted);
     return deletedCard;
@@ -115,9 +117,5 @@ public class TodoService {
 
   private void saveActivity(Activity activity) {
     activityRepository.save(activity);
-  }
-
-  private LocalDateTime getNow() {
-    return LocalDateTime.now();
   }
 }
