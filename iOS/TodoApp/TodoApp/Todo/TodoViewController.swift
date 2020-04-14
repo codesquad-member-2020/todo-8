@@ -35,7 +35,7 @@ class TodoViewController: UIViewController {
         let cards = column.cards
         
         manager = ColumnManager(id: id, title: title, cards: cards)
-        
+    
         todoTableViewDataSource.updateCards(manager!.task)
         todoTableViewDelegate.updateCards(manager!.task)
         DispatchQueue.main.async {
@@ -56,7 +56,7 @@ class TodoViewController: UIViewController {
     
     @IBAction func addCardButtonTabbed(_ sender: AddCardButton) {
         guard let editingCardViewController = storyboard?.instantiateViewController(identifier: EditingCardViewController.identifier) as? EditingCardViewController else { return }
-        let newCard = Card(id: 0, title: "", author: "iOS", contents: "", createdDate: "", modifiedDate: "")
+        let newCard = Card(id: 0, title: "", author: "iOS", contents: "", createdDate: [0], modifiedDate: [0])
         editingCardViewController.setContents(newCard)
         present(editingCardViewController, animated: true) {
             editingCardViewController.setCompletion({ card in
