@@ -10,7 +10,6 @@ import com.codesquad.todo8.model.Category;
 import com.codesquad.todo8.repository.ActivityRepository;
 import com.codesquad.todo8.repository.CardRepository;
 import com.codesquad.todo8.repository.CategoryRepository;
-import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

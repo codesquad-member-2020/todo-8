@@ -2,6 +2,7 @@ package com.codesquad.todo8.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -14,20 +15,34 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Category {
 
   @Id
-  private Long id;
+  private final Long id;
 
   @JsonIgnore
-  private Long userId;
+  private final Long userId;
 
-  private String title;
+  private final String title;
 
-  private String author;
+  private final String author;
 
   @Column(value = "create_at")
-  private LocalDateTime createdDate;
+  private final LocalDateTime createdDate;
 
   @MappedCollection(idColumn = "category_id", keyColumn = "category_key")
-  private List<Card> cards;
+  private List<Card> cards = new ArrayList<>();
+
+  public Category(Long id, Long userId, String title, String author,
+      LocalDateTime createdDate) {
+    this.id = id;
+    this.userId = userId;
+    this.title = title;
+    this.author = author;
+    this.createdDate = createdDate;
+  }
+
+  Category withId(Long id) {
+    return new Category(id, this.userId, this.title, this.author, this.createdDate);
+  }
+
 
   public Long getId() {
     return id;
@@ -53,7 +68,6 @@ public class Category {
     return author;
   }
 
-  //카테고리에 제일 위에 카드가 들어가도록 한다.
   public void addFirstCard(Card card) {
     this.cards.add(0, card);
   }

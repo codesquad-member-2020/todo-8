@@ -1,4 +1,4 @@
-package com.codesquad.todo8.model.api;
+package com.codesquad.todo8.model.api.response;
 
 import com.codesquad.todo8.model.Activity;
 import com.codesquad.todo8.model.Category;

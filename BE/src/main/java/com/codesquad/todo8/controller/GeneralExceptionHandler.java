@@ -1,6 +1,6 @@
 package com.codesquad.todo8.controller;
 
-import com.codesquad.todo8.api.ApiResult;
+import com.codesquad.todo8.model.api.ApiResult;
 import com.codesquad.todo8.error.CardNotFoundException;
 import com.codesquad.todo8.error.UserNotFoundException;
 import org.slf4j.Logger;

@@ -9,9 +9,18 @@ import org.springframework.data.relational.core.mapping.Table;
 public class User {
 
   @Id
-  private Long id;
+  private final Long id;
 
-  private String userName;
+  private final String userName;
+
+  public User(Long id, String userName) {
+    this.id = id;
+    this.userName = userName;
+  }
+
+  User withId(Long id) {
+    return new User(id, this.userName);
+  }
 
   public Long getId() {
     return id;
