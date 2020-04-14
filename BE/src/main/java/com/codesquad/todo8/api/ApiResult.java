@@ -29,7 +29,6 @@ public class ApiResult<T> {
     return new ApiResult<>(false, null, new ApiError(exception, status));
   }
 
-
   public boolean isSuccess() {
     return success;
   }
