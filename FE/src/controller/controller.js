@@ -1,9 +1,17 @@
 class Controller {
-  constructor() {
+  constructor({
+    mainModel,
+    todoView
+  }) {
+    this.mainModel = mainModel
+    this.todoView = todoView
     this.initialize()
   }
 
   initialize() {
+    const URL = 'http://34.236.252.205/api/board'
+    this.mainModel.fetchInitRenderData(URL)
+      .then(data => this.todoView.render(data))
     this.dragAndDrop()
     this.eventHandler()
     this.todoStatus = ''
