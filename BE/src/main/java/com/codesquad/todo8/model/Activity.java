@@ -38,7 +38,8 @@ public class Activity {
   }
 
   Activity withId(Long id) {
-    return new Activity(id, this.author, this.action, this.targetName, this.departure, this.arrival, this.createdTime);
+    return new Activity(id, this.author, this.action, this.targetName, this.departure, this.arrival,
+        this.createdTime);
   }
 
   public LocalDateTime getCreatedTime() {
