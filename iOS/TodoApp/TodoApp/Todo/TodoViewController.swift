@@ -63,7 +63,20 @@ class TodoViewController: UIViewController {
     
     private func editCard(_ card: Card?, selectedIndex: IndexPath) {
         presentEditingCardViewController(with: card) { card in
-            self.manager.replaceCard(at: selectedIndex, with: card)
+            let data = ["categoryId": "\(card.categoryId)", "author": card.author, "title": card.title, "contents": card.contents]
+            let body = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+            NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards/" + "\(card.id)", method: .PUT, body: body) { (data, response, error) in
+                guard let data = data else { return }
+                let decoder = JSONDecoder()
+                do {
+                    let responseCard = try decoder.decode(Response.self, from: data)
+                    if responseCard.success {
+                        self.manager.replaceCard(at: selectedIndex, with: responseCard.response)
+                    }
+                } catch {
+                    
+                }
+            }
         }
     }
     
@@ -112,7 +125,9 @@ extension TodoViewController {
     
     @objc private func cardReplaced(_ notification: NSNotification) {
         guard let indexPath = notification.userInfo?["indexPath"] as? IndexPath else { return }
-        self.todoTableView.reloadRows(at: [indexPath], with: .automatic)
+        DispatchQueue.main.async {
+            self.todoTableView.reloadRows(at: [indexPath], with: .automatic)
+        }
     }
     
     @objc private func updateCardCountLabel() {
