@@ -53,6 +53,15 @@ class TodoViewController: UIViewController {
         columnTitleLabel.text = title
     }
     
+    private func networkErrorAlert(with message: String) {
+        let alert = UIAlertController(title: message, message: "서버에 문제가 생겼나봐요!😰", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
+        alert.addAction(cancel)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+    
     private func presentEditingCardViewController(with card: Card?, completion: @escaping (Card) -> ()) {
         guard let editingCardViewController = storyboard?.instantiateViewController(identifier: EditingCardViewController.identifier) as? EditingCardViewController else { return }
         editingCardViewController.setContents(card)
@@ -65,6 +74,7 @@ class TodoViewController: UIViewController {
         presentEditingCardViewController(with: card) { card in
             TodoNetworkManager.editCardRequest(card: card) { card in
                 guard let card = card else {
+                    self.networkErrorAlert(with: "카드 수정 실패!")
                     return
                 }
                 self.manager.replaceCard(at: selectedIndex, with: card)
@@ -77,6 +87,7 @@ class TodoViewController: UIViewController {
         presentEditingCardViewController(with: newCard) { card in
             TodoNetworkManager.addCardRequest(card: card) { card in
                 guard let card = card else {
+                    self.networkErrorAlert(with: "카드 추가 실패!")
                     return
                 }
                 self.manager.insertCard(with: card)
@@ -128,6 +139,7 @@ extension TodoViewController: UITableViewDelegate {
             let selectedCard = self.manager.getCard(with: indexPath.row)
             TodoNetworkManager.deleteCardRequest(card: selectedCard) { result in
                 guard result else {
+                    self.networkErrorAlert(with: "카드 삭제 실패!")
                     return
                 }
                 self.manager.removeCard(at: indexPath)
@@ -152,6 +164,7 @@ extension TodoViewController: UITableViewDelegate {
             let card = self.manager.getCard(with: indexPath.row)
             TodoNetworkManager.moveCardRequest(card: card, category: 3, index: 0) { card in
                 guard let card = card else {
+                    self.networkErrorAlert(with: "카드 이동 실패!")
                     return
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
@@ -178,6 +191,7 @@ extension TodoViewController: UITableViewDelegate {
             let selectedCard = self.manager.getCard(with: indexPath.row)
             TodoNetworkManager.deleteCardRequest(card: selectedCard) { result in
                 guard result else {
+                    self.networkErrorAlert(with: "카드 삭제 실패!")
                     return
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
