@@ -171,10 +171,21 @@ extension TodoViewController: UITableViewDelegate {
         let title = "Move to done"
         let image = UIImage(systemName: "paperplane")
         return UIAction(title: title, image: image) { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
-                let card = self.manager.getCard(with: indexPath.row)
-                self.manager.removeCard(at: indexPath)
-                NotificationCenter.default.post(name: TodoViewController.moveToDone, object: nil, userInfo: [TodoViewController.moveToDone: card])
+            let card = self.manager.getCard(with: indexPath.row)
+            NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards/" + "\(card.id)/" + "position?category=3&index=0", method: .PUT) { (data, response, error) in
+                guard let data = data else { return }
+                let decoder = JSONDecoder()
+                do {
+                    let data = try decoder.decode(Response.self, from: data)
+                    if data.success {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
+                            self.manager.removeCard(at: indexPath)
+                            NotificationCenter.default.post(name: TodoViewController.moveToDone, object: nil, userInfo: [TodoViewController.moveToDone: data.response])
+                        }
+                    }
+                } catch {
+                    
+                }
             }
         }
     }
