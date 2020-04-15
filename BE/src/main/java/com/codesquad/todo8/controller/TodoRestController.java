@@ -73,6 +73,12 @@ public class TodoRestController {
     return OK(todoService.createCategory(category));
   }
 
+  @DeleteMapping("category/{categoryId}")
+  public ApiResult deleteCategory(@PathVariable Long categoryId) {
+    todoService.deleteCategory(categoryId);
+    return OK(null);
+  }
+
   @PostMapping("cards")
   public ApiResult<Card> createCard(@RequestBody CardRequest cardRequest) {
     Card card = Card.of(

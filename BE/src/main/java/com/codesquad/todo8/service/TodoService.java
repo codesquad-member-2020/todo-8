@@ -124,6 +124,10 @@ public class TodoService {
     return categoryRepository.save(category);
   }
 
+  public void deleteCategory(Long categoryId) {
+    categoryRepository.deleteById(categoryId);
+  }
+
   @Transactional
   public void saveActivity(Activity activity) {
     activityRepository.save(activity);
