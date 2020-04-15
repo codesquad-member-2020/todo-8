@@ -235,11 +235,11 @@ extension TodoViewController: UITableViewDragDelegate ,UITableViewDropDelegate {
             let row = tableView.numberOfRows(inSection: section)
             destinationIndexPath = IndexPath(row: row, section: section)
         }
-        guard var card = coordinator.items.first?.dragItem.localObject as? Card else { return }
+        guard let card = coordinator.items.first?.dragItem.localObject as? Card else { return }
         if card.categoryId != manager.id || draggedCellIndex != destinationIndexPath {
-            card.categoryId = manager.id
             NotificationCenter.default.post(name: NSNotification.Name.init("drop"), object: nil)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.00001) {
+            TodoNetworkManager.moveCardRequest(card: card, category: manager.id, index: destinationIndexPath.row) { card in
+                guard let card = card else { return }
                 self.manager.insertCard(at: destinationIndexPath, with: card)
             }
         }
