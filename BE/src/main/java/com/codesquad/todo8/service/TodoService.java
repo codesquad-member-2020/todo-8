@@ -1,6 +1,9 @@
 package com.codesquad.todo8.service;
 
+import static java.time.LocalDateTime.now;
 
+import com.codesquad.todo8.error.CardNotFoundException;
+import com.codesquad.todo8.error.CategoryNotFoundException;
 import com.codesquad.todo8.model.Activity;
 import com.codesquad.todo8.model.Card;
 import com.codesquad.todo8.model.Category;
@@ -30,7 +33,6 @@ public class TodoService {
     return activityRepository.findAllByAuthor(author);
   }
 
-
   @Transactional(readOnly = true)
   public List<Category> findAllContents(Long id) {
     return categoryRepository.findAllByUserId(id);
@@ -38,20 +40,81 @@ public class TodoService {
 
   @Transactional
   public Card createCard(Card card) {
-    Category category = categoryRepository.findById(card.getCategoryId()).get();
-    category.addCard(card);
+    Category category = categoryRepository.findById(card.getCategoryId())
+        .orElseThrow(() -> new CardNotFoundException(card.getId()));
+    category.addFirstCard(card);
     categoryRepository.save(category);
+
+    Activity added = new Activity.Builder()
+        .author(card.getAuthor())
+        .action("added")
+        .targetName(card.getTitle())
+        .createdTime(now())
+        .build();
+    saveActivity(added);
     return card;
   }
 
   @Transactional
+  public Card updateCard(Card newCard, Long cardId) {
+    Card card = cardRepository.findById(cardId)
+        .orElseThrow(() -> new CardNotFoundException(cardId));
+    card.update(newCard);
+    cardRepository.save(card);
+
+    Activity updated = new Activity.Builder()
+        .author(card.getAuthor())
+        .action("updated")
+        .targetName(card.getTitle())
+        .createdTime(now())
+        .build();
+    saveActivity(updated);
+
+    return card;
+  }
+
+  @Transactional
+  public Card moveCard(Long cardId, Long targetCategoryId, int index) {
+    Card card = cardRepository.findById(cardId)
+        .orElseThrow(() -> new CardNotFoundException(cardId));
+    deleteCard(card.getId());
+
+    Category category = categoryRepository.findById(targetCategoryId)
+        .orElseThrow(() -> new CategoryNotFoundException(targetCategoryId));
+
+    category.addCard(card, index);
+    categoryRepository.save(category);
+
+    Activity moved = new Activity.Builder()
+        .author(card.getAuthor())
+        .action("moved")
+        .targetName(card.getTitle())
+        .departure(card.getCategoryId())
+        .arrival(targetCategoryId)
+        .createdTime(now())
+        .build();
+    saveActivity(moved);
+
+    return cardRepository.findById(cardId).orElseThrow(() -> new CardNotFoundException(cardId));
+  }
+
+  @Transactional
   public Card deleteCard(Long cardId) {
-    Card deletedCard = cardRepository.findById(cardId).get();
+    Card deletedCard = cardRepository.findById(cardId)
+        .orElseThrow(() -> new CardNotFoundException(cardId));
     cardRepository.delete(deletedCard);
+
+    Activity deleted = new Activity.Builder()
+        .author(deletedCard.getAuthor())
+        .action("deleted")
+        .targetName(deletedCard.getTitle())
+        .createdTime(now())
+        .build();
+    saveActivity(deleted);
     return deletedCard;
   }
 
-  public void addActivity(Activity newActivity) {
-    activityRepository.save(newActivity);
+  private void saveActivity(Activity activity) {
+    activityRepository.save(activity);
   }
 }

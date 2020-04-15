@@ -1,5 +1,7 @@
 package com.codesquad.todo8.model;
 
+import static java.time.LocalDateTime.now;
+
 import com.google.common.base.Objects;
 import java.time.LocalDateTime;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -12,23 +14,23 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Card {
 
   @Id
-  private Long id;
+  private final Long id;
 
-  private Long categoryId;
+  private final Long categoryId;
 
-  private String author;
+  private final String author;
 
   private String title;
 
   private String contents;
 
   @Column(value = "create_at")
-  private LocalDateTime createdDate;
+  private final LocalDateTime createdDate;
 
   @Column(value = "modify_at")
   private LocalDateTime modifiedDate;
 
-  public Card(Long id, Long categoryId, String author, String title, String contents,
+  private Card(Long id, Long categoryId, String author, String title, String contents,
       LocalDateTime createdDate, LocalDateTime modifiedDate) {
     this.id = id;
     this.categoryId = categoryId;
@@ -40,8 +42,20 @@ public class Card {
   }
 
   public static Card of(Long categoryId, String author, String title, String contents) {
-    return new Card(null, categoryId, author, title, contents, LocalDateTime.now(),
-        LocalDateTime.now());
+    LocalDateTime time = now();
+    return new Card(null, categoryId, author, title, contents, time,
+        time);
+  }
+
+  Card withId(Long id) {
+    return new Card(id, this.categoryId, this.author, this.title, this.contents, this.createdDate,
+        this.modifiedDate);
+  }
+
+  public void update(Card card) {
+    this.title = card.title;
+    this.contents = card.contents;
+    this.modifiedDate = now();
   }
 
   public Long getId() {

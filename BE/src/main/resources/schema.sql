@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `user` CASCADE;
-DROP TABLE IF EXISTS list CASCADE;
 DROP TABLE IF EXISTS card CASCADE;
 DROP TABLE IF EXISTS activity CASCADE;
+DROP TABLE IF EXISTS category CASCADE;
 
 CREATE TABLE user
 (
@@ -10,7 +10,6 @@ CREATE TABLE user
     PRIMARY KEY (id),
     CONSTRAINT unq_user_id UNIQUE (user_name),
 );
-
 
 CREATE TABLE category
 (
@@ -23,21 +22,22 @@ CREATE TABLE category
     PRIMARY KEY (id)
 );
 
-CREATE TABLE card (
+CREATE TABLE card
+(
     id              bigint NOT NULL AUTO_INCREMENT,
-    category_id     bigint REFERENCES category (id),
+    category_id     bigint NOT NULL REFERENCES category (id),
     category_key    int,
     title           varchar(50) NOT NULL,
     author          varchar(25) NOT NULL REFERENCES `user` (user_name),
     contents        varchar(500),
     create_at       datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     modify_at       datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    PRIMARY KEY (id)
+    PRIMARY KEY (id, category_id)
 );
 
 CREATE TABLE activity
 (
-    id           bigint   NOT NULL AUTO_INCREMENT,
+    id           bigint       NOT NULL AUTO_INCREMENT,
     author       varchar(25)  NOT NULL REFERENCES `user` (user_name),
     action       varchar(25)  NOT NULL,
     target_name  varchar(50)  NOT NULL,

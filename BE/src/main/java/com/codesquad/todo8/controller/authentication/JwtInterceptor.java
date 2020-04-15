@@ -1,6 +1,7 @@
-package com.codesquad.todo8.controller;
+package com.codesquad.todo8.controller.authentication;
 
-import com.codesquad.todo8.service.UserService;
+import com.codesquad.todo8.error.UnauthorizedException;
+import com.codesquad.todo8.service.user.UserService;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
@@ -40,15 +42,11 @@ public class JwtInterceptor implements HandlerInterceptor {
 
   private Boolean validationToken(String jwt) {
     String userName = "";
-    if (jwt != null) {
+    if (!StringUtils.isEmpty(jwt)) {
       userName = getUserName(jwt);
       logger.debug("userName : {}", userName);
     }
-
-    if (userName != null) {
-      return userService.getUserByName(userName).isPresent();
-    }
-    return false;
+    return userService.getUserByName(userName).getUserId().equals(userName);
   }
 
   private String getUserName(String jwt) {
@@ -60,8 +58,7 @@ public class JwtInterceptor implements HandlerInterceptor {
           .getBody()
           .get("userName", String.class);
     } catch (JwtException e) {
-      logger.debug("JwtException : {}", e.getMessage());
-      return null;
+      throw new UnauthorizedException(e.getMessage());
     }
   }
 }
