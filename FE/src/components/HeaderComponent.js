@@ -1,8 +1,5 @@
 class HeaderComponent {
-  constructor() {
-
-  }
-
+  constructor() {}
   render() {
     return `
       <div class="header-container">
@@ -10,10 +7,6 @@ class HeaderComponent {
         <button class="menu-btn">menu</button>
       </div>
     `
-  }
-
-  initialize() {
-    
   }
 }
 
