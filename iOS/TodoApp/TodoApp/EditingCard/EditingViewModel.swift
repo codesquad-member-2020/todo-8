@@ -41,7 +41,7 @@ class EditingViewModel {
     private func checkCondition() {
         guard let card = card,
             !card.title.isEmpty,
-            !card.contents.isEmpty,
+            !(card.contents?.isEmpty ?? false),
             card.contents != placeholderText else {
                 buttonIsEnabled = false
                 return

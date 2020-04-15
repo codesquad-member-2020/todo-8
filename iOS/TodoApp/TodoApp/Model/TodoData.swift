@@ -23,7 +23,7 @@ struct Card: Codable, Equatable {
     var categoryId: Int
     var title: String
     var author: String
-    var contents: String
+    var contents: String?
     var createdDate: String
     var modifiedDate: String
 }
