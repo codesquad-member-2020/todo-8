@@ -163,7 +163,7 @@ extension TodoViewController: UITableViewDelegate {
             let moveToDone = self.moveToDoneAction(indexPath: indexPath)
             let edit = self.editAction(indexPath: indexPath)
             let delete = self.deleteAction(indexPath: indexPath)
-            return UIMenu(title: "", children: [moveToDone, edit, delete])
+            return self.manager.id == 3 ? UIMenu(title: "", children: [edit, delete]) : UIMenu(title: "", children: [moveToDone, edit, delete])
         })
     }
     
