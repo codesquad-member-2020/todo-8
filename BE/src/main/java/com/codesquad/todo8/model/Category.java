@@ -66,6 +66,10 @@ public class Category {
     this.cards.add(index, card);
   }
 
+  public void updateTitle(String title) {
+    this.title = title;
+  }
+
   @Override
   public String toString() {
     return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)

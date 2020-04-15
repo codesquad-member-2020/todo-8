@@ -55,6 +55,12 @@ public class TodoRestController {
 
   }
 
+  @PutMapping("category/{categoryId}")
+  public ApiResult<Category> updateCategory(@PathVariable Long categoryId, @RequestBody Category category) {
+    Category updatedCategory = todoService.updateCategoryTitle(categoryId, category.getTitle());
+    return OK(updatedCategory);
+  }
+
   @PostMapping("cards")
   public ApiResult<Card> createCard(@RequestBody CardRequest cardRequest) {
     Card card = Card.of(
