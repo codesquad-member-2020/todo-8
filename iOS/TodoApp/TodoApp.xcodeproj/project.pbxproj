@@ -19,6 +19,7 @@
 		443D1012243C4D87003F2635 /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1011243C4D87003F2635 /* TodoCell.swift */; };
 		443D1014243CC60C003F2635 /* ContentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1013243CC60C003F2635 /* ContentTextView.swift */; };
 		443D1016243CC77A003F2635 /* EditingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D1015243CC77A003F2635 /* EditingCardViewController.swift */; };
+		4490DA542446F874000CAC44 /* TodoNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4490DA532446F874000CAC44 /* TodoNetworkManager.swift */; };
 		44A7DBC7243DC1CD00F374D2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBC6243DC1CD00F374D2 /* NetworkManager.swift */; };
 		44A7DBCB243DC3ED00F374D2 /* TodoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBCA243DC3ED00F374D2 /* TodoData.swift */; };
 		44A7DBCD243DC4BD00F374D2 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBCC243DC4BD00F374D2 /* DataManager.swift */; };
@@ -45,6 +46,7 @@
 		443D1011243C4D87003F2635 /* TodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCell.swift; sourceTree = "<group>"; };
 		443D1013243CC60C003F2635 /* ContentTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTextView.swift; sourceTree = "<group>"; };
 		443D1015243CC77A003F2635 /* EditingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingCardViewController.swift; sourceTree = "<group>"; };
+		4490DA532446F874000CAC44 /* TodoNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoNetworkManager.swift; sourceTree = "<group>"; };
 		44A7DBC6243DC1CD00F374D2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		44A7DBCA243DC3ED00F374D2 /* TodoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoData.swift; sourceTree = "<group>"; };
 		44A7DBCC243DC4BD00F374D2 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			children = (
 				44DF93B824456A0D00B6998F /* ColumnManager.swift */,
 				44DDBA922445BB5300C74FF4 /* Task.swift */,
+				4490DA532446F874000CAC44 /* TodoNetworkManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4490DA542446F874000CAC44 /* TodoNetworkManager.swift in Sources */,
 				44A7DBEF243EE02200F374D2 /* TodoTableViewDataSource.swift in Sources */,
 				44FAC1A22442035200950BB9 /* EditingViewModel.swift in Sources */,
 				443D0FED243B3F3D003F2635 /* ViewController.swift in Sources */,

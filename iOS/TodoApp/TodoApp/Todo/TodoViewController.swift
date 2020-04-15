@@ -63,19 +63,11 @@ class TodoViewController: UIViewController {
     
     private func editCard(_ card: Card?, selectedIndex: IndexPath) {
         presentEditingCardViewController(with: card) { card in
-            let data = ["categoryId": "\(card.categoryId)", "author": card.author, "title": card.title, "contents": card.contents]
-            let body = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
-            NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards/" + "\(card.id)", method: .PUT, body: body) { (data, response, error) in
-                guard let data = data else { return }
-                let decoder = JSONDecoder()
-                do {
-                    let responseCard = try decoder.decode(Response.self, from: data)
-                    if responseCard.success {
-                        self.manager.replaceCard(at: selectedIndex, with: responseCard.response)
-                    }
-                } catch {
-                    
+            TodoNetworkManager.editCardRequest(card: card) { card in
+                guard let card = card else {
+                    return
                 }
+                self.manager.replaceCard(at: selectedIndex, with: card)
             }
         }
     }
@@ -83,19 +75,11 @@ class TodoViewController: UIViewController {
     @IBAction func addCardButtonTabbed(_ sender: AddCardButton) {
         let newCard = Card(id: 0, categoryId: manager.id, title: "", author: "nigayo", contents: "", createdDate: "", modifiedDate: "")
         presentEditingCardViewController(with: newCard) { card in
-            let data = ["categoryId": "\(card.categoryId)", "author": card.author, "title": card.title, "contents": card.contents]
-            let body = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
-            NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards", method: .POST, body: body) { (data, response, error) in
-                guard let data = data else { return }
-                let decoder = JSONDecoder()
-                do {
-                    let responseCard = try decoder.decode(Response.self, from: data)
-                    if responseCard.success {
-                        self.manager.insertCard(with: responseCard.response)
-                    }
-                } catch {
-
+            TodoNetworkManager.addCardRequest(card: card) { card in
+                guard let card = card else {
+                    return
                 }
+                self.manager.insertCard(with: card)
             }
         }
     }
@@ -142,17 +126,11 @@ extension TodoViewController: UITableViewDelegate {
         let title = "Delete"
         let deleteAction = UIContextualAction(style: .destructive, title: title, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             let selectedCard = self.manager.getCard(with: indexPath.row)
-            NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards/" + "\(selectedCard.id)", method: .DELETE) { (data, _, _) in
-                guard let data = data else { return }
-                let decoder = JSONDecoder()
-                do {
-                    let data = try decoder.decode(Response.self, from: data)
-                    if data.success {
-                        self.manager.removeCard(at: indexPath)
-                    }
-                } catch {
-                    
+            TodoNetworkManager.deleteCardRequest(card: selectedCard) { result in
+                guard result else {
+                    return
                 }
+                self.manager.removeCard(at: indexPath)
             }
         })
         return UISwipeActionsConfiguration(actions:[deleteAction])
@@ -172,19 +150,13 @@ extension TodoViewController: UITableViewDelegate {
         let image = UIImage(systemName: "paperplane")
         return UIAction(title: title, image: image) { _ in
             let card = self.manager.getCard(with: indexPath.row)
-            NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards/" + "\(card.id)/" + "position?category=3&index=0", method: .PUT) { (data, response, error) in
-                guard let data = data else { return }
-                let decoder = JSONDecoder()
-                do {
-                    let data = try decoder.decode(Response.self, from: data)
-                    if data.success {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
-                            self.manager.removeCard(at: indexPath)
-                            NotificationCenter.default.post(name: TodoViewController.moveToDone, object: nil, userInfo: [TodoViewController.moveToDone: data.response])
-                        }
-                    }
-                } catch {
-                    
+            TodoNetworkManager.moveCardRequest(card: card, category: 3, index: 0) { card in
+                guard let card = card else {
+                    return
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
+                    self.manager.removeCard(at: indexPath)
+                    NotificationCenter.default.post(name: TodoViewController.moveToDone, object: nil, userInfo: [TodoViewController.moveToDone: card])
                 }
             }
         }
@@ -204,18 +176,12 @@ extension TodoViewController: UITableViewDelegate {
         let image = UIImage(systemName: "trash")
         return UIAction(title: title, image: image, attributes: .destructive) { _ in
             let selectedCard = self.manager.getCard(with: indexPath.row)
-            NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards/" + "\(selectedCard.id)", method: .DELETE) { (data, _, _) in
-                guard let data = data else { return }
-                let decoder = JSONDecoder()
-                do {
-                    let card = try decoder.decode(Card.self, from: data)
-                    if selectedCard == card {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
-                            self.manager.removeCard(at: indexPath)
-                        }
-                    }
-                } catch {
-                    
+            TodoNetworkManager.deleteCardRequest(card: selectedCard) { result in
+                guard result else {
+                    return
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
+                    self.manager.removeCard(at: indexPath)
                 }
             }
         }
