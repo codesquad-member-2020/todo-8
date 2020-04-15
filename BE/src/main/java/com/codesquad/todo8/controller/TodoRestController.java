@@ -9,6 +9,7 @@ import com.codesquad.todo8.model.Category;
 import com.codesquad.todo8.model.User;
 import com.codesquad.todo8.model.api.BoardResponse;
 import com.codesquad.todo8.model.api.CardRequest;
+import com.codesquad.todo8.model.api.CategoryRequest;
 import com.codesquad.todo8.service.TodoService;
 import com.codesquad.todo8.service.user.UserService;
 import java.util.List;
@@ -56,9 +57,20 @@ public class TodoRestController {
   }
 
   @PutMapping("category/{categoryId}")
-  public ApiResult<Category> updateCategory(@PathVariable Long categoryId, @RequestBody Category category) {
+  public ApiResult<Category> updateCategory(@PathVariable Long categoryId,
+      @RequestBody Category category) {
     Category updatedCategory = todoService.updateCategoryTitle(categoryId, category.getTitle());
     return OK(updatedCategory);
+  }
+
+  @PostMapping("category")
+  public ApiResult<Category> createCategory(HttpServletRequest request, @RequestBody CategoryRequest categoryRequest) {
+//    String author = getAuthor(request);
+//    Long id = getUserId(request);
+    String author = "nigayo";
+    Long id = 1L;
+    Category category = Category.of(id, author, categoryRequest.getTitle());
+    return OK(todoService.createCategory(category));
   }
 
   @PostMapping("cards")

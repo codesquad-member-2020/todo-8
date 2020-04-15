@@ -112,6 +112,11 @@ public class TodoService {
   }
 
   @Transactional
+  public Category createCategory(Category newCategory) {
+    return categoryRepository.save(newCategory);
+  }
+
+  @Transactional
   public Category updateCategoryTitle(Long categoryId, String title) {
     Category category = categoryRepository.findById(categoryId)
         .orElseThrow(() -> new CategoryNotFoundException(categoryId));
