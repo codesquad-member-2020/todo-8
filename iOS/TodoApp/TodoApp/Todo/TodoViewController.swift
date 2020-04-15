@@ -70,7 +70,7 @@ class TodoViewController: UIViewController {
     @IBAction func addCardButtonTabbed(_ sender: AddCardButton) {
         let newCard = Card(id: 0, categoryId: manager.id, title: "", author: "nigayo", contents: "", createdDate: "", modifiedDate: "")
         presentEditingCardViewController(with: newCard) { card in
-            let data = ["categoryId": "\(card.categoryId)", "author": card.author, "title": card.title, "content": card.contents]
+            let data = ["categoryId": "\(card.categoryId)", "author": card.author, "title": card.title, "contents": card.contents]
             let body = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
             NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards", method: .POST, body: body) { (data, response, error) in
                 guard let data = data else { return }
@@ -102,12 +102,10 @@ extension TodoViewController {
     }
     
     @objc private func cardRemoved(_ notification: NSNotification) {
-        guard let indexPath = notification.userInfo?["indexPath"] as? IndexPath,
-            let cardID = notification.userInfo?["id"] as? Int else { return }
-        NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards/" + "\(cardID)", method: .DELETE) { (data, _, _) in
-            //
+        guard let indexPath = notification.userInfo?["indexPath"] as? IndexPath else { return }
+        DispatchQueue.main.async {
+            self.todoTableView.deleteRows(at: [indexPath], with: .automatic)
         }
-        self.todoTableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
     @objc private func cardReplaced(_ notification: NSNotification) {
@@ -126,7 +124,19 @@ extension TodoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let title = "Delete"
         let deleteAction = UIContextualAction(style: .destructive, title: title, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            self.manager.removeCard(at: indexPath)
+            let selectedCard = self.manager.getCard(with: indexPath.row)
+            NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards/" + "\(selectedCard.id)", method: .DELETE) { (data, _, _) in
+                guard let data = data else { return }
+                let decoder = JSONDecoder()
+                do {
+                    let card = try decoder.decode(Card.self, from: data)
+                    if selectedCard == card {
+                        self.manager.removeCard(at: indexPath)
+                    }
+                } catch {
+                    
+                }
+            }
         })
         return UISwipeActionsConfiguration(actions:[deleteAction])
     }
@@ -165,8 +175,20 @@ extension TodoViewController: UITableViewDelegate {
         let title = "Delete"
         let image = UIImage(systemName: "trash")
         return UIAction(title: title, image: image, attributes: .destructive) { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
-                self.manager.removeCard(at: indexPath)
+            let selectedCard = self.manager.getCard(with: indexPath.row)
+            NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards/" + "\(selectedCard.id)", method: .DELETE) { (data, _, _) in
+                guard let data = data else { return }
+                let decoder = JSONDecoder()
+                do {
+                    let card = try decoder.decode(Card.self, from: data)
+                    if selectedCard == card {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
+                            self.manager.removeCard(at: indexPath)
+                        }
+                    }
+                } catch {
+                    
+                }
             }
         }
     }

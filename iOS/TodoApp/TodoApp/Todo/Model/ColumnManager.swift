@@ -37,8 +37,8 @@ class ColumnManager {
     }
     
     func removeCard(at indexPath: IndexPath) {
-        let card = task.remove(at: indexPath.row)
-        NotificationCenter.default.post(name: ColumnManager.cardRemoved, object: self, userInfo: ["indexPath": indexPath, "id": card.id])
+        task.remove(at: indexPath.row)
+        NotificationCenter.default.post(name: ColumnManager.cardRemoved, object: self, userInfo: ["indexPath": indexPath])
     }
     
     func replaceCard(at indexPath: IndexPath, with card: Card) {
