@@ -1,3 +1,5 @@
+import { URL } from '../utils/ApiUrl.js'
+
 class Controller {
   constructor({
     mainModel,
@@ -9,11 +11,13 @@ class Controller {
   }
 
   initialize() {
-    const URL = 'http://34.236.252.205/api/board'
-    this.mainModel.fetchInitRenderData(URL)
+    this.mainModel.fetchInitRenderData(URL.MOCKUP.INIT_RENDER)
       .then(data => this.todoView.render(data))
-    this.dragAndDrop()
-    this.eventHandler()
+      .then(() => {
+        this.dragAndDrop()
+        this.eventHandler()
+        this.menuBtnEvent()
+      })
     this.todoStatus = ''
     this.eventLog = {
       time: '방금',
@@ -21,6 +25,18 @@ class Controller {
       title: '',
       column: ''
     }
+  }
+
+  menuBtnEvent() {
+    jb('.menu-btn').on("click", () => 
+    jb('.menu-container')
+      .transition('fly left')
+    )
+
+    jb('.menu-close-btn').on("click", () => {
+    jb('.menu-container')
+      .transition('fly left')
+    })
   }
 
   eventHandler() {
