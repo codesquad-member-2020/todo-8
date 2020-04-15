@@ -22,6 +22,7 @@ class TodoViewController: UIViewController {
         }
     }
     private var todoTableViewDataSource: TodoTableViewDataSource!
+    private var draggedCellIndex: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -210,8 +211,19 @@ extension TodoViewController: UITableViewDragDelegate ,UITableViewDropDelegate {
         let itemProvider = NSItemProvider()
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = card
-        
+        self.draggedCellIndex = indexPath
+        NotificationCenter.default.addObserver(self, selector: #selector(cardDropped(_:)), name: NSNotification.Name.init("drop"), object: nil)
         return [dragItem]
+    }
+    
+    @objc func cardDropped(_ notification: NSNotification) {
+        guard let index = draggedCellIndex else { return }
+        self.manager.removeCard(at: index)
+    }
+    
+    func tableView(_ tableView: UITableView, dragSessionDidEnd session: UIDragSession) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.init("drop"), object: nil)
+        draggedCellIndex = nil
     }
     
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
@@ -223,10 +235,13 @@ extension TodoViewController: UITableViewDragDelegate ,UITableViewDropDelegate {
             let row = tableView.numberOfRows(inSection: section)
             destinationIndexPath = IndexPath(row: row, section: section)
         }
-        guard let card = coordinator.items.first?.dragItem.localObject as? Card else { return }
-        TodoNetworkManager.moveCardRequest(card: card, category: manager.id, index: destinationIndexPath.row) { card in
-            guard let card = card else { return }
-            self.manager.insertCard(at: destinationIndexPath, with: card)
+        guard var card = coordinator.items.first?.dragItem.localObject as? Card else { return }
+        if card.categoryId != manager.id || draggedCellIndex != destinationIndexPath {
+            card.categoryId = manager.id
+            NotificationCenter.default.post(name: NSNotification.Name.init("drop"), object: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.00001) {
+                self.manager.insertCard(at: destinationIndexPath, with: card)
+            }
         }
     }
     
