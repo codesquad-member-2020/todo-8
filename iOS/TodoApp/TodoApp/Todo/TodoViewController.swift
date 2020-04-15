@@ -76,10 +76,12 @@ class TodoViewController: UIViewController {
                 guard let data = data else { return }
                 let decoder = JSONDecoder()
                 do {
-                    let card = try decoder.decode(Card.self, from: data)
-                    self.manager.insertCard(with: card)
+                    let responseCard = try decoder.decode(Response.self, from: data)
+                    if responseCard.success {
+                        self.manager.insertCard(with: responseCard.response)
+                    }
                 } catch {
-                    
+
                 }
             }
         }
@@ -129,8 +131,8 @@ extension TodoViewController: UITableViewDelegate {
                 guard let data = data else { return }
                 let decoder = JSONDecoder()
                 do {
-                    let card = try decoder.decode(Card.self, from: data)
-                    if selectedCard == card {
+                    let data = try decoder.decode(Response.self, from: data)
+                    if data.success {
                         self.manager.removeCard(at: indexPath)
                     }
                 } catch {

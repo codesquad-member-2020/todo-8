@@ -9,6 +9,11 @@
 import Foundation
 
 struct TodoData: Codable {
+    var success: Bool
+    var response: Category
+}
+
+struct Category: Codable {
     var category: [Column]
 }
 
@@ -26,4 +31,9 @@ struct Card: Codable, Equatable {
     var contents: String?
     var createdDate: String
     var modifiedDate: String
+}
+
+struct Response: Codable {
+    var success: Bool
+    var response: Card
 }

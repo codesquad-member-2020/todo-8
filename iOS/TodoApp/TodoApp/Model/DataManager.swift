@@ -20,7 +20,7 @@ class DataManager {
             do {
                 let decoder = JSONDecoder()
                 let decodedData = try decoder.decode(TodoData.self, from: data)
-                self.data = decodedData.category
+                self.data = decodedData.response.category
                 NotificationCenter.default.post(name: DataManager.dataDidLoad, object: nil)
             } catch {
                 
