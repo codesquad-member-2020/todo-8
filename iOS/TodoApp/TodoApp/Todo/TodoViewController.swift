@@ -53,24 +53,35 @@ class TodoViewController: UIViewController {
         columnTitleLabel.text = title
     }
     
-    private func presentEditingCardView(with card: Card?, selectedIndex: IndexPath) {
+    private func presentEditingCardViewController(with card: Card?, completion: @escaping (Card) -> ()) {
         guard let editingCardViewController = storyboard?.instantiateViewController(identifier: EditingCardViewController.identifier) as? EditingCardViewController else { return }
         editingCardViewController.setContents(card)
         present(editingCardViewController, animated: true) {
-            editingCardViewController.setCompletion({ card in
-                self.manager.replaceCard(at: selectedIndex, with: card)
-            })
+            editingCardViewController.setCompletion(completion)
+        }
+    }
+    
+    private func editCard(_ card: Card?, selectedIndex: IndexPath) {
+        presentEditingCardViewController(with: card) { card in
+            self.manager.replaceCard(at: selectedIndex, with: card)
         }
     }
     
     @IBAction func addCardButtonTabbed(_ sender: AddCardButton) {
-        guard let editingCardViewController = storyboard?.instantiateViewController(identifier: EditingCardViewController.identifier) as? EditingCardViewController else { return }
-        let newCard = Card(id: 0, title: "", author: "nigayo", contents: "", createdDate: "", modifiedDate: "")
-        editingCardViewController.setContents(newCard)
-        present(editingCardViewController, animated: true) {
-            editingCardViewController.setCompletion({ card in
-                self.manager.insertCard(with: card)
-            })
+        let newCard = Card(id: 0, categoryId: manager.id, title: "", author: "nigayo", contents: "", createdDate: "", modifiedDate: "")
+        presentEditingCardViewController(with: newCard) { card in
+            let data = ["categoryId": "\(card.categoryId)", "author": card.author, "title": card.title, "content": card.contents]
+            let body = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+            NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards", method: .POST, body: body) { (data, response, error) in
+                guard let data = data else { return }
+                let decoder = JSONDecoder()
+                do {
+                    let card = try decoder.decode(Card.self, from: data)
+                    self.manager.insertCard(with: card)
+                } catch {
+                    
+                }
+            }
         }
     }
 }
@@ -84,14 +95,10 @@ extension TodoViewController {
     }
         
     @objc private func cardAdded(_ notification: NSNotification) {
-        guard let indexPath = notification.userInfo?["indexPath"] as? IndexPath,
-            let card = notification.userInfo?["card"] as? Card else { return }
-        let data = ["categoryId": "\(manager!.id)", "author": card.author, "title": card.title, "contents": card.contents]
-        let body = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
-        NetworkManager.httpRequest(url: NetworkManager.serverUrl + "cards", method: .POST, body: body) { (data, _, _) in
-            //
+        guard let indexPath = notification.userInfo?["indexPath"] as? IndexPath else { return }
+        DispatchQueue.main.async {
+            self.todoTableView.insertRows(at: [indexPath], with: .automatic)
         }
-        self.todoTableView.insertRows(at: [indexPath], with: .automatic)
     }
     
     @objc private func cardRemoved(_ notification: NSNotification) {
@@ -109,7 +116,9 @@ extension TodoViewController {
     }
     
     @objc private func updateCardCountLabel() {
-        cardCountLabel.text = manager.cardCount()
+        DispatchQueue.main.async {
+            self.cardCountLabel.text = self.manager.cardCount()
+        }
     }
 }
 
@@ -148,7 +157,7 @@ extension TodoViewController: UITableViewDelegate {
         let image = UIImage(systemName: "pencil.and.outline")
         return UIAction(title: title, image: image) { _ in
             let card = self.manager.getCard(with: indexPath.row)
-            self.presentEditingCardView(with: card, selectedIndex: indexPath)
+            self.editCard(card, selectedIndex: indexPath)
         }
     }
     

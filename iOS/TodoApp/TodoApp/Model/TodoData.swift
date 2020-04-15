@@ -20,6 +20,7 @@ struct Column: Codable {
 
 struct Card: Codable, Equatable {
     var id: Int
+    var categoryId: Int
     var title: String
     var author: String
     var contents: String
