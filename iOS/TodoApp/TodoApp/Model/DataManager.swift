@@ -14,13 +14,13 @@ class DataManager {
     private var data: [Column]?
     
     func loadData() {
-        let url = NetworkManager.serverUrl
+        let url = NetworkManager.serverUrl + "board"
         NetworkManager.httpRequest(url: url, method: .GET) { (data, _, error) in
             guard let data = data else { return }
             do {
                 let decoder = JSONDecoder()
                 let decodedData = try decoder.decode(TodoData.self, from: data)
-                self.data = decodedData.category
+                self.data = decodedData.response.category
                 NotificationCenter.default.post(name: DataManager.dataDidLoad, object: nil)
             } catch {
                 

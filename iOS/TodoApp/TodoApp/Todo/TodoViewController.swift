@@ -53,24 +53,45 @@ class TodoViewController: UIViewController {
         columnTitleLabel.text = title
     }
     
-    private func presentEditingCardView(with card: Card?, selectedIndex: IndexPath) {
+    private func networkErrorAlert(with message: String) {
+        let alert = UIAlertController(title: message, message: "서버에 문제가 생겼나봐요!😰", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
+        alert.addAction(cancel)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+    
+    private func presentEditingCardViewController(with card: Card?, completion: @escaping (Card) -> ()) {
         guard let editingCardViewController = storyboard?.instantiateViewController(identifier: EditingCardViewController.identifier) as? EditingCardViewController else { return }
         editingCardViewController.setContents(card)
         present(editingCardViewController, animated: true) {
-            editingCardViewController.setCompletion({ card in
+            editingCardViewController.setCompletion(completion)
+        }
+    }
+    
+    private func editCard(_ card: Card?, selectedIndex: IndexPath) {
+        presentEditingCardViewController(with: card) { card in
+            TodoNetworkManager.editCardRequest(card: card) { card in
+                guard let card = card else {
+                    self.networkErrorAlert(with: "카드 수정 실패!")
+                    return
+                }
                 self.manager.replaceCard(at: selectedIndex, with: card)
-            })
+            }
         }
     }
     
     @IBAction func addCardButtonTabbed(_ sender: AddCardButton) {
-        guard let editingCardViewController = storyboard?.instantiateViewController(identifier: EditingCardViewController.identifier) as? EditingCardViewController else { return }
-        let newCard = Card(id: 0, title: "", author: "iOS", contents: "", createdDate: "", modifiedDate: "")
-        editingCardViewController.setContents(newCard)
-        present(editingCardViewController, animated: true) {
-            editingCardViewController.setCompletion({ card in
+        let newCard = Card(id: 0, categoryId: manager.id, title: "", author: "nigayo", contents: "", createdDate: "", modifiedDate: "")
+        presentEditingCardViewController(with: newCard) { card in
+            TodoNetworkManager.addCardRequest(card: card) { card in
+                guard let card = card else {
+                    self.networkErrorAlert(with: "카드 추가 실패!")
+                    return
+                }
                 self.manager.insertCard(with: card)
-            })
+            }
         }
     }
 }
@@ -82,24 +103,32 @@ extension TodoViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(cardReplaced(_:)), name: ColumnManager.cardReplaced, object: manager)
         NotificationCenter.default.addObserver(self, selector: #selector(updateCardCountLabel), name: Task.cardChanged, object: nil)
     }
-    
+        
     @objc private func cardAdded(_ notification: NSNotification) {
         guard let indexPath = notification.userInfo?["indexPath"] as? IndexPath else { return }
-        self.todoTableView.insertRows(at: [indexPath], with: .automatic)
+        DispatchQueue.main.async {
+            self.todoTableView.insertRows(at: [indexPath], with: .automatic)
+        }
     }
     
     @objc private func cardRemoved(_ notification: NSNotification) {
         guard let indexPath = notification.userInfo?["indexPath"] as? IndexPath else { return }
-        self.todoTableView.deleteRows(at: [indexPath], with: .automatic)
+        DispatchQueue.main.async {
+            self.todoTableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
     
     @objc private func cardReplaced(_ notification: NSNotification) {
         guard let indexPath = notification.userInfo?["indexPath"] as? IndexPath else { return }
-        self.todoTableView.reloadRows(at: [indexPath], with: .automatic)
+        DispatchQueue.main.async {
+            self.todoTableView.reloadRows(at: [indexPath], with: .automatic)
+        }
     }
     
     @objc private func updateCardCountLabel() {
-        cardCountLabel.text = manager.cardCount()
+        DispatchQueue.main.async {
+            self.cardCountLabel.text = self.manager.cardCount()
+        }
     }
 }
 
@@ -107,7 +136,14 @@ extension TodoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let title = "Delete"
         let deleteAction = UIContextualAction(style: .destructive, title: title, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            self.manager.removeCard(at: indexPath)
+            let selectedCard = self.manager.getCard(with: indexPath.row)
+            TodoNetworkManager.deleteCardRequest(card: selectedCard) { result in
+                guard result else {
+                    self.networkErrorAlert(with: "카드 삭제 실패!")
+                    return
+                }
+                self.manager.removeCard(at: indexPath)
+            }
         })
         return UISwipeActionsConfiguration(actions:[deleteAction])
     }
@@ -117,7 +153,7 @@ extension TodoViewController: UITableViewDelegate {
             let moveToDone = self.moveToDoneAction(indexPath: indexPath)
             let edit = self.editAction(indexPath: indexPath)
             let delete = self.deleteAction(indexPath: indexPath)
-            return UIMenu(title: "", children: [moveToDone, edit, delete])
+            return self.manager.id == 3 ? UIMenu(title: "", children: [edit, delete]) : UIMenu(title: "", children: [moveToDone, edit, delete])
         })
     }
     
@@ -125,10 +161,16 @@ extension TodoViewController: UITableViewDelegate {
         let title = "Move to done"
         let image = UIImage(systemName: "paperplane")
         return UIAction(title: title, image: image) { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
-                let card = self.manager.getCard(with: indexPath.row)
-                self.manager.removeCard(at: indexPath)
-                NotificationCenter.default.post(name: TodoViewController.moveToDone, object: nil, userInfo: [TodoViewController.moveToDone: card])
+            let card = self.manager.getCard(with: indexPath.row)
+            TodoNetworkManager.moveCardRequest(card: card, category: 3, index: 0) { card in
+                guard let card = card else {
+                    self.networkErrorAlert(with: "카드 이동 실패!")
+                    return
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
+                    self.manager.removeCard(at: indexPath)
+                    NotificationCenter.default.post(name: TodoViewController.moveToDone, object: nil, userInfo: [TodoViewController.moveToDone: card])
+                }
             }
         }
     }
@@ -138,7 +180,7 @@ extension TodoViewController: UITableViewDelegate {
         let image = UIImage(systemName: "pencil.and.outline")
         return UIAction(title: title, image: image) { _ in
             let card = self.manager.getCard(with: indexPath.row)
-            self.presentEditingCardView(with: card, selectedIndex: indexPath)
+            self.editCard(card, selectedIndex: indexPath)
         }
     }
     
@@ -146,8 +188,15 @@ extension TodoViewController: UITableViewDelegate {
         let title = "Delete"
         let image = UIImage(systemName: "trash")
         return UIAction(title: title, image: image, attributes: .destructive) { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
-                self.manager.removeCard(at: indexPath)
+            let selectedCard = self.manager.getCard(with: indexPath.row)
+            TodoNetworkManager.deleteCardRequest(card: selectedCard) { result in
+                guard result else {
+                    self.networkErrorAlert(with: "카드 삭제 실패!")
+                    return
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.67) {
+                    self.manager.removeCard(at: indexPath)
+                }
             }
         }
     }
