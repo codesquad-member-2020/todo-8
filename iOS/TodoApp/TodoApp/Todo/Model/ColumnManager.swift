@@ -32,7 +32,7 @@ class ColumnManager {
     }
     
     func insertCard(at indexPath: IndexPath = IndexPath(row: 0, section: 0), with card: Card) {
-        task.insert(card, at: 0)
+        task.insert(card, at: indexPath.row)
         NotificationCenter.default.post(name: ColumnManager.cardInserted, object: self, userInfo: ["indexPath": indexPath])
     }
     

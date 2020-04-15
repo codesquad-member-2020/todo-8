@@ -28,6 +28,8 @@ class TodoViewController: UIViewController {
         todoTableViewDataSource = TodoTableViewDataSource()
         todoTableView.dataSource = todoTableViewDataSource
         todoTableView.delegate = self
+        todoTableView.dragDelegate = self
+        todoTableView.dropDelegate = self
     }
     
     func addCard(_ card: Card) {
@@ -199,5 +201,36 @@ extension TodoViewController: UITableViewDelegate {
                 }
             }
         }
+    }
+}
+
+extension TodoViewController: UITableViewDragDelegate ,UITableViewDropDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let card = manager.getCard(with: indexPath.row)
+        let itemProvider = NSItemProvider()
+        let dragItem = UIDragItem(itemProvider: itemProvider)
+        dragItem.localObject = card
+        
+        return [dragItem]
+    }
+    
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+        let destinationIndexPath: IndexPath
+        if let indexPath = coordinator.destinationIndexPath {
+            destinationIndexPath = indexPath
+        } else {
+            let section = tableView.numberOfSections - 1
+            let row = tableView.numberOfRows(inSection: section)
+            destinationIndexPath = IndexPath(row: row, section: section)
+        }
+        guard let card = coordinator.items.first?.dragItem.localObject as? Card else { return }
+        TodoNetworkManager.moveCardRequest(card: card, category: manager.id, index: destinationIndexPath.row) { card in
+            guard let card = card else { return }
+            self.manager.insertCard(at: destinationIndexPath, with: card)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+        return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
     }
 }
