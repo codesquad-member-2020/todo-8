@@ -1,6 +1,8 @@
 class MenuComponent { 
   constructor() {
     this.computedLogTime()
+    this.departureLog= ""
+    this.arrivalLog= ""
   }
 
   computedLogTime() {
@@ -8,8 +10,32 @@ class MenuComponent {
     console.log(date);
   }
 
+  columnTitleChange(data) {
+    let target = ''
+    switch(data) {
+      case 1:
+        target = '할 일'
+        break;
+      case 2:
+        target = '하는중'
+        break;
+      case 3:
+        target = '다했음'
+        break;
+    }
+    return target
+  }
+
   render(logData) {
+    console.log(logData)
     const logList = logData.reduce((list, log) => {
+      log.departure == null ?
+        this.defaultLog = `to ${this.columnTitleChange(log.arrival)}` : 
+        (
+          this.defaultLog = `to ${this.columnTitleChange(log.departure)} 
+          from ${this.columnTitleChange(log.arrival)}`
+        )
+
       list += `
       <div class="ui feed" data-id=${log.id}>
             <div class="event">
@@ -33,7 +59,7 @@ class MenuComponent {
                     </font>
                   </a>
                   <font style="vertical-align: inherit;">
-                    to 하는중
+                    ${this.defaultLog}
                   </font>
                 </div>
               </div>

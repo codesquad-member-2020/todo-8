@@ -1,17 +1,23 @@
 class TodoView {
   constructor({
+    loadingSpinner,
     headerComponent,
     menuComponent,
     columnComponent,
     cardComponent,
     modalComponent
   }) {
+    this.loadingSpinner = loadingSpinner
     this.headerComponent = headerComponent;
     this.menuComponent = menuComponent;
     this.columnComponent = columnComponent;
     this.cardComponent = cardComponent;
     this.modalComponent = modalComponent;
     this.todoApp = document.querySelector('.wrapper')
+  }
+
+  renderSpinner() {
+    this.todoApp.insertAdjacentHTML('afterbegin', this.loadingSpinner.render())
   }
 
   render(todoData) {

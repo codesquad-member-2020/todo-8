@@ -13,7 +13,7 @@ body {
 .header-container {
   height: 50px;;
   display: flex;
-  background-color: #000;
+  background-color: #41b883;
   color: #fff;
   justify-content: space-between;
   font-size: 20px;
@@ -27,7 +27,7 @@ body {
 
 .menu-btn {
   margin-right: 40px;
-  background-color: #000;
+  background-color: #41b883;
   color: #fff;
 }
 
@@ -82,6 +82,9 @@ div.ui.feed {
 
 /* 컨텐츠 영역 */
 .content-container {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 40px;
   display: flex;
   justify-content: space-around;
   /* overflow-x: scroll; */
@@ -278,4 +281,30 @@ div.ui.feed {
   color: #22be34;
   font-weight: bold;
   text-align: center;
+}
+
+/* 스피너 */
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 240px;
+}
+.spinner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid #e0e0e0;
+  border-bottom: 5px solid #fe9616;
+  animation: spin 1s linear infinite;
+  position: relative;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

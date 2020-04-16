@@ -11,8 +11,12 @@ class Controller {
   }
 
   initialize() {
+      this.todoView.renderSpinner()
       this.mainModel.fetchInitRenderData(URL.MOCKUP.INIT_RENDER)
-      .then(data => this.todoView.render(data))
+      .then(data => {
+        document.querySelector('.spinner-container').style.display = 'none'
+        this.todoView.render(data)
+      })
       .then(() => {
         this.menuBtnEvent()
         this.dragAndDrop()
