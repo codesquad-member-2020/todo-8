@@ -4,7 +4,6 @@ class ColumnComponent {
   }
 
   render(todoData) {
-    console.log(todoData)
     const todoList = todoData.reduce((list, column) => {
       list += `
         <div class="todo-column column" data-type="column" data-column-id=${column.id}> 
@@ -33,7 +32,12 @@ class ColumnComponent {
       return list
     } ,"") 
     return `
-    <div class="content-container">${todoList}</div>
+    <div class="content-container">
+      ${todoList}
+      <div class="add-column">
+        <div class="add-text"> + Add column</div>
+      </div>
+    </div>
     `
   }
 }
