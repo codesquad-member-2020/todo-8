@@ -80,6 +80,10 @@ public class Category {
     this.cards.add(index, card);
   }
 
+  public Card getFirstCard() {
+    return this.cards.get(0);
+  }
+
   @Override
   public String toString() {
     return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)

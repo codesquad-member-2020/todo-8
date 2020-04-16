@@ -45,58 +45,42 @@ public class TodoService {
     category.addFirstCard(card);
     categoryRepository.save(category);
 
-    Activity added = new Activity.Builder()
-        .author(card.getAuthor())
-        .action("added")
-        .targetName(card.getTitle())
-        .createdTime(now())
-        .build();
+    Activity added = createActivity(card, "added");
     saveActivity(added);
 
     Category savedCategory = categoryRepository.findById(card.getCategoryId())
         .orElseThrow(() -> new CardNotFoundException(card.getId()));
-    Card createdCard = savedCategory.getCards().get(0);
+    Card createdCard = savedCategory.getFirstCard();
     return createdCard;
   }
 
   @Transactional
   public Card updateCard(Card newCard, Long cardId) {
-    Card card = cardRepository.findById(cardId)
+    Card updatedCard = cardRepository.findById(cardId)
         .orElseThrow(() -> new CardNotFoundException(cardId));
-    card.update(newCard);
-    cardRepository.save(card);
+    updatedCard.update(newCard);
+    cardRepository.save(updatedCard);
 
-    Activity updated = new Activity.Builder()
-        .author(card.getAuthor())
-        .action("updated")
-        .targetName(card.getTitle())
-        .createdTime(now())
-        .build();
+    Activity updated = createActivity(updatedCard, "updated");
     saveActivity(updated);
 
-    return card;
+    return updatedCard;
   }
 
   @Transactional
   public Card moveCard(Long cardId, Long targetCategoryId, int index) {
-    Card card = cardRepository.findById(cardId)
+    Card movedCard = cardRepository.findById(cardId)
         .orElseThrow(() -> new CardNotFoundException(cardId));
-    deleteCard(card.getId());
+
+    deleteCard(movedCard.getId());
 
     Category category = categoryRepository.findById(targetCategoryId)
         .orElseThrow(() -> new CategoryNotFoundException(targetCategoryId));
 
-    category.addCard(card, index);
+    category.addCard(movedCard, index);
     categoryRepository.save(category);
 
-    Activity moved = new Activity.Builder()
-        .author(card.getAuthor())
-        .action("moved")
-        .targetName(card.getTitle())
-        .departure(card.getCategoryId())
-        .arrival(targetCategoryId)
-        .createdTime(now())
-        .build();
+    Activity moved = createActivity(movedCard, targetCategoryId, "moved");
     saveActivity(moved);
 
     return cardRepository.findById(cardId).orElseThrow(() -> new CardNotFoundException(cardId));
@@ -108,12 +92,7 @@ public class TodoService {
         .orElseThrow(() -> new CardNotFoundException(cardId));
     cardRepository.delete(deletedCard);
 
-    Activity deleted = new Activity.Builder()
-        .author(deletedCard.getAuthor())
-        .action("deleted")
-        .targetName(deletedCard.getTitle())
-        .createdTime(now())
-        .build();
+    Activity deleted = createActivity(deletedCard, "deleted");
     saveActivity(deleted);
     return deletedCard;
   }
@@ -121,4 +100,25 @@ public class TodoService {
   private void saveActivity(Activity activity) {
     activityRepository.save(activity);
   }
+
+  private Activity createActivity(Card card, String action) {
+    return new Activity.Builder()
+        .author(card.getAuthor())
+        .action(action)
+        .targetName(card.getTitle())
+        .createdTime(now())
+        .build();
+  }
+
+  private Activity createActivity(Card card, Long targetCategoryId, String action) {
+    return new Activity.Builder()
+        .author(card.getAuthor())
+        .action(action)
+        .targetName(card.getTitle())
+        .departure(card.getCategoryId())
+        .arrival(targetCategoryId)
+        .createdTime(now())
+        .build();
+  }
+
 }
