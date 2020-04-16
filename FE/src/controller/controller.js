@@ -11,12 +11,12 @@ class Controller {
   }
 
   initialize() {
-    this.mainModel.fetchInitRenderData(URL.MOCKUP.INIT_RENDER)
+      this.mainModel.fetchInitRenderData(URL.MOCKUP.INIT_RENDER)
       .then(data => this.todoView.render(data))
       .then(() => {
+        this.menuBtnEvent()
         this.dragAndDrop()
         this.eventHandler()
-        this.menuBtnEvent()
       })
     this.todoStatus = ''
     this.eventLog = {

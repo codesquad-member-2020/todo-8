@@ -12,11 +12,13 @@ class TodoView {
     this.todoApp = document.querySelector('.wrapper')
   }
 
+  activityRender(activityData) {
+  }
   render(todoData) {
     this.todoApp.insertAdjacentHTML('afterbegin', this.headerComponent.render())
-    this.todoApp.insertAdjacentHTML('beforeend', this.menuComponent.render(todoData.activity))
-    this.todoApp.insertAdjacentHTML('beforeend', this.columnComponent.render(todoData.category))
-
+    this.todoApp.insertAdjacentHTML('beforeend', this.columnComponent.render(todoData.response.category))
+    this.todoApp.insertAdjacentHTML('beforeend', this.menuComponent.render(todoData.response.activity))
+    
     // console.log(todoData)
   }
 }

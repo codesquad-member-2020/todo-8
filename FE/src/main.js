@@ -5,16 +5,18 @@ import TodoView from './views/TodoView.js'
 import HeaderComponent from './components/HeaderComponent.js'
 import MenuComponent from './components/MenuComponent.js'
 import ColumnComponent from './components/ColumnComponent.js'
-
+import CardComponent from './components/CardComponent.js'
 
 const headerComponent = new HeaderComponent()
 const menuComponent = new MenuComponent()
 const columnComponent = new ColumnComponent()
+const cardComponent = new CardComponent()
 
 const todoView = new TodoView({
   headerComponent,
   menuComponent,
-  columnComponent
+  columnComponent,
+  cardComponent
 })
 const mainModel = new MainModel()
 
