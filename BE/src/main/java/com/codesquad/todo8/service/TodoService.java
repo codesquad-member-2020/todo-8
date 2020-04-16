@@ -50,7 +50,7 @@ public class TodoService {
 
     Category savedCategory = categoryRepository.findById(card.getCategoryId())
         .orElseThrow(() -> new CardNotFoundException(card.getId()));
-    Card createdCard = savedCategory.getCards().get(0);
+    Card createdCard = savedCategory.getFirstCard();
     return createdCard;
   }
 
@@ -92,7 +92,7 @@ public class TodoService {
         .orElseThrow(() -> new CardNotFoundException(cardId));
     cardRepository.delete(deletedCard);
 
-    Activity deleted =createActivity(deletedCard, "deleted");
+    Activity deleted = createActivity(deletedCard, "deleted");
     saveActivity(deleted);
     return deletedCard;
   }
@@ -110,7 +110,7 @@ public class TodoService {
         .build();
   }
 
-  private Activity createActivity(Card card,Long targetCategoryId, String action) {
+  private Activity createActivity(Card card, Long targetCategoryId, String action) {
     return new Activity.Builder()
         .author(card.getAuthor())
         .action(action)
