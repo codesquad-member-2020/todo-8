@@ -2,13 +2,13 @@ package com.codesquad.todo8.controller;
 
 import static com.codesquad.todo8.model.api.ApiResult.OK;
 
-import com.codesquad.todo8.model.api.ApiResult;
 import com.codesquad.todo8.model.Activity;
 import com.codesquad.todo8.model.Card;
 import com.codesquad.todo8.model.Category;
 import com.codesquad.todo8.model.User;
-import com.codesquad.todo8.model.api.response.BoardResponse;
+import com.codesquad.todo8.model.api.ApiResult;
 import com.codesquad.todo8.model.api.request.CardRequest;
+import com.codesquad.todo8.model.api.response.BoardResponse;
 import com.codesquad.todo8.service.TodoService;
 import com.codesquad.todo8.service.user.UserService;
 import java.util.List;

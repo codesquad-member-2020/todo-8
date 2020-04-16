@@ -12,6 +12,8 @@ public interface ActivityRepository extends CrudRepository<Activity, Long> {
 
   @Query("SELECT a.id, a.author, a.action, a.target_name, a.departure, a.arrival, a.create_at "
       + "FROM activity a "
-      + "WHERE a.author = :author")
+      + "WHERE a.author = :author "
+      + "ORDER BY a.create_at DESC "
+      + "LIMIT 15")
   List<Activity> findAllByAuthor(@Param(value = "author") String author);
 }
