@@ -72,7 +72,7 @@ public class TodoService {
     Card movedCard = cardRepository.findById(cardId)
         .orElseThrow(() -> new CardNotFoundException(cardId));
 
-    deleteCard(movedCard.getId());
+    cardRepository.deleteById(movedCard.getId());
 
     Category category = categoryRepository.findById(targetCategoryId)
         .orElseThrow(() -> new CategoryNotFoundException(targetCategoryId));
