@@ -5,8 +5,18 @@ class MainModel {
   }
 
   async fetchInitRenderData(URL) {
-    this.todoData = await todoApi.initRenderRequest(URL)
-    return this.todoData
+    const todoData = await todoApi.initRenderRequest(URL)
+    return todoData
+  }
+
+  async fetchAddCard(URL, data) {
+    const responseAddCard = todoApi.post(URL, data)
+    return responseAddCard
+  }
+
+  async fetchRemoveCard(URL) {
+    const responseRemoveCard = todoApi.delete(URL)
+    return responseRemoveCard
   }
 }
 

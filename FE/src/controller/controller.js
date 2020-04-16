@@ -25,6 +25,12 @@ class Controller {
       title: '',
       column: ''
     }
+    this.addCardData = {
+      "categoryId" : "",
+    	"author" : "nigayo",
+	    "title" : "",
+	    "contents" : ""
+    }
   }
 
   menuBtnEvent() {
@@ -49,7 +55,7 @@ class Controller {
           this.removeTotoCard(event)
           break;
         case 'base-add-btn' : 
-          this.addTodoBtn(event)
+          this.addTodoCard(event)
           break;
         case 'base-cancel-btn' :
           this.cancelTodoBtn(event)
@@ -113,29 +119,19 @@ class Controller {
     this.eventLog.column = column
   }
 
-  addTodoBtn(event) {
+  addTodoCard(event) {
     const parentNode = event.target.closest('.column')
     const todoValue = parentNode.querySelector('.todo-textarea').value
-    const todoList = `
-      <li class="todo-items" draggable="true">
-        <div class="todo-items-title">
-          <span>
-            <i class="file alternate outline icon"></i>
-          ${todoValue}</span>
-          <button class="todo-items-btn btn"><i class="x icon card-remove"></i></button>
-        </div>
-        <div class="todo-writer-container">
-          <span class="todo-items-writer">Added by Huey</span>
-        </div>
-      </li>
-    `
-    parentNode.querySelector('.todo-list').insertAdjacentHTML('afterbegin', todoList);
+    this.todoView.addCardRender(parentNode, todoValue)
     this.initTextarea(event.target);
     this.inputTodoEvent(event);
     this.changeCardNumber(parentNode);
     const addColumn = parentNode.querySelector('.todo-column-title').innerText;
     this.setLogMessage('added', todoValue, addColumn);
     this.activityLogEvent();
+    this.addCardData.categoryId = parentNode.dataset.columnId
+    this.addCardData.title = todoValue
+    this.mainModel.fetchAddCard(`${URL.MOCKUP.BASE_URL}cards`, this.addCardData)
   }
 
   removeTotoCard({target}) {
@@ -147,6 +143,9 @@ class Controller {
       this.changeCardNumber(parentNode)
       this.setLogMessage('removed', removeTitle, removeColumn)
       this.activityLogEvent();
+      const targetCardId = target.closest('.todo-items').dataset.cardId
+      this.mainModel.fetchRemoveCard(`${URL.MOCKUP.BASE_URL}cards/${targetCardId}`)
+        .then(data => console.log(data))
     } else {
       return false;
     }
