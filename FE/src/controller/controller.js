@@ -25,7 +25,7 @@ class Controller {
       title: '',
       column: ''
     }
-    this.addCardData = {
+    this.todoCardData = {
       "categoryId" : "",
     	"author" : "nigayo",
 	    "title" : "",
@@ -129,9 +129,9 @@ class Controller {
     const addColumn = parentNode.querySelector('.todo-column-title').innerText;
     this.setLogMessage('added', todoValue, addColumn);
     this.activityLogEvent();
-    this.addCardData.categoryId = parentNode.dataset.columnId
-    this.addCardData.title = todoValue
-    this.mainModel.fetchAddCard(`${URL.MOCKUP.BASE_URL}cards`, this.addCardData)
+    this.todoCardData.categoryId = parentNode.dataset.columnId
+    this.todoCardData.title = todoValue
+    this.mainModel.fetchAddCard(`${URL.MOCKUP.BASE_URL}cards`, this.todoCardData)
   }
 
   removeTotoCard({target}) {
@@ -210,11 +210,13 @@ class Controller {
 
   updateCheckBtn(event) {
     this.targetListValue.querySelector('span').innerHTML = this.todoListValue
-
     const updateColumn = this.targetListValue.closest('.column').querySelector('.todo-column-title').innerText
     this.setLogMessage('updated', this.todoListValue, updateColumn)
-    console.log(this.eventLog)
     this.activityLogEvent()
+    const targetCardId = this.targetListValue.closest('.todo-items').dataset.cardId
+    this.todoCardData.categoryId = targetCardId
+    this.todoCardData.title = this.todoListValue
+    this.mainModel.fetchUpdateCard(`${URL.MOCKUP.BASE_URL}cards/${targetCardId}`, this.todoCardData)
   }
 
   updateCancelBtn() {
@@ -222,12 +224,7 @@ class Controller {
   }
 
   activityLogEvent() {
-    console.log('실행?')
     this.addLogMessage(this.eventLog)
-  }
-
-  computedDate() {
-    // 현재시간에서 추가할떄의 시간을 빼주어서 얼마나 경과되었는지를 계산
   }
 
   addLogMessage({time, event, title, column}) {

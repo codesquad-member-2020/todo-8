@@ -33,6 +33,18 @@ const todoApi = {
     const resGet = await res.json();
     return resGet;
   },
+
+  async put(url, data) {
+    const config = {
+        method: 'PUT',
+        mode: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+    };
+    const res = await fetch(url, config);
+    const resPut = await res.json();
+    return resPut;
+  },
 };
 
 export { todoApi }

@@ -18,6 +18,11 @@ class MainModel {
     const responseRemoveCard = todoApi.delete(URL)
     return responseRemoveCard
   }
+
+  async fetchUpdateCard(URL, data) {
+    const responseUpdateCard = todoApi.put(URL, data)
+    return responseUpdateCard
+  }
 }
 
 export default MainModel
