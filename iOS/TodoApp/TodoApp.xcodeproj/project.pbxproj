@@ -26,6 +26,7 @@
 		44A7DBEF243EE02200F374D2 /* TodoTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBEE243EE02200F374D2 /* TodoTableViewDataSource.swift */; };
 		44A7DBF1243EE52600F374D2 /* ContentTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBF0243EE52600F374D2 /* ContentTextViewDelegate.swift */; };
 		44DB7F7B2448662900A532E3 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DB7F7A2448662900A532E3 /* Activities.swift */; };
+		44DB7F7D2448AF5600A532E3 /* ActivityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DB7F7C2448AF5600A532E3 /* ActivityData.swift */; };
 		44DC45F22448561D00BAB65A /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DC45F12448561D00BAB65A /* ActivitiesViewController.swift */; };
 		44DC45F5244858F200BAB65A /* ActivitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DC45F4244858F200BAB65A /* ActivitiesTableViewCell.swift */; };
 		44DDBA932445BB5300C74FF4 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DDBA922445BB5300C74FF4 /* Task.swift */; };
@@ -56,6 +57,7 @@
 		44A7DBEE243EE02200F374D2 /* TodoTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewDataSource.swift; sourceTree = "<group>"; };
 		44A7DBF0243EE52600F374D2 /* ContentTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTextViewDelegate.swift; sourceTree = "<group>"; };
 		44DB7F7A2448662900A532E3 /* Activities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
+		44DB7F7C2448AF5600A532E3 /* ActivityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityData.swift; sourceTree = "<group>"; };
 		44DC45F12448561D00BAB65A /* ActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
 		44DC45F4244858F200BAB65A /* ActivitiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewCell.swift; sourceTree = "<group>"; };
 		44DDBA922445BB5300C74FF4 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				44DB7F7A2448662900A532E3 /* Activities.swift */,
+				44DB7F7C2448AF5600A532E3 /* ActivityData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			files = (
 				4490DA542446F874000CAC44 /* TodoNetworkManager.swift in Sources */,
 				44A7DBEF243EE02200F374D2 /* TodoTableViewDataSource.swift in Sources */,
+				44DB7F7D2448AF5600A532E3 /* ActivityData.swift in Sources */,
 				44FAC1A22442035200950BB9 /* EditingViewModel.swift in Sources */,
 				443D0FED243B3F3D003F2635 /* ViewController.swift in Sources */,
 				44A7DBCD243DC4BD00F374D2 /* DataManager.swift in Sources */,

@@ -47,7 +47,9 @@ extension ActivitiesViewController: UITableViewDataSource {
             let activities = activities else {
                 return ActivitiesTableViewCell()
         }
-        cell.configure(activities: activities[indexPath.row].targetName, timeRecord: activities[indexPath.row].createdTime)
+        let data = activities[indexPath.row]
+        
+        cell.configure(activities: data)
         return cell
     }
 }
