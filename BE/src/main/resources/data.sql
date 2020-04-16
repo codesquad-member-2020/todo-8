@@ -14,13 +14,13 @@ INSERT INTO card (id, category_id, title, author, contents, category_key) VALUES
 INSERT INTO card (id, category_id, title, author, contents, category_key) VALUES (null, 3,'프로젝트 생성', 'nigayo','생성했다', 2);
 
 INSERT INTO activity (id, author, `action`, target_name, departure, arrival, create_at) VALUES(null, 'nigayo', 'moved','github 공부하기', 1, 2, '2020-03-01');
-INSERT INTO activity (id, author, `action`, target_name, create_at) VALUES(null, 'nigayo', 'added','설정 파일 분리 리팩토링', '2020-03-02');
-INSERT INTO activity (id, author, `action`, target_name, create_at) VALUES(null, 'nigayo', 'added','추가합니다', '2020-03-03');
-INSERT INTO activity (id, author, `action`, target_name, create_at) VALUES(null, 'nigayo', 'updated','로그1', '2020-03-04');
-INSERT INTO activity (id, author, `action`, target_name, create_at) VALUES(null, 'nigayo', 'added','로그2', '2020-03-05');
-INSERT INTO activity (id, author, `action`, target_name, create_at) VALUES(null, 'nigayo', 'added','로그3', '2020-03-06');
-INSERT INTO activity (id, author, `action`, target_name, create_at) VALUES(null, 'nigayo', 'added','로그4', '2020-03-07');
-INSERT INTO activity (id, author, `action`, target_name, create_at) VALUES(null, 'nigayo', 'added','로그5', '2020-03-08');
+INSERT INTO activity (id, author, `action`, target_name, arrival, create_at) VALUES(null, 'nigayo', 'added','설정 파일 분리 리팩토링', 1, '2020-03-02');
+INSERT INTO activity (id, author, `action`, target_name, arrival, create_at) VALUES(null, 'nigayo', 'added','추가합니다', 2, '2020-03-03');
+INSERT INTO activity (id, author, `action`, target_name, arrival, create_at) VALUES(null, 'nigayo', 'updated','로그1', 3, '2020-03-04');
+INSERT INTO activity (id, author, `action`, target_name, arrival, create_at) VALUES(null, 'nigayo', 'added','로그2', 3, '2020-03-05');
+INSERT INTO activity (id, author, `action`, target_name, arrival, create_at) VALUES(null, 'nigayo', 'deleted','로그3', 1, '2020-03-06');
+INSERT INTO activity (id, author, `action`, target_name, arrival, create_at) VALUES(null, 'nigayo', 'deleted','로그4', 2,'2020-03-07');
+INSERT INTO activity (id, author, `action`, target_name, arrival, create_at) VALUES(null, 'nigayo', 'deleted','로그5', 3,'2020-03-08');
 INSERT INTO activity (id, author, `action`, target_name,departure, arrival, create_at) VALUES(null, 'nigayo', 'moved','로그6', 1, 2, '2020-03-09');
 INSERT INTO activity (id, author, `action`, target_name,departure, arrival, create_at) VALUES(null, 'nigayo', 'moved','로그7', 1, 3, '2020-03-10');
 INSERT INTO activity (id, author, `action`, target_name,departure, arrival, create_at) VALUES(null, 'nigayo', 'moved','로그8', 3, 1, '2020-03-11');
