@@ -25,6 +25,7 @@
 		44A7DBCD243DC4BD00F374D2 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBCC243DC4BD00F374D2 /* DataManager.swift */; };
 		44A7DBEF243EE02200F374D2 /* TodoTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBEE243EE02200F374D2 /* TodoTableViewDataSource.swift */; };
 		44A7DBF1243EE52600F374D2 /* ContentTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBF0243EE52600F374D2 /* ContentTextViewDelegate.swift */; };
+		44DB7F7B2448662900A532E3 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DB7F7A2448662900A532E3 /* Activities.swift */; };
 		44DC45F22448561D00BAB65A /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DC45F12448561D00BAB65A /* ActivitiesViewController.swift */; };
 		44DC45F5244858F200BAB65A /* ActivitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DC45F4244858F200BAB65A /* ActivitiesTableViewCell.swift */; };
 		44DDBA932445BB5300C74FF4 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DDBA922445BB5300C74FF4 /* Task.swift */; };
@@ -54,6 +55,7 @@
 		44A7DBCC243DC4BD00F374D2 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		44A7DBEE243EE02200F374D2 /* TodoTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewDataSource.swift; sourceTree = "<group>"; };
 		44A7DBF0243EE52600F374D2 /* ContentTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTextViewDelegate.swift; sourceTree = "<group>"; };
+		44DB7F7A2448662900A532E3 /* Activities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
 		44DC45F12448561D00BAB65A /* ActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
 		44DC45F4244858F200BAB65A /* ActivitiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewCell.swift; sourceTree = "<group>"; };
 		44DDBA922445BB5300C74FF4 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -158,10 +160,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		44DB7F792448661D00A532E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				44DB7F7A2448662900A532E3 /* Activities.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		44DC45F02448554900BAB65A /* Activities */ = {
 			isa = PBXGroup;
 			children = (
 				44DC45F12448561D00BAB65A /* ActivitiesViewController.swift */,
+				44DB7F792448661D00A532E3 /* Model */,
 				44DC45F3244858DE00BAB65A /* View */,
 			);
 			path = Activities;
@@ -276,6 +287,7 @@
 				44DC45F22448561D00BAB65A /* ActivitiesViewController.swift in Sources */,
 				44DDBA932445BB5300C74FF4 /* Task.swift in Sources */,
 				44DC45F5244858F200BAB65A /* ActivitiesTableViewCell.swift in Sources */,
+				44DB7F7B2448662900A532E3 /* Activities.swift in Sources */,
 				44FAC1A02441FAE800950BB9 /* TitleTextFieldDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
