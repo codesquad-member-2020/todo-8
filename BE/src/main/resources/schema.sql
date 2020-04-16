@@ -8,7 +8,7 @@ CREATE TABLE user
     id        bigint      NOT NULL AUTO_INCREMENT,
     user_name varchar(25) NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT unq_user_id UNIQUE (user_name),
+    CONSTRAINT unq_user_id UNIQUE (user_name)
 );
 
 CREATE TABLE category

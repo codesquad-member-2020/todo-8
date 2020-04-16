@@ -20,29 +20,36 @@ public class Category {
   @JsonIgnore
   private final Long userId;
 
-  private final String title;
-
   private final String author;
 
   @Column(value = "create_at")
   private final LocalDateTime createdDate;
 
+  private String title;
+
   @MappedCollection(idColumn = "category_id", keyColumn = "category_key")
   private List<Card> cards = new ArrayList<>();
 
-  public Category(Long id, Long userId, String title, String author,
+  private Category(Long id, Long userId, String author, String title,
       LocalDateTime createdDate) {
     this.id = id;
     this.userId = userId;
-    this.title = title;
     this.author = author;
+    this.title = title;
     this.createdDate = createdDate;
+  }
+
+  public static Category of(Long userId, String title, String author) {
+    return new Category(null, userId, title, author, getNow());
+  }
+
+  private static LocalDateTime getNow() {
+    return LocalDateTime.now();
   }
 
   Category withId(Long id) {
     return new Category(id, this.userId, this.title, this.author, this.createdDate);
   }
-
 
   public Long getId() {
     return id;
@@ -80,8 +87,8 @@ public class Category {
     this.cards.add(index, card);
   }
 
-  public Card getFirstCard() {
-    return this.cards.get(0);
+  public void updateTitle(String title) {
+    this.title = title;
   }
 
   @Override
