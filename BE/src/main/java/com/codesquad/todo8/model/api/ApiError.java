@@ -1,4 +1,4 @@
-package com.codesquad.todo8.api;
+package com.codesquad.todo8.model.api;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.http.HttpStatus;

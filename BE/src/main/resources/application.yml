@@ -7,7 +7,7 @@ spring:
     username: todo8
     password: 1234
     schema: classpath:schema.sql
-    data: classpath:data.sql
+#    data: classpath:data.sql
     initialization-mode: always
     hikari:
       maximum-pool-size: 10

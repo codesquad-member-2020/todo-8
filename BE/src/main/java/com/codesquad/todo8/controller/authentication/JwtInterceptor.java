@@ -1,5 +1,6 @@
 package com.codesquad.todo8.controller.authentication;
 
+import com.codesquad.todo8.error.UnauthorizedException;
 import com.codesquad.todo8.service.user.UserService;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -16,7 +17,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class JwtInterceptor implements HandlerInterceptor {
 
   // JWT 요청 : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Im5pZ2F5byJ9.Vs0bzwNZ9QgGiPYzvEgGsL0Iylp6NjnPcaQtI_h3AxE
-  private static Logger logger = LoggerFactory.getLogger(JwtInterceptor.class);
+  private static final Logger logger = LoggerFactory.getLogger(JwtInterceptor.class);
   private final UserService userService;
 
   @Value("${jwt.token.secret}")
@@ -57,8 +58,7 @@ public class JwtInterceptor implements HandlerInterceptor {
           .getBody()
           .get("userName", String.class);
     } catch (JwtException e) {
-      logger.debug("JwtException : {}", e.getMessage());
-      return null;
+      throw new UnauthorizedException(e.getMessage());
     }
   }
 }

@@ -1,8 +1,8 @@
 package com.codesquad.todo8.controller;
 
-import static com.codesquad.todo8.api.ApiResult.OK;
+import static com.codesquad.todo8.model.api.ApiResult.OK;
 
-import com.codesquad.todo8.api.ApiResult;
+import com.codesquad.todo8.model.api.ApiResult;
 import java.text.SimpleDateFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

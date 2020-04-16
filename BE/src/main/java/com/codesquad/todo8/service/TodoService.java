@@ -1,5 +1,7 @@
 package com.codesquad.todo8.service;
 
+import static java.time.LocalDateTime.now;
+
 import com.codesquad.todo8.error.CardNotFoundException;
 import com.codesquad.todo8.error.CategoryNotFoundException;
 import com.codesquad.todo8.model.Activity;
@@ -43,55 +45,43 @@ public class TodoService {
     category.addFirstCard(card);
     categoryRepository.save(category);
 
-    Activity activity = Activity.add(
-        card.getAuthor(),
-        "added",
-        card.getTitle()
-    );
-    saveActivity(activity);
-    return card;
+    Activity added = createActivity(card, "added");
+    saveActivity(added);
+
+    Category savedCategory = categoryRepository.findById(card.getCategoryId())
+        .orElseThrow(() -> new CardNotFoundException(card.getId()));
+    Card createdCard = savedCategory.getCards().get(0);
+    return createdCard;
   }
 
   @Transactional
   public Card updateCard(Card newCard, Long cardId) {
-    Card card = cardRepository.findById(cardId)
+    Card updatedCard = cardRepository.findById(cardId)
         .orElseThrow(() -> new CardNotFoundException(cardId));
-    card.update(newCard);
-    cardRepository.save(card);
+    updatedCard.update(newCard);
+    cardRepository.save(updatedCard);
 
-    Activity activity = Activity.update(
-        card.getAuthor(),
-        "updated",
-        card.getTitle(),
-        null,
-        null
-    );
-    saveActivity(activity);
+    Activity updated = createActivity(updatedCard, "updated");
+    saveActivity(updated);
 
-    return card;
+    return updatedCard;
   }
 
   @Transactional
-  public Card moveCard(Long cardId, Long categoryId, int cardIndex) {
-    Card card = cardRepository.findById(cardId)
+  public Card moveCard(Long cardId, Long targetCategoryId, int index) {
+    Card movedCard = cardRepository.findById(cardId)
         .orElseThrow(() -> new CardNotFoundException(cardId));
-    deleteCard(card.getId());
 
-    Category category = categoryRepository.findById(categoryId)
-        .orElseThrow(() -> new CategoryNotFoundException(categoryId));
+    deleteCard(movedCard.getId());
 
-    category.addCard(card, cardIndex);
+    Category category = categoryRepository.findById(targetCategoryId)
+        .orElseThrow(() -> new CategoryNotFoundException(targetCategoryId));
+
+    category.addCard(movedCard, index);
     categoryRepository.save(category);
 
-    Activity activity = Activity.move(
-        card.getAuthor(),
-        "moved",
-        card.getTitle(),
-        card.getCategoryId(),
-        categoryId
-    );
-    saveActivity(activity);
-
+    Activity moved = createActivity(movedCard, targetCategoryId, "moved");
+    saveActivity(moved);
     return cardRepository.findById(cardId).orElseThrow(() -> new CardNotFoundException(cardId));
   }
 
@@ -101,13 +91,8 @@ public class TodoService {
         .orElseThrow(() -> new CardNotFoundException(cardId));
     cardRepository.delete(deletedCard);
 
-    Activity activity = Activity.remove(
-        deletedCard.getAuthor(),
-        "deleted",
-        deletedCard.getTitle()
-    );
-    saveActivity(activity);
-
+    Activity deleted = createActivity(deletedCard, "deleted");
+    saveActivity(deleted);
     return deletedCard;
   }
 
@@ -124,12 +109,33 @@ public class TodoService {
     return categoryRepository.save(category);
   }
 
+  @Transactional
   public void deleteCategory(Long categoryId) {
     categoryRepository.deleteById(categoryId);
   }
 
-  @Transactional
-  public void saveActivity(Activity activity) {
+  private void saveActivity(Activity activity) {
     activityRepository.save(activity);
   }
+
+  private Activity createActivity(Card card, String action) {
+    return new Activity.Builder()
+        .author(card.getAuthor())
+        .action(action)
+        .targetName(card.getTitle())
+        .createdTime(now())
+        .build();
+  }
+
+  private Activity createActivity(Card card, Long targetCategoryId, String action) {
+    return new Activity.Builder()
+        .author(card.getAuthor())
+        .action(action)
+        .targetName(card.getTitle())
+        .departure(card.getCategoryId())
+        .arrival(targetCategoryId)
+        .createdTime(now())
+        .build();
+  }
+
 }
