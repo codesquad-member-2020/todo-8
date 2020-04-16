@@ -1,3 +1,19 @@
+spring:
+  profiles:
+    active: dev
+
+
+logging:
+  pattern:
+    console: "%date  %highlight(%-5level) %cyan(%-40.40logger{40}) : %msg%n"
+  level:
+    org.springframework.web: error
+    com.codesquad.todo8: debug
+    sql: debug
+jwt:
+  token:
+    secret: Il9g5guhxIzpOz+uxvHF9DBY+hv9R9a6yBEzeqvFobA=
+
 ---
 spring:
   profiles: prod
@@ -27,14 +43,3 @@ spring:
       path: /h2-console
 
 ---
-logging:
-  pattern:
-    console: "%date  %highlight(%-5level) %cyan(%-40.40logger{40}) : %msg%n"
-  level:
-    org.springframework.web: error
-    com.codesquad.todo8: debug
-    sql: debug
-jwt:
-  token:
-    secret: Il9g5guhxIzpOz+uxvHF9DBY+hv9R9a6yBEzeqvFobA=
-

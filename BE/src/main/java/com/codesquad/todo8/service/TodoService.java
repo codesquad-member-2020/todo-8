@@ -123,6 +123,7 @@ public class TodoService {
         .author(card.getAuthor())
         .action(action)
         .targetName(card.getTitle())
+        .arrival(card.getCategoryId())
         .createdTime(now())
         .build();
   }
