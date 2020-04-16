@@ -1,16 +1,16 @@
 class ColumnComponent {
-  constructor() {}
-
-  initialize() {}
+  constructor({ cardComponent }) {
+    this.cardComponent = cardComponent
+  }
 
   render(todoData) {
     console.log(todoData)
-    const todoList = todoData.reduce((list, log) => {
+    const todoList = todoData.reduce((list, column) => {
       list += `
-        <div class="todo-column column" data-type="column" data-column-id=${log.id}> 
+        <div class="todo-column column" data-type="column" data-column-id=${column.id}> 
           <div class="todo-column-header">
-            <span class="todo-num">${log.cards.length}</span>
-            <span class="todo-column-title">${log.title}</span>
+            <span class="todo-num">${column.cards.length}</span>
+            <span class="todo-column-title">${column.title}</span>
             <button class="todo-column-add-btn todo-add-btn btn">
               <i class="plus icon"></i>
             </button>
@@ -25,7 +25,9 @@ class ColumnComponent {
               <button class="base-cancel-btn">Cancel</button>
             </div>
           </div>
-          <ul class="todo-list droppable-area1"></ul>
+          <ul class="todo-list droppable-area1">
+            ${this.cardComponent.render(column.cards)}
+          </ul>
         </div>
       `
       return list
