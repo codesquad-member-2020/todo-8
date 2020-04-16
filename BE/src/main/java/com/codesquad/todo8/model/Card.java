@@ -33,7 +33,7 @@ public class Card {
   @Column(value = "modify_at")
   private LocalDateTime modifiedDate;
 
-  public Card(Long id, Long categoryId, String author, String title, String contents,
+  private Card(Long id, Long categoryId, String author, String title, String contents,
       Integer tabIndex, LocalDateTime createdDate, LocalDateTime modifiedDate) {
     this.id = id;
     this.categoryId = categoryId;

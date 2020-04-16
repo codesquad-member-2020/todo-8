@@ -50,7 +50,7 @@ public class TodoService {
 
     Category savedCategory = categoryRepository.findById(card.getCategoryId())
         .orElseThrow(() -> new CardNotFoundException(card.getId()));
-    Card createdCard = savedCategory.getFirstCard();
+    Card createdCard = savedCategory.getCards().get(0);
     return createdCard;
   }
 

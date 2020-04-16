@@ -30,7 +30,7 @@ public class Category {
   @MappedCollection(idColumn = "category_id", keyColumn = "category_key")
   private List<Card> cards = new ArrayList<>();
 
-  public Category(Long id, Long userId, String title, String author,
+  private Category(Long id, Long userId, String title, String author,
       LocalDateTime createdDate) {
     this.id = id;
     this.userId = userId;
@@ -78,10 +78,6 @@ public class Category {
 
   public void moveCard(int index, Card card) {
     this.cards.add(index, card);
-  }
-
-  public Card getFirstCard() {
-    return this.cards.get(0);
   }
 
   @Override

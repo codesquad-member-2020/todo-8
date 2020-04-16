@@ -28,6 +28,16 @@ public class BoardResponse {
     return activity;
   }
 
+  public BoardResponse setCategory(List<Category> category) {
+    this.category = category;
+    return this;
+  }
+
+  public BoardResponse setActivity(List<Activity> activity) {
+    this.activity = activity;
+    return this;
+  }
+
   @Override
   public String toString() {
     return new ToStringBuilder(this)
