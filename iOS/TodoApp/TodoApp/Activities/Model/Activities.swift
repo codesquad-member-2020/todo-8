@@ -9,7 +9,7 @@
 import Foundation
 
 struct ActivitiesResponse: Codable {
-    var response: Activities
+    var response: [Activities]
 }
 
 struct Activities: Codable {
