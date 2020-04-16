@@ -71,10 +71,10 @@
             </objects>
             <point key="canvasLocation" x="846.2311557788945" y="137.41007194244605"/>
         </scene>
-        <!--View Controller-->
+        <!--Activities View Controller-->
         <scene sceneID="TA2-mI-mXt">
             <objects>
-                <viewController id="V6k-0P-BU8" sceneMemberID="viewController">
+                <viewController id="V6k-0P-BU8" customClass="ActivitiesViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Mp-q5-xIt">
                         <rect key="frame" x="0.0" y="0.0" width="388" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,6 +113,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Sw-NM-Hcs"/>
                     </view>
+                    <connections>
+                        <outlet property="activitiesTableView" destination="vN6-aY-Yu4" id="Ua8-mj-Nge"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ig1-to-0lT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
