@@ -26,6 +26,7 @@
 		44A7DBEF243EE02200F374D2 /* TodoTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBEE243EE02200F374D2 /* TodoTableViewDataSource.swift */; };
 		44A7DBF1243EE52600F374D2 /* ContentTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7DBF0243EE52600F374D2 /* ContentTextViewDelegate.swift */; };
 		44DC45F22448561D00BAB65A /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DC45F12448561D00BAB65A /* ActivitiesViewController.swift */; };
+		44DC45F5244858F200BAB65A /* ActivitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DC45F4244858F200BAB65A /* ActivitiesTableViewCell.swift */; };
 		44DDBA932445BB5300C74FF4 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DDBA922445BB5300C74FF4 /* Task.swift */; };
 		44DF93B924456A0D00B6998F /* ColumnManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF93B824456A0D00B6998F /* ColumnManager.swift */; };
 		44FAC1A02441FAE800950BB9 /* TitleTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FAC19F2441FAE800950BB9 /* TitleTextFieldDelegate.swift */; };
@@ -54,6 +55,7 @@
 		44A7DBEE243EE02200F374D2 /* TodoTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewDataSource.swift; sourceTree = "<group>"; };
 		44A7DBF0243EE52600F374D2 /* ContentTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTextViewDelegate.swift; sourceTree = "<group>"; };
 		44DC45F12448561D00BAB65A /* ActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
+		44DC45F4244858F200BAB65A /* ActivitiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewCell.swift; sourceTree = "<group>"; };
 		44DDBA922445BB5300C74FF4 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		44DF93B824456A0D00B6998F /* ColumnManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnManager.swift; sourceTree = "<group>"; };
 		44FAC19F2441FAE800950BB9 /* TitleTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextFieldDelegate.swift; sourceTree = "<group>"; };
@@ -160,8 +162,17 @@
 			isa = PBXGroup;
 			children = (
 				44DC45F12448561D00BAB65A /* ActivitiesViewController.swift */,
+				44DC45F3244858DE00BAB65A /* View */,
 			);
 			path = Activities;
+			sourceTree = "<group>";
+		};
+		44DC45F3244858DE00BAB65A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				44DC45F4244858F200BAB65A /* ActivitiesTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		44DF93B7244569F000B6998F /* Model */ = {
@@ -264,6 +275,7 @@
 				443D1016243CC77A003F2635 /* EditingCardViewController.swift in Sources */,
 				44DC45F22448561D00BAB65A /* ActivitiesViewController.swift in Sources */,
 				44DDBA932445BB5300C74FF4 /* Task.swift in Sources */,
+				44DC45F5244858F200BAB65A /* ActivitiesTableViewCell.swift in Sources */,
 				44FAC1A02441FAE800950BB9 /* TitleTextFieldDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
