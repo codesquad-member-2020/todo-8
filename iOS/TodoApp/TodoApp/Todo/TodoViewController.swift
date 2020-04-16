@@ -10,6 +10,7 @@ import UIKit
 
 class TodoViewController: UIViewController {
     static let moveToDone = NSNotification.Name.init("moveToDone")
+    static let cardDropped = NSNotification.Name.init("cardDropped")
     
     @IBOutlet weak var cardCountLabel: CardCountLabel!
     @IBOutlet weak var columnTitleLabel: UILabel!
@@ -22,12 +23,15 @@ class TodoViewController: UIViewController {
         }
     }
     private var todoTableViewDataSource: TodoTableViewDataSource!
+    private var draggedCellIndex: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         todoTableViewDataSource = TodoTableViewDataSource()
         todoTableView.dataSource = todoTableViewDataSource
         todoTableView.delegate = self
+        todoTableView.dragDelegate = self
+        todoTableView.dropDelegate = self
     }
     
     func addCard(_ card: Card) {
@@ -199,5 +203,59 @@ extension TodoViewController: UITableViewDelegate {
                 }
             }
         }
+    }
+}
+
+extension TodoViewController: UITableViewDragDelegate ,UITableViewDropDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let card = manager.getCard(with: indexPath.row)
+        let itemProvider = NSItemProvider()
+        let dragItem = UIDragItem(itemProvider: itemProvider)
+        dragItem.localObject = card
+        self.draggedCellIndex = indexPath
+        NotificationCenter.default.addObserver(self, selector: #selector(cardDropped(_:)), name: TodoViewController.cardDropped, object: nil)
+        return [dragItem]
+    }
+    
+    @objc func cardDropped(_ notification: NSNotification) {
+        if let result = notification.userInfo?[TodoViewController.cardDropped] as? Bool, result == true, let index = draggedCellIndex {
+            self.manager.removeCard(at: index)
+        }
+        NotificationCenter.default.removeObserver(self, name: TodoViewController.cardDropped, object: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+        let destinationIndexPath: IndexPath
+        if let indexPath = coordinator.destinationIndexPath {
+            destinationIndexPath = indexPath
+        } else {
+            let section = tableView.numberOfSections - 1
+            let row = tableView.numberOfRows(inSection: section)
+            destinationIndexPath = IndexPath(row: row, section: section)
+        }
+        
+        guard let card = coordinator.items.first?.dragItem.localObject as? Card else { return }
+        guard card.categoryId != manager.id || draggedCellIndex != destinationIndexPath else {
+            NotificationCenter.default.post(name: TodoViewController.cardDropped, object: nil, userInfo: [TodoViewController.cardDropped: false])
+            return
+        }
+        coordinator.items.first?.dragItem.localObject = true
+        TodoNetworkManager.moveCardRequest(card: card, category: manager.id, index: destinationIndexPath.row) { card in
+            guard let card = card else {
+                NotificationCenter.default.post(name: TodoViewController.cardDropped, object: nil, userInfo: [TodoViewController.cardDropped: false])
+                self.networkErrorAlert(with: "카드 이동 실패!")
+                return
+            }
+            OperationQueue.main.addOperation {
+                NotificationCenter.default.post(name: TodoViewController.cardDropped, object: nil, userInfo: [TodoViewController.cardDropped: true])
+            }
+            OperationQueue.main.addOperation {
+                self.manager.insertCard(at: destinationIndexPath, with: card)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+        return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
     }
 }
