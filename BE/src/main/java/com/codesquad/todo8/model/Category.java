@@ -49,6 +49,17 @@ public class Category {
     return cards;
   }
 
+  public Category(Long userId, String title, String author) {
+    this.userId = userId;
+    this.title = title;
+    this.author = author;
+    this.createdDate = getNow();
+  }
+
+  public static Category of(Long userId, String author, String title) {
+    return new Category(userId, title, author);
+  }
+
   public String getAuthor() {
     return author;
   }
@@ -64,6 +75,14 @@ public class Category {
 
   public void moveCard(int index, Card card) {
     this.cards.add(index, card);
+  }
+
+  public void updateTitle(String title) {
+    this.title = title;
+  }
+
+  private static LocalDateTime getNow() {
+    return LocalDateTime.now();
   }
 
   @Override

@@ -92,7 +92,6 @@ public class TodoService {
     );
     saveActivity(activity);
 
-
     return cardRepository.findById(cardId).orElseThrow(() -> new CardNotFoundException(cardId));
   }
 
@@ -110,6 +109,23 @@ public class TodoService {
     saveActivity(activity);
 
     return deletedCard;
+  }
+
+  @Transactional
+  public Category createCategory(Category newCategory) {
+    return categoryRepository.save(newCategory);
+  }
+
+  @Transactional
+  public Category updateCategoryTitle(Long categoryId, String title) {
+    Category category = categoryRepository.findById(categoryId)
+        .orElseThrow(() -> new CategoryNotFoundException(categoryId));
+    category.updateTitle(title);
+    return categoryRepository.save(category);
+  }
+
+  public void deleteCategory(Long categoryId) {
+    categoryRepository.deleteById(categoryId);
   }
 
   @Transactional
