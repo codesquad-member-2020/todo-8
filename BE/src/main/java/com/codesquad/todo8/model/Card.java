@@ -25,7 +25,7 @@ public class Card {
   private String contents;
 
   @Column(value = "category_key")
-  private Integer tabIndex;
+  private final Integer tabIndex;
 
   @Column(value = "create_at")
   private final LocalDateTime createdDate;
