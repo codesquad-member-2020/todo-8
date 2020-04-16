@@ -20,15 +20,15 @@ public class Card {
 
   private final String author;
 
-  private String title;
-
-  private String contents;
-
   @Column(value = "category_key")
   private final Integer tabIndex;
 
   @Column(value = "create_at")
   private final LocalDateTime createdDate;
+
+  private String title;
+
+  private String contents;
 
   @Column(value = "modify_at")
   private LocalDateTime modifiedDate;

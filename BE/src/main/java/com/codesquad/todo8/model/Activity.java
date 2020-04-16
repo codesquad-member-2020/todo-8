@@ -109,7 +109,6 @@ public class Activity {
     private Long departure;
     private Long arrival;
     private LocalDateTime createdTime;
-    ;
 
     public Builder() {
     }
