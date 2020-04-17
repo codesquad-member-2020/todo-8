@@ -1,11 +1,12 @@
-class Controller {
-  constructor() {
-    this.initialize()
-  }
+import { URL } from '../utils/ApiUrl.js'
 
-  initialize() {
-    this.dragAndDrop()
-    this.eventHandler()
+class Controller {
+  constructor({
+    mainModel,
+    todoView
+  }) {
+    this.mainModel = mainModel
+    this.todoView = todoView
     this.todoStatus = ''
     this.eventLog = {
       time: '방금',
@@ -13,6 +14,40 @@ class Controller {
       title: '',
       column: ''
     }
+    this.todoCardData = {
+      "categoryId" : "",
+    	"author" : "ttozzi",
+	    "title" : "",
+	    "contents" : ""
+    }
+    this.initialize()
+  }
+
+  initialize() {
+      this.todoView.renderSpinner()
+      this.mainModel.fetchInitRenderData(URL.MOCKUP.INIT_RENDER)
+      .then(data => {
+        document.querySelector('.spinner-container').style.display = 'none'
+        this.todoView.render(data)
+      })
+      .then(() => {
+        this.menuBtnEvent()
+        this.dragAndDrop(this.mainModel, this.todoView, this.eventLog)
+        this.eventHandler()
+      })
+    
+  }
+
+  menuBtnEvent() {
+    jb('.menu-btn').on("click", () => 
+    jb('.menu-container')
+      .transition('fly left')
+    )
+
+    jb('.menu-close-btn').on("click", () => {
+    jb('.menu-container')
+      .transition('fly left')
+    })
   }
 
   eventHandler() {
@@ -25,7 +60,7 @@ class Controller {
           this.removeTotoCard(event)
           break;
         case 'base-add-btn' : 
-          this.addTodoBtn(event)
+          this.addTodoCard(event)
           break;
         case 'base-cancel-btn' :
           this.cancelTodoBtn(event)
@@ -89,29 +124,19 @@ class Controller {
     this.eventLog.column = column
   }
 
-  addTodoBtn(event) {
+  addTodoCard(event) {
     const parentNode = event.target.closest('.column')
     const todoValue = parentNode.querySelector('.todo-textarea').value
-    const todoList = `
-      <li class="todo-items" draggable="true">
-        <div class="todo-items-title">
-          <span>
-            <i class="file alternate outline icon"></i>
-          ${todoValue}</span>
-          <button class="todo-items-btn btn"><i class="x icon card-remove"></i></button>
-        </div>
-        <div class="todo-writer-container">
-          <span class="todo-items-writer">Added by Huey</span>
-        </div>
-      </li>
-    `
-    parentNode.querySelector('.todo-list').insertAdjacentHTML('afterbegin', todoList);
+    this.todoView.addCardRender(parentNode, todoValue)
     this.initTextarea(event.target);
     this.inputTodoEvent(event);
     this.changeCardNumber(parentNode);
     const addColumn = parentNode.querySelector('.todo-column-title').innerText;
     this.setLogMessage('added', todoValue, addColumn);
     this.activityLogEvent();
+    this.todoCardData.categoryId = parentNode.dataset.columnId
+    this.todoCardData.title = todoValue
+    this.mainModel.fetchAddCard(`${URL.MOCKUP.BASE_URL}cards`, this.todoCardData)
   }
 
   removeTotoCard({target}) {
@@ -121,8 +146,11 @@ class Controller {
       const removeTitle = target.closest('.todo-items').querySelector('span').innerText.trim()
       const removeColumn = parentNode.querySelector('.todo-column-title').innerText
       this.changeCardNumber(parentNode)
-      this.setLogMessage('removed', removeTitle, removeColumn)
+      this.setLogMessage('deleted', removeTitle, removeColumn)
       this.activityLogEvent();
+      const targetCardId = target.closest('.todo-items').dataset.cardId
+      this.mainModel.fetchRemoveCard(`${URL.MOCKUP.BASE_URL}cards/${targetCardId}`)
+        .then(data => console.log(data))
     } else {
       return false;
     }
@@ -143,10 +171,36 @@ class Controller {
     parentNode.querySelector('.todo-num').innerText = todoNumber
   }
 
-  dragAndDrop() {
+  dragAndDrop(model, view, log) {
     $( ".droppable-area1, .droppable-area2, .droppable-area3" ).sortable({
       connectWith: ".todo-list",
-      stack: '.todo-list ul'
+      stack: '.todo-list ul',
+      opacity: 0.5,
+      // beforeStop: function( event, ui ) { console.log(event)}
+      // start: function( event, ui ) {
+      //   console.log(event, ui)
+      // },
+      receive: function(event) {
+        const targetCardId = event.toElement.closest('.todo-items').dataset.cardId
+        const tartgetColumnId = event.toElement.closest('.column').dataset.columnId
+        const parentNode = event.toElement.closest('.column')
+        const cardTitle = event.toElement.closest('.todo-items').querySelector('.todo-items-title').innerText
+        const columnTitle = event.toElement.closest('.column').querySelector('.todo-column-title').innerText
+
+        const changeArray = event.toElement.closest('.todo-list').children
+        const targetArray = [...changeArray]
+        for(let i = 0 ; i < targetArray.length; i++) {
+          if(targetArray[i].dataset.cardId === targetCardId) {
+            this.targetIndex = i
+          }
+        }
+        model.fetchMoveCard(`${URL.MOCKUP.BASE_URL}cards/${targetCardId}/position?category=${tartgetColumnId}&index=${this.targetIndex}`)
+        log.event = 'moved',
+        log.title = `${cardTitle}`,
+        log.column = `${columnTitle}`
+        view.addLogRender(log)
+        view.changeCardNum()
+      },
     }).disableSelection();
   }
 
@@ -177,11 +231,13 @@ class Controller {
 
   updateCheckBtn(event) {
     this.targetListValue.querySelector('span').innerHTML = this.todoListValue
-
     const updateColumn = this.targetListValue.closest('.column').querySelector('.todo-column-title').innerText
     this.setLogMessage('updated', this.todoListValue, updateColumn)
-    console.log(this.eventLog)
     this.activityLogEvent()
+    const targetCardId = this.targetListValue.closest('.todo-items').dataset.cardId
+    this.todoCardData.categoryId = targetCardId
+    this.todoCardData.title = this.todoListValue
+    this.mainModel.fetchUpdateCard(`${URL.MOCKUP.BASE_URL}cards/${targetCardId}`, this.todoCardData)
   }
 
   updateCancelBtn() {
@@ -189,46 +245,7 @@ class Controller {
   }
 
   activityLogEvent() {
-    console.log('실행?')
-    this.addLogMessage(this.eventLog)
-  }
-
-  computedDate() {
-    // 현재시간에서 추가할떄의 시간을 빼주어서 얼마나 경과되었는지를 계산
-  }
-
-  addLogMessage({time, event, title, column}) {
-    const addEventMessage = `
-    <div class="ui feed">
-          <div class="event">
-            <div class="label">
-              <img src="./assets/image/cat.jpeg" />
-            </div>
-            <div class="content">
-              <div class="date">
-                <font style="vertical-align: inherit;">
-                  ${time} 
-                </font>
-              </div>
-              <div class="summary">
-                <a>
-                  <font style="vertical-align: inherit;">@huey</font>
-                </a>
-                  <font style="vertical-align: inherit;"> ${event} </font>
-                <a>
-                  <font style="vertical-align: inherit;">
-                    ${title}
-                  </font>
-                </a>
-                <font style="vertical-align: inherit;">
-                  to ${column}
-                </font>
-              </div>
-            </div>
-          </div>
-        </div>
-    `
-    document.querySelector('.feed-container').insertAdjacentHTML('afterbegin', addEventMessage)
+    this.todoView.addLogRender(this.eventLog)
   }
 }
 
