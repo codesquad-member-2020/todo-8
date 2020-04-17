@@ -25,6 +25,7 @@ class TodoView {
     this.todoApp.insertAdjacentHTML('beforeend', this.columnComponent.render(todoData.response.category))
     this.todoApp.insertAdjacentHTML('beforeend', this.menuComponent.render(todoData.response.activity))
     this.todoApp.insertAdjacentHTML('beforeend', this.modalComponent.render())
+    // this.todoApp.insertAdjacentHTML('beforeend', this.modalComponent.columnRedner())
   }
 
   addCardRender(targetNode, targetValue) {

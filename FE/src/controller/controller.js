@@ -71,6 +71,9 @@ class Controller {
         case 'ui red basic cancel inverted button' :
           this.updateCancelBtn()
           break;
+        case 'add-column' :
+          this.addColumn()
+          break;
         default :
           break;
       }
@@ -205,7 +208,7 @@ class Controller {
   }
 
   setTodoCard(event) {
-    jb('.ui.basic.modal').modal('show');
+    jb('#update-modal').modal('show');
     document.querySelector('.todo-input-value').value = this.todoListValue
   }
 
@@ -227,6 +230,11 @@ class Controller {
       event.target.value = event.target.value.substr(0, TEXT_LIMIT_LENGTH)
       alert("15자 이하로 작성해 주세요.")
     }
+  }
+
+  addColumn() {
+    // jb('#column-modal').modal('show');
+    
   }
 
   updateCheckBtn(event) {
