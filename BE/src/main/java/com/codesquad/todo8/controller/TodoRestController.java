@@ -42,7 +42,7 @@ public class TodoRestController {
   @GetMapping("board")
   public ApiResult<BoardResponse> main(HttpServletRequest request) {
 //    Long id = getUserId(request);
-    List<Activity> activities = todoService.findAllActivity("nigayo");
+    List<Activity> activities = todoService.findAllActivity("ttozzi");
     List<Category> categories = todoService.findAllContents(1L);
     return OK(BoardResponse.of(categories, activities));
 
@@ -51,7 +51,7 @@ public class TodoRestController {
   @GetMapping("activities")
   public ApiResult<List<Activity>> logs(HttpServletRequest request) {
 //    String author = getAuthor(request);
-    List<Activity> activities = todoService.findAllActivity("nigayo");
+    List<Activity> activities = todoService.findAllActivity("ttozzi");
     return OK(activities);
 
   }

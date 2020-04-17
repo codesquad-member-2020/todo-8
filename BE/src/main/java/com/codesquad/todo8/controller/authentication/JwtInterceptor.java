@@ -16,7 +16,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Component
 public class JwtInterceptor implements HandlerInterceptor {
 
-  // JWT 요청 : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Im5pZ2F5byJ9.Vs0bzwNZ9QgGiPYzvEgGsL0Iylp6NjnPcaQtI_h3AxE
+  // JWT 요청 : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InR0b3p6aSJ9.6INtCczPguAqOIYYR6fsL2XOZ3ZqnVveKDwhQxqsIVE
   private static final Logger logger = LoggerFactory.getLogger(JwtInterceptor.class);
   private final UserService userService;
 

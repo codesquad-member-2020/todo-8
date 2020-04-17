@@ -89,7 +89,12 @@ public class TodoService {
   public Card deleteCard(Long cardId) {
     Card deletedCard = cardRepository.findById(cardId)
         .orElseThrow(() -> new CardNotFoundException(cardId));
-    cardRepository.delete(deletedCard);
+
+    Category category = categoryRepository.findById(deletedCard.getCategoryId())
+        .orElseThrow(() -> new CategoryNotFoundException(deletedCard.getCategoryId()));
+    category.getCards().removeIf(card -> card.equals(deletedCard));
+
+    categoryRepository.save(category);
 
     Activity deleted = createActivity(deletedCard, "deleted");
     saveActivity(deleted);
