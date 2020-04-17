@@ -30,14 +30,13 @@ public class JwtInterceptor implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
       Object handler) {
-    return true;
-//    String jwt = request.getHeader("Authorization").split(" ")[1];
-//    logger.debug("JWT : {}", jwt);
-//    if (validationToken(jwt)) {
-//      request.setAttribute("userName", getUserName(jwt));
-//      return true;
-//    }
-//    return false;
+    String jwt = request.getHeader("Authorization").split(" ")[1];
+    logger.debug("JWT : {}", jwt);
+    if (validationToken(jwt)) {
+      request.setAttribute("userName", getUserName(jwt));
+      return true;
+    }
+    return false;
   }
 
   private Boolean validationToken(String jwt) {
