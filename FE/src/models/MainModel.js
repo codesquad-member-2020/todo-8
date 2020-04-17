@@ -14,6 +14,11 @@ class MainModel {
     return responseAddCard
   }
 
+  async fetchAddColumn(URL, data) {
+    const responseAddColumn = todoApi.post(URL, data)
+    return responseAddColumn
+  }
+
   async fetchRemoveCard(URL) {
     const responseRemoveCard = todoApi.delete(URL)
     return responseRemoveCard

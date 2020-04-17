@@ -74,6 +74,8 @@ class Controller {
         case 'add-column' :
           this.addColumn()
           break;
+        case 'ui green ok inverted col button' :
+          this.addColumnBtn()
         default :
           break;
       }
@@ -233,8 +235,20 @@ class Controller {
   }
 
   addColumn() {
-    // jb('#column-modal').modal('show');
+    jb('#column-modal').modal('show');
     
+  }
+
+  addColumnBtn() {
+    const columnValue = document.querySelector('#todo-column-Value').value
+    this.todoView.addColumnRedner(columnValue)
+    this.initColumnValue()
+
+    this.mainModel.fetchAddColumn(`${URL.MOCKUP.BASE_URL}category`, {"title" : columnValue})
+  }
+
+  initColumnValue() {
+    document.querySelector('#todo-column-Value').value = ''
   }
 
   updateCheckBtn(event) {

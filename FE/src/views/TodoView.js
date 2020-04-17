@@ -25,7 +25,7 @@ class TodoView {
     this.todoApp.insertAdjacentHTML('beforeend', this.columnComponent.render(todoData.response.category))
     this.todoApp.insertAdjacentHTML('beforeend', this.menuComponent.render(todoData.response.activity))
     this.todoApp.insertAdjacentHTML('beforeend', this.modalComponent.render())
-    // this.todoApp.insertAdjacentHTML('beforeend', this.modalComponent.columnRedner())
+    this.todoApp.insertAdjacentHTML('beforeend', this.modalComponent.columnRedner())
   }
 
   addCardRender(targetNode, targetValue) {
@@ -38,6 +38,11 @@ class TodoView {
   
   changeCardNum() {
     this.columnComponent.changeCardNumber()
+  }
+
+  addColumnRedner(value) {
+    const columnContainer = document.querySelector('.content-container')
+    columnContainer.insertAdjacentHTML('afterbegin', this.columnComponent.addColumn(value))
   }
 }
 
