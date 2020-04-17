@@ -20,9 +20,6 @@ public class Card {
 
   private final String author;
 
-  @Column(value = "category_key")
-  private final Integer tabIndex;
-
   @Column(value = "create_at")
   private final LocalDateTime createdDate;
 
@@ -34,25 +31,23 @@ public class Card {
   private LocalDateTime modifiedDate;
 
   private Card(Long id, Long categoryId, String author, String title, String contents,
-      Integer tabIndex, LocalDateTime createdDate, LocalDateTime modifiedDate) {
+      LocalDateTime createdDate, LocalDateTime modifiedDate) {
     this.id = id;
     this.categoryId = categoryId;
     this.author = author;
     this.title = title;
     this.contents = contents;
     this.createdDate = createdDate;
-    this.tabIndex = tabIndex;
     this.modifiedDate = modifiedDate;
   }
 
   public static Card of(Long categoryId, String author, String title, String contents) {
     LocalDateTime time = now();
-    return new Card(null, categoryId, author, title, contents, null, time,
-        time);
+    return new Card(null, categoryId, author, title, contents, time, time);
   }
 
   Card withId(Long id) {
-    return new Card(id, this.categoryId, this.author, this.title, this.contents, this.tabIndex,
+    return new Card(id, this.categoryId, this.author, this.title, this.contents,
         this.createdDate, this.modifiedDate);
   }
 
@@ -90,10 +85,6 @@ public class Card {
     return modifiedDate;
   }
 
-  public Integer getTabIndex() {
-    return tabIndex;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -119,7 +110,6 @@ public class Card {
         .append("author", author)
         .append("title", title)
         .append("contents", contents)
-        .append("tabIndex", tabIndex)
         .append("createdDate", createdDate)
         .append("modifiedDate", modifiedDate)
         .toString();
