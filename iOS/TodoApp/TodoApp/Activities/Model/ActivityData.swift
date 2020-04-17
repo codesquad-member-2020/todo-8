@@ -46,9 +46,9 @@ class ActivityData {
     }
     
     func updateTimeRecord() {
-        let time = data.createdTime.replacingOccurrences(of: "T", with: " ")
+        let time = data.createdTime
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let createdTime = dateFormatter.date(from: time)
         timeRecord = createdTime?.timeAgo()
     }
