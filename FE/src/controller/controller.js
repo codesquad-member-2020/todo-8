@@ -244,7 +244,8 @@ class Controller {
     this.todoView.addColumnRedner(columnValue)
     this.initColumnValue()
 
-    this.mainModel.fetchAddColumn(`${URL.MOCKUP.BASE_URL}category`, {"title" : columnValue})
+    this.mainModel.fetchAddColumn(`${URL.MOCKUP.BASE_URL}category`, 
+    { "title" : `${columnValue}`})
   }
 
   initColumnValue() {
