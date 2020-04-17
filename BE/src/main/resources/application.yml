@@ -1,0 +1,45 @@
+spring:
+  profiles:
+    active: dev
+
+
+logging:
+  pattern:
+    console: "%date  %highlight(%-5level) %cyan(%-40.40logger{40}) : %msg%n"
+  level:
+    org.springframework.web: error
+    com.codesquad.todo8: debug
+    sql: debug
+jwt:
+  token:
+    secret: Il9g5guhxIzpOz+uxvHF9DBY+hv9R9a6yBEzeqvFobA=
+
+---
+spring:
+  profiles: prod
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://13.125.160.249:3306/todo?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8
+    username: todo8
+    password: 1234
+    schema: classpath:schema.sql
+#    data: classpath:data.sql
+    initialization-mode: always
+    hikari:
+      maximum-pool-size: 10
+
+---
+spring:
+  profiles: dev
+  datasource:
+    hikari:
+      jdbc-url: jdbc:h2:mem://localhost/~/todo_server;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE
+      driver-class-name: org.h2.Driver
+      data-username: sa
+      data-password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+---
