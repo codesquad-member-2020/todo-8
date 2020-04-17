@@ -98,7 +98,7 @@ public class TodoRestController {
       @RequestBody CategoryRequest categoryRequest) {
 //    String author = getAuthor(request);
 //    Long id = getUserId(request);
-    String author = "nigayo";
+    String author = "ttozzi";
     Long id = 1L;
     Category category = Category.of(id, author, categoryRequest.getTitle());
     return OK(todoService.createCategory(category));
