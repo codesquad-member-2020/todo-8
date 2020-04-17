@@ -1,5 +1,6 @@
 package com.codesquad.todo8.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Category {
   private final String author;
 
   @Column(value = "create_at")
+  @JsonFormat(pattern = "yyyy-MM-dd kk:mm:ss")
   private final LocalDateTime createdDate;
 
   private String title;

@@ -2,6 +2,7 @@ package com.codesquad.todo8.model;
 
 import static java.time.LocalDateTime.now;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.common.base.Objects;
 import java.time.LocalDateTime;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -21,6 +22,7 @@ public class Card {
   private final String author;
 
   @Column(value = "create_at")
+  @JsonFormat(pattern = "yyyy-MM-dd kk:mm:ss")
   private final LocalDateTime createdDate;
 
   private String title;
@@ -28,6 +30,7 @@ public class Card {
   private String contents;
 
   @Column(value = "modify_at")
+  @JsonFormat(pattern = "yyyy-MM-dd kk:mm:ss")
   private LocalDateTime modifiedDate;
 
   private Card(Long id, Long categoryId, String author, String title, String contents,
