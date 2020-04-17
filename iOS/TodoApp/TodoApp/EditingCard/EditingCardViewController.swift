@@ -22,7 +22,7 @@ class EditingCardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if editingViewModel.card != nil {
+        if editingViewModel.card?.title != "" {
             updateWithViewModel()
         } else {
             contentTextView.setPlaceholder()
