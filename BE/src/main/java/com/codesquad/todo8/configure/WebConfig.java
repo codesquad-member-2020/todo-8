@@ -18,8 +18,9 @@ public class WebConfig implements WebMvcConfigurer {
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(jwtInterceptor)
+        .addPathPatterns("/**")
         .excludePathPatterns("/h2-console/**")
-        .excludePathPatterns("/hcheck/**")
-        .addPathPatterns("/**");
+        .excludePathPatterns("/hcheck/**");
+
   }
 }

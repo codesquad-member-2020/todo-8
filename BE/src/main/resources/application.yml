@@ -1,6 +1,3 @@
-spring:
-  profiles:
-    active: prod
 
 logging:
   pattern:
@@ -12,7 +9,9 @@ logging:
 jwt:
   token:
     secret: Il9g5guhxIzpOz+uxvHF9DBY+hv9R9a6yBEzeqvFobA=
-
+spring:
+  profiles:
+    active: prod
 ---
 spring:
   profiles: prod
@@ -22,7 +21,7 @@ spring:
     username: todo8
     password: 1234
     schema: classpath:schema.sql
-#    data: classpath:data.sql
+    data: classpath:data-mysql.sql
     initialization-mode: always
     hikari:
       maximum-pool-size: 10

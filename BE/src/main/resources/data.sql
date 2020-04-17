@@ -32,3 +32,4 @@ INSERT INTO activity (id, author, `action`, target_name,departure, arrival, crea
 
 
 
+
