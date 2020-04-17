@@ -112,6 +112,7 @@ div.ui.feed {
 }
 
 .add-column {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -282,6 +283,15 @@ div.ui.feed {
   font-weight: bold;
   text-align: center;
 }
+/* 
+.ui.column.modal {
+  background-color: transparent;
+    border: none;
+    border-radius: 0;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+    color: #fff;
+} */
 
 /* 스피너 */
 

@@ -1,4 +1,4 @@
-import { todoApi } from '../api/TodoRequest.js'
+import { todoApi } from '../todoApi/TodoRequest.js'
 
 class MainModel {
   constructor() {
