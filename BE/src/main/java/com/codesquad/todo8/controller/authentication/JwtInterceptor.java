@@ -16,7 +16,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Component
 public class JwtInterceptor implements HandlerInterceptor {
 
-  // JWT 요청 : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InR0b3p6aSJ9.6INtCczPguAqOIYYR6fsL2XOZ3ZqnVveKDwhQxqsIVE
+  // JWT 요청 : eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6InR0b3p6aSJ9.0XieZ8foCPS0dn2B9S11F0oHHo77hm07vTZywmVPPcI
   private static final Logger logger = LoggerFactory.getLogger(JwtInterceptor.class);
   private final UserService userService;
 
@@ -31,6 +31,11 @@ public class JwtInterceptor implements HandlerInterceptor {
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
       Object handler) {
     return true;
+
+//    if (request.getMethod().equals("OPTIONS")) {
+//      logger.info("options 메서드는 통과");
+//      return true;
+//    }
 //    String jwt = request.getHeader("Authorization").split(" ")[1];
 //    logger.debug("JWT : {}", jwt);
 //    if (validationToken(jwt)) {
