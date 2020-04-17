@@ -28,7 +28,6 @@ class MenuComponent {
 
   render(logData) {
     const logList = logData.reduce((list, log) => {
-      console.log(log)
       log.departure == null ?
         this.defaultLog = `to ${this.columnTitleChange(log.arrival)}` : 
         (

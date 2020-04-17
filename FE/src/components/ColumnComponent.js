@@ -40,6 +40,12 @@ class ColumnComponent {
     </div>
     `
   }
+
+  changeCardNumber() {
+    document.querySelectorAll('.todo-list').forEach(column => 
+      column.closest('.column').querySelector('.todo-num').innerText = column.childElementCount
+    )
+  }
 }
 
 export default ColumnComponent

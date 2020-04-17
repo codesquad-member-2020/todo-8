@@ -183,7 +183,7 @@ class Controller {
       receive: function(event) {
         const targetCardId = event.toElement.closest('.todo-items').dataset.cardId
         const tartgetColumnId = event.toElement.closest('.column').dataset.columnId
-
+        const parentNode = event.toElement.closest('.column')
         const cardTitle = event.toElement.closest('.todo-items').querySelector('.todo-items-title').innerText
         const columnTitle = event.toElement.closest('.column').querySelector('.todo-column-title').innerText
 
@@ -199,6 +199,7 @@ class Controller {
         log.title = `${cardTitle}`,
         log.column = `${columnTitle}`
         view.addLogRender(log)
+        view.changeCardNum()
       },
     }).disableSelection();
   }

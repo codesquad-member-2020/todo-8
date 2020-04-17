@@ -34,6 +34,10 @@ class TodoView {
   addLogRender(logData) {
     this.menuComponent.addLogMessage(logData)
   }
+  
+  changeCardNum() {
+    this.columnComponent.changeCardNumber()
+  }
 }
 
 export default TodoView
