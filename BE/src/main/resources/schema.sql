@@ -18,7 +18,7 @@ CREATE TABLE category
     title     varchar(50) NOT NULL,
     author    varchar(25) NOT NULL REFERENCES `user` (user_name),
     create_at datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP(),
---     users_key   int NOT NULL DEFAULT '0',
+    users_key   int NOT NULL DEFAULT '0',
     PRIMARY KEY (id)
 );
 
