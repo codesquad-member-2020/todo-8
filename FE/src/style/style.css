@@ -84,9 +84,9 @@ div.ui.feed {
 .content-container {
   width: 80%;
   margin: 0 auto;
-  margin-top: 40px;
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   /* overflow-x: scroll; */
   height: 500px;
   padding: 10px 20px 10px 20px;
@@ -112,6 +112,7 @@ div.ui.feed {
 }
 
 .add-column {
+  margin-top: 30px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -132,6 +133,7 @@ div.ui.feed {
 
 /* 컬럼 타이틀 영역 */
 .column {
+  margin-top: 30px;
   position: relative;
   width: 220px;
   background-color: rgb(236, 236, 236);
