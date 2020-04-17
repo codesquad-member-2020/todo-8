@@ -96,10 +96,8 @@ public class TodoRestController {
   @PostMapping("category")
   public ApiResult<Category> createCategory(HttpServletRequest request,
       @RequestBody CategoryRequest categoryRequest) {
-//    String author = getAuthor(request);
-//    Long id = getUserId(request);
-    String author = "nigayo";
-    Long id = 1L;
+    String author = getAuthor(request);
+    Long id = getUserId(request);
     Category category = Category.of(id, author, categoryRequest.getTitle());
     return OK(todoService.createCategory(category));
   }
