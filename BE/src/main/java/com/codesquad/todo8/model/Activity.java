@@ -1,5 +1,6 @@
 package com.codesquad.todo8.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.common.base.Objects;
 import java.time.LocalDateTime;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -24,6 +25,7 @@ public class Activity {
   private final Long arrival;
 
   @Column(value = "create_at")
+  @JsonFormat(pattern = "yyyy-MM-dd kk:mm:ss")
   private final LocalDateTime createdTime;
 
   private Activity(Long id, String author, String action, String targetName, Long departure,

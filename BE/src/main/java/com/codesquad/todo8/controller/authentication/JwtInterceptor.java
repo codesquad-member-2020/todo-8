@@ -33,7 +33,6 @@ public class JwtInterceptor implements HandlerInterceptor {
     return true;
 
 //    if (request.getMethod().equals("OPTIONS")) {
-//      logger.info("options 메서드는 통과");
 //      return true;
 //    }
 //    String jwt = request.getHeader("Authorization").split(" ")[1];
