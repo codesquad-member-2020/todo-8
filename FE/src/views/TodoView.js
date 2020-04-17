@@ -30,6 +30,10 @@ class TodoView {
   addCardRender(targetNode, targetValue) {
     this.cardComponent.addTodoCard(targetNode, targetValue)
   }
+
+  addLogRender(logData) {
+    this.menuComponent.addLogMessage(logData)
+  }
 }
 
 export default TodoView

@@ -27,8 +27,8 @@ class MenuComponent {
   }
 
   render(logData) {
-    console.log(logData)
     const logList = logData.reduce((list, log) => {
+      console.log(log)
       log.departure == null ?
         this.defaultLog = `to ${this.columnTitleChange(log.arrival)}` : 
         (
@@ -84,6 +84,40 @@ class MenuComponent {
         </button>
       </div>
     `
+  }
+
+  addLogMessage({time, event, title, column}) {
+    const addEventMessage = `
+    <div class="ui feed">
+          <div class="event">
+            <div class="label">
+              <img src="./assets/image/cat.jpeg" />
+            </div>
+            <div class="content">
+              <div class="date">
+                <font style="vertical-align: inherit;">
+                  ${time} 
+                </font>
+              </div>
+              <div class="summary">
+                <a>
+                  <font style="vertical-align: inherit;">@ttozzi</font>
+                </a>
+                  <font style="vertical-align: inherit;"> ${event} </font>
+                <a>
+                  <font style="vertical-align: inherit;">
+                    ${title}
+                  </font>
+                </a>
+                <font style="vertical-align: inherit;">
+                  to ${column}
+                </font>
+              </div>
+            </div>
+          </div>
+        </div>
+    `
+    document.querySelector('.feed-container').insertAdjacentHTML('afterbegin', addEventMessage)
   }
 }
 

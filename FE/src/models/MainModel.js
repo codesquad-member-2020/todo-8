@@ -23,6 +23,11 @@ class MainModel {
     const responseUpdateCard = todoApi.put(URL, data)
     return responseUpdateCard
   }
+
+  async fetchMoveCard(URL, data) {
+    const responseMoveCard = todoApi.put(URL, data)
+    return responseMoveCard
+  }
 }
 
 export default MainModel

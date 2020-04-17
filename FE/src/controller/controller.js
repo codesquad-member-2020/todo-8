@@ -7,6 +7,19 @@ class Controller {
   }) {
     this.mainModel = mainModel
     this.todoView = todoView
+    this.todoStatus = ''
+    this.eventLog = {
+      time: '방금',
+      event: '',
+      title: '',
+      column: ''
+    }
+    this.todoCardData = {
+      "categoryId" : "",
+    	"author" : "ttozzi",
+	    "title" : "",
+	    "contents" : ""
+    }
     this.initialize()
   }
 
@@ -19,22 +32,10 @@ class Controller {
       })
       .then(() => {
         this.menuBtnEvent()
-        this.dragAndDrop()
+        this.dragAndDrop(this.mainModel, this.todoView, this.eventLog)
         this.eventHandler()
       })
-    this.todoStatus = ''
-    this.eventLog = {
-      time: '방금',
-      event: '',
-      title: '',
-      column: ''
-    }
-    this.todoCardData = {
-      "categoryId" : "",
-    	"author" : "nigayo",
-	    "title" : "",
-	    "contents" : ""
-    }
+    
   }
 
   menuBtnEvent() {
@@ -145,7 +146,7 @@ class Controller {
       const removeTitle = target.closest('.todo-items').querySelector('span').innerText.trim()
       const removeColumn = parentNode.querySelector('.todo-column-title').innerText
       this.changeCardNumber(parentNode)
-      this.setLogMessage('removed', removeTitle, removeColumn)
+      this.setLogMessage('deleted', removeTitle, removeColumn)
       this.activityLogEvent();
       const targetCardId = target.closest('.todo-items').dataset.cardId
       this.mainModel.fetchRemoveCard(`${URL.MOCKUP.BASE_URL}cards/${targetCardId}`)
@@ -170,20 +171,35 @@ class Controller {
     parentNode.querySelector('.todo-num').innerText = todoNumber
   }
 
-  dragAndDrop() {
+  dragAndDrop(model, view, log) {
     $( ".droppable-area1, .droppable-area2, .droppable-area3" ).sortable({
       connectWith: ".todo-list",
       stack: '.todo-list ul',
       opacity: 0.5,
       // beforeStop: function( event, ui ) { console.log(event)}
-      beforeStop: function(event, ui) {
-        console.log(event)
-        console.log(ui)
-      },
       // start: function( event, ui ) {
       //   console.log(event, ui)
-      // }
+      // },
+      receive: function(event) {
+        const targetCardId = event.toElement.closest('.todo-items').dataset.cardId
+        const tartgetColumnId = event.toElement.closest('.column').dataset.columnId
 
+        const cardTitle = event.toElement.closest('.todo-items').querySelector('.todo-items-title').innerText
+        const columnTitle = event.toElement.closest('.column').querySelector('.todo-column-title').innerText
+
+        const changeArray = event.toElement.closest('.todo-list').children
+        const targetArray = [...changeArray]
+        for(let i = 0 ; i < targetArray.length; i++) {
+          if(targetArray[i].dataset.cardId === targetCardId) {
+            this.targetIndex = i
+          }
+        }
+        model.fetchMoveCard(`${URL.MOCKUP.BASE_URL}cards/${targetCardId}/position?category=${tartgetColumnId}&index=${this.targetIndex}`)
+        log.event = 'moved',
+        log.title = `${cardTitle}`,
+        log.column = `${columnTitle}`
+        view.addLogRender(log)
+      },
     }).disableSelection();
   }
 
@@ -228,41 +244,7 @@ class Controller {
   }
 
   activityLogEvent() {
-    this.addLogMessage(this.eventLog)
-  }
-
-  addLogMessage({time, event, title, column}) {
-    const addEventMessage = `
-    <div class="ui feed">
-          <div class="event">
-            <div class="label">
-              <img src="./assets/image/cat.jpeg" />
-            </div>
-            <div class="content">
-              <div class="date">
-                <font style="vertical-align: inherit;">
-                  ${time} 
-                </font>
-              </div>
-              <div class="summary">
-                <a>
-                  <font style="vertical-align: inherit;">@huey</font>
-                </a>
-                  <font style="vertical-align: inherit;"> ${event} </font>
-                <a>
-                  <font style="vertical-align: inherit;">
-                    ${title}
-                  </font>
-                </a>
-                <font style="vertical-align: inherit;">
-                  to ${column}
-                </font>
-              </div>
-            </div>
-          </div>
-        </div>
-    `
-    document.querySelector('.feed-container').insertAdjacentHTML('afterbegin', addEventMessage)
+    this.todoView.addLogRender(this.eventLog)
   }
 }
 
