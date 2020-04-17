@@ -14,11 +14,26 @@ class ActivityData {
     }
     var data: Activities
     
-    var activities: String?
-    var timeRecord: String?
+    var activities: String? {
+        didSet {
+            self.dataDidChange?(self)
+        }
+    }
+    var timeRecord: String? {
+        didSet {
+            self.dataDidChange?(self)
+        }
+    }
+    
+    var author: String
+    var title: String
+    
+    var dataDidChange: ((ActivityData) -> ())?
     
     init(activity: Activities) {
         self.data = activity
+        self.author = data.author
+        self.title = data.targetName
         updateActivities()
         updateTimeRecord()
     }
@@ -29,7 +44,7 @@ class ActivityData {
         case .added:
             self.activities = "@\(data.author) \(action.rawValue) \(data.targetName) to \(getColumnName(data.arrival))"
         case .updated:
-            self.activities = "@\(data.author) \(action.rawValue) \(data.targetName)"
+            self.activities = "@\(data.author) \(action.rawValue) \(data.targetName) from \(getColumnName(data.arrival))"
         case .moved:
             self.activities = "@\(data.author) \(action.rawValue) \(data.targetName) from \(getColumnName(data.departure)) to \(getColumnName(data.arrival))"
         case .deleted:

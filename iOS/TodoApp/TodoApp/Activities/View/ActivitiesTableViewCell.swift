@@ -13,8 +13,10 @@ class ActivitiesTableViewCell: UITableViewCell {
     
     private var data: ActivityData? {
         didSet {
-            activities.text = data?.activities
-            timeRecord.text = data?.timeRecord
+            data?.dataDidChange = { [unowned self] data in
+                self.updateWithData()
+                self.timeRecord.text = data.timeRecord
+            }
         }
     }
     
@@ -24,5 +26,13 @@ class ActivitiesTableViewCell: UITableViewCell {
     
     func configure(activities: Activities) {
         self.data = ActivityData(activity: activities)
+        data?.updateActivities()
+    }
+    
+    func updateWithData() {
+        let attributedString = NSMutableAttributedString(string: data!.activities!)
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 17), range: (data!.activities! as NSString).range(of: data!.author))
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 17), range: (data!.activities! as NSString).range(of: data!.title))
+        activities.attributedText = attributedString
     }
 }
