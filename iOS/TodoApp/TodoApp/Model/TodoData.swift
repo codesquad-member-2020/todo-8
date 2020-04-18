@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct TodoData: Codable {
+struct TodoData: Codable, Equatable {
     var success: Bool
     var response: Category
 }
 
-struct Category: Codable {
+struct Category: Codable, Equatable {
     var category: [Column]
 }
 
-struct Column: Codable {
+struct Column: Codable, Equatable {
     var id: Int
     var title: String
     var cards: [Card]
@@ -33,7 +33,7 @@ struct Card: Codable, Equatable {
     var modifiedDate: String
 }
 
-struct Response: Codable {
+struct Response: Codable, Equatable {
     var success: Bool
     var response: Card
 }

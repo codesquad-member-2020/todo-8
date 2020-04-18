@@ -32,6 +32,7 @@ class TodoViewController: UIViewController {
         todoTableView.delegate = self
         todoTableView.dragDelegate = self
         todoTableView.dropDelegate = self
+        todoTableView.allowsSelection = false
     }
     
     func addCard(_ card: Card) {

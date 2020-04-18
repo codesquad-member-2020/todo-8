@@ -24,6 +24,7 @@ class EditingCardViewController: UIViewController {
         super.viewWillAppear(animated)
         if editingViewModel.card?.title != "" {
             updateWithViewModel()
+            completeButton.isEnabled = true
         } else {
             contentTextView.setPlaceholder()
         }
