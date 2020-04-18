@@ -1,4 +1,4 @@
-import { todoApi } from '../api/TodoRequest.js'
+import { todoApi } from '../todoApi/TodoRequest.js'
 
 class MainModel {
   constructor() {
@@ -12,6 +12,11 @@ class MainModel {
   async fetchAddCard(URL, data) {
     const responseAddCard = todoApi.post(URL, data)
     return responseAddCard
+  }
+
+  async fetchAddColumn(URL, data) {
+    const responseAddColumn = todoApi.post(URL, data)
+    return responseAddColumn
   }
 
   async fetchRemoveCard(URL) {

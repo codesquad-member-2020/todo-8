@@ -41,6 +41,32 @@ class ColumnComponent {
     `
   }
 
+  addColumn(value) {
+    return `
+    <div class="todo-column column" data-type="column"> 
+    <div class="todo-column-header">
+      <span class="todo-num">0</span>
+      <span class="todo-column-title">${value}</span>
+      <button class="todo-column-add-btn todo-add-btn btn">
+        <i class="plus icon"></i>
+      </button>
+      <button class="todo-column-remove-btn btn">
+        <i class="x icon"></i>
+      </button>
+    </div>
+    <div class="todo-add-area">
+      <textarea class="todo-textarea" placeholder="Enter a note" name="" id=""></textarea>
+      <div class="todo-btn-container">
+        <button class="base-add-btn" disabled>Add</button>
+        <button class="base-cancel-btn">Cancel</button>
+      </div>
+    </div>
+    <ul class="todo-list droppable-area1">
+    </ul>
+  </div>
+    `
+  }
+
   changeCardNumber() {
     document.querySelectorAll('.todo-list').forEach(column => 
       column.closest('.column').querySelector('.todo-num').innerText = column.childElementCount
