@@ -32,6 +32,7 @@ class TodoViewController: UIViewController {
         todoTableView.delegate = self
         todoTableView.dragDelegate = self
         todoTableView.dropDelegate = self
+        todoTableView.allowsSelection = false
     }
     
     func addCard(_ card: Card) {
@@ -87,7 +88,7 @@ class TodoViewController: UIViewController {
     }
     
     @IBAction func addCardButtonTabbed(_ sender: AddCardButton) {
-        let newCard = Card(id: 0, categoryId: manager.id, title: "", author: "nigayo", contents: "", createdDate: "", modifiedDate: "")
+        let newCard = Card(id: 0, categoryId: manager.id, title: "", author: "ttozzi", contents: "", createdDate: "", modifiedDate: "")
         presentEditingCardViewController(with: newCard) { card in
             TodoNetworkManager.addCardRequest(card: card) { card in
                 guard let card = card else {

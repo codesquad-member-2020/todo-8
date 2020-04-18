@@ -14,7 +14,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addObservers()
-        dataManager.loadData()
+        let operationQueue = OperationQueue()
+        operationQueue.addOperation {
+            while true {
+                self.dataManager.loadData()
+                sleep(1)
+            }
+        }
     }
     
     private func addObservers() {
