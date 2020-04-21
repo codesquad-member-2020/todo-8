@@ -1,6 +1,7 @@
-package com.codesquad.todo8.controller;
+package com.codesquad.todo8.controller.authentication;
 
-import com.codesquad.todo8.service.UserService;
+import com.codesquad.todo8.error.UnauthorizedException;
+import com.codesquad.todo8.service.user.UserService;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +16,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Component
 public class JwtInterceptor implements HandlerInterceptor {
 
-  // JWT 요청 : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Im5pZ2F5byJ9.Vs0bzwNZ9QgGiPYzvEgGsL0Iylp6NjnPcaQtI_h3AxE
-  private static Logger logger = LoggerFactory.getLogger(JwtInterceptor.class);
+  // JWT 요청 : eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6InR0b3p6aSJ9.0XieZ8foCPS0dn2B9S11F0oHHo77hm07vTZywmVPPcI
+  private static final Logger logger = LoggerFactory.getLogger(JwtInterceptor.class);
   private final UserService userService;
 
   @Value("${jwt.token.secret}")
@@ -30,6 +31,10 @@ public class JwtInterceptor implements HandlerInterceptor {
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
       Object handler) {
     return true;
+
+//    if (request.getMethod().equals("OPTIONS")) {
+//      return true;
+//    }
 //    String jwt = request.getHeader("Authorization").split(" ")[1];
 //    logger.debug("JWT : {}", jwt);
 //    if (validationToken(jwt)) {
@@ -57,8 +62,7 @@ public class JwtInterceptor implements HandlerInterceptor {
           .getBody()
           .get("userName", String.class);
     } catch (JwtException e) {
-      logger.debug("JwtException : {}", e.getMessage());
-      return null;
+      throw new UnauthorizedException(e.getMessage());
     }
   }
 }

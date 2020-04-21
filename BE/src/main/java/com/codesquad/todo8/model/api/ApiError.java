@@ -1,4 +1,4 @@
-package com.codesquad.todo8.api;
+package com.codesquad.todo8.model.api;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,6 @@ public class ApiError {
     this.message = exception.getMessage();
     this.httpStatus = status.value();
   }
-
 
   public ApiError(String message, HttpStatus httpStatus) {
     this.message = message;

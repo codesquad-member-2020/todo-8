@@ -1,7 +1,9 @@
 package com.codesquad.todo8.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -14,20 +16,42 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Category {
 
   @Id
-  private Long id;
+  private final Long id;
 
   @JsonIgnore
-  private Long userId;
+  private final Long userId;
+
+  private final String author;
+
+  @Column(value = "create_at")
+  @JsonFormat(pattern = "yyyy-MM-dd kk:mm:ss")
+  private final LocalDateTime createdDate;
 
   private String title;
 
-  private String author;
-
-  @Column(value = "create_at")
-  private LocalDateTime createdDate;
-
   @MappedCollection(idColumn = "category_id", keyColumn = "category_key")
-  private List<Card> cards;
+  private List<Card> cards = new ArrayList<>();
+
+  private Category(Long id, Long userId, String author, String title,
+      LocalDateTime createdDate) {
+    this.id = id;
+    this.userId = userId;
+    this.author = author;
+    this.title = title;
+    this.createdDate = createdDate;
+  }
+
+  public static Category of(Long userId, String title, String author) {
+    return new Category(null, userId, title, author, getNow());
+  }
+
+  private static LocalDateTime getNow() {
+    return LocalDateTime.now();
+  }
+
+  Category withId(Long id) {
+    return new Category(id, this.userId, this.title, this.author, this.createdDate);
+  }
 
   public Long getId() {
     return id;
@@ -53,13 +77,20 @@ public class Category {
     return author;
   }
 
-  //카테고리에 제일 위에 카드가 들어가도록 한다.
   public void addFirstCard(Card card) {
     this.cards.add(0, card);
   }
 
+  public void addCard(Card card, int index) {
+    this.cards.add(index, card);
+  }
+
   public void moveCard(int index, Card card) {
     this.cards.add(index, card);
+  }
+
+  public void updateTitle(String title) {
+    this.title = title;
   }
 
   @Override

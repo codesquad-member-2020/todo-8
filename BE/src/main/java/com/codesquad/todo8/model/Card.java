@@ -1,5 +1,8 @@
 package com.codesquad.todo8.model;
 
+import static java.time.LocalDateTime.now;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.common.base.Objects;
 import java.time.LocalDateTime;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -12,20 +15,22 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Card {
 
   @Id
-  private Long id;
+  private final Long id;
 
-  private Long categoryId;
+  private final Long categoryId;
 
-  private String author;
+  private final String author;
+
+  @Column(value = "create_at")
+  @JsonFormat(pattern = "yyyy-MM-dd kk:mm:ss")
+  private final LocalDateTime createdDate;
 
   private String title;
 
   private String contents;
 
-  @Column(value = "create_at")
-  private LocalDateTime createdDate;
-
   @Column(value = "modify_at")
+  @JsonFormat(pattern = "yyyy-MM-dd kk:mm:ss")
   private LocalDateTime modifiedDate;
 
   private Card(Long id, Long categoryId, String author, String title, String contents,
@@ -40,13 +45,19 @@ public class Card {
   }
 
   public static Card of(Long categoryId, String author, String title, String contents) {
-    LocalDateTime now = getNow();
-    return new Card(null, categoryId, author, title, contents, now,
-        now);
+    LocalDateTime time = now();
+    return new Card(null, categoryId, author, title, contents, time, time);
   }
 
-  private static LocalDateTime getNow() {
-    return LocalDateTime.now();
+  Card withId(Long id) {
+    return new Card(id, this.categoryId, this.author, this.title, this.contents,
+        this.createdDate, this.modifiedDate);
+  }
+
+  public void update(Card card) {
+    this.title = card.title;
+    this.contents = card.contents;
+    this.modifiedDate = now();
   }
 
   public Long getId() {
@@ -76,7 +87,6 @@ public class Card {
   public LocalDateTime getModifiedDate() {
     return modifiedDate;
   }
-
 
   @Override
   public boolean equals(Object o) {

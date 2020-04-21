@@ -1,4 +1,4 @@
-package com.codesquad.todo8.api;
+package com.codesquad.todo8.model.api;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,6 @@ public class ApiResult<T> {
   public static ApiResult ERROR(Exception exception, HttpStatus status) {
     return new ApiResult<>(false, null, new ApiError(exception, status));
   }
-
 
   public boolean isSuccess() {
     return success;
